@@ -45,7 +45,6 @@
 			$email = $this->input->post('email');
 			$senha = $this->input->post('senha');
 			$response = $this->login_model->get_login($email,$senha);
-			$data['message'] = 'Administração';
 			$data['title'] = 'Login';
 			
 			//se ja houver uma sessao apenas dar um refresh na pagina e nao criar a sessao novamente

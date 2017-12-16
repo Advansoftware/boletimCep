@@ -1,3 +1,9 @@
+@-webkit-keyframes mymove {
+			0%   {opacity: 1;}
+			50%  {opacity: .4;}
+			100% {opacity: 1;}
+		}
+
 .padding{
 	padding-top: 10px;
 	padding-bottom: 10px; 
@@ -8,11 +14,40 @@
 }
 
 body{
-	background-image: url('../imagens/fundo.jpg');
+	background-image: url('../imagens/fundo.jpg') ;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-size: 100% 100%;
+	filter:drop-shadow(10);
+	
 }
 .shadow-basic{
 	box-shadow: 0px 0px 15px 2px #000;
+}
+.login{
+	width: 300px;
+	border:none;
+	box-shadow: 0px 1px 3px 0px rgba(0,0,0,.5);
+	background-image:url("../imagens/luz.png");
+	background-repeat: repeat-x;
+	padding: 30px;
+	text-align: center;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	bottom: 0px;
+	background-color: rgba(255,255,255, .8);
+	visibility: visible;
+	
+}
+.login img{
+	width: 200px;
+	border: none;
+	padding: 30px;
+	
+}
+.slide-login{
+		
+	width: 100%;
+	
 }

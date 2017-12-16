@@ -8,9 +8,10 @@
 				<script type="text/javascript" src="<?php echo $url; ?>js/Main.js"></script>
 				<script type="text/javascript" src="<?php echo $url; ?>js/Chart.js"></script>
 				<script type="text/javascript" src="<?php echo $url; ?>js/legend.js"></script>
-				<div style='color: silver; position: fixed; bottom: 0px; right: 0px;'>
-					<em>&copy;  <?php echo date("Y"); ?> Desenvolvido por Tadeu R. Torres </em>
-				</div>
+	
+				<div class="container-fluid text-center" style='background-color: rgba(0,0,0,.5); width: 100%;color: white; position: fixed;z-index:-1; bottom: 0px; right: 0px;padding: 15px;'>
+					&copy;  <?php echo date("Y"); ?> - Advansoftware
+				</div>	
 			</div>
 		</body> 
 </html>

@@ -11,11 +11,5 @@
 
 	</head >
 	<body id='c'>
-		<div class='container-fluid'>
-			<div class="jumbotron jumbotron-fluid"  style='background-color: rgba(255,255,255,0.3);'>
-			<div class="container text-center">
-				<h2 style='color: white;'><?php echo $message?></h2>
-			</div>
-		</div>
-        
+
         
