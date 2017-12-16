@@ -19,13 +19,13 @@
 			<h2>Admin</h2>
 		</div>
 		<div class="sidenav-header-logo"><a href="index.html" class="brand-small text-center">
-			<strong>A</strong><strong class="text-primary">D</strong></a>
+			<strong>A</strong><strong style='background-color: #e4773f;'>D</strong></a>
 		</div>
 	</div>
 	<div class="main-menu">
 		<ul id="side-main-menu" class="side-menu list-unstyled">                  
 			<li>
-				<a href="<?php echo $url; ?>index.php/admin/dashboard" > <i class="icon-home"></i><span>Leads</span></a>
+				<a href="<?php echo $url; ?>index.php/disciplina/index" > <i class="icon-home"></i><span>Disciplina</span></a>
 			</li>
 			<li>
 				<a href="<?php echo $url; ?>index.php/admin/estatistica" ><i class="icon-form"></i><span>Estatísticas</span></a>
@@ -33,3 +33,18 @@
 		</ul>
 	</div>
 </nav>
+<div class="modal fade" id="lead_modal_aguardar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+	<div class="modal-content">
+	  <div class="modal-header">
+		
+	  </div>
+	  <div class="modal-body text-center" id='mensagem'>
+		
+	  </div>
+	  <div class="modal-footer">
+		
+	  </div>
+	</div>
+  </div>
+</div>
