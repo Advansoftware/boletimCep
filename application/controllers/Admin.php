@@ -25,7 +25,7 @@
 		public function dashboard()
 		{
 			$data['url'] = base_url();
-			$data['leads'] = $this->lead_model->get_lead();
+			//$data['leads'] = $this->lead_model->get_lead();
 			$data['title'] = 'Administração';
 			$data['message'] = 'Administração';
 			$this->load->view('templates/header_admin',$data);

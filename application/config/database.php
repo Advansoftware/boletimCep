@@ -74,11 +74,11 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-	'dsn'	=> 'mysql:host=localhost;port=3306;dbname=lead',
+	'dsn'	=> 'mysql:host=localhost;port=3306;dbname=boletim',
 	'hostname' => 'mysql:host=localhost',
-	'username' => 'lead',
-	'password' => 'lead',
-	'database' => 'lead',
+	'username' => 'cep_boletim',
+	'password' => 'cep_boletim',
+	'database' => 'boletim',
 	'dbdriver' => 'pdo',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

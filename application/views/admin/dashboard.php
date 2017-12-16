@@ -38,52 +38,7 @@
 		</div>
 	  </div>
 	</div>
-	<div class='row' style='padding: 30px;'>
-		<p>Todos os Leads</p>
-	</div>
 	<div class='row' id='container' name='container'>
-		<?php
-			echo "<div class='col-lg-10 offset-lg-1'>";
-				echo "<div class='table-responsive'>";
-					echo "<table class='table table-striped table-hover'>";
-						echo "<thead>";
-							echo "<tr>";
-								echo "<td>Nome</td>";
-								echo "<td>Ativo</td>";
-								echo "<td>E-mail</td>";
-								echo "<td>CPF</td>";
-								echo "<td>CEP</td>";
-								echo "<td>Telefone</td>";
-								echo "<td>Observações</td>";
-								echo "<td>Ações</td>";
-							echo "<tr>";
-						echo "</thead>";
-						echo "<tbody>";
-							for($i = 0; $i < count($leads); $i++)
-							{
-								$ativo = "";
-								if($leads[$i]['ativo'] == 1)
-									$ativo = "Sim";
-								else
-									$ativo = "Não";
-								echo "<tr>";
-									echo "<td>".$leads[$i]['nome']."</td>";
-									echo "<td>".$ativo."</td>";
-									echo "<td>".$leads[$i]['email']."</td>";
-									echo "<td>".$leads[$i]['cpf']."</td>";
-									echo "<td>".$leads[$i]['cep']."</td>";
-									echo "<td>".$leads[$i]['telefone']."</td>";
-									echo "<td>".$leads[$i]['observacoes']."</td>";
-									echo "<td>";
-										echo "<a href='".$url."index.php/admin/edit/".$leads[$i]['id']."' title='Editar' style='color: #dc3545; cursor: pointer;' class='glyphicon glyphicon-edit'></a>  |  ";
-										echo "<span onclick='Main.trash_lead(". $leads[$i]['id'] .");' id='sp_lead_trash' name='sp_lead_trash' title='Apagar' style='color: #dc3545; cursor: pointer;' class='glyphicon glyphicon-trash'></span>";
-									echo "</td>";
-								echo "</tr>";
-							}
-						echo "</tbody>";
-					echo "</table>";
-				echo "</div>";
-			echo "</div>";
-		?>
+		TESTE
 	</div>
 </div>
