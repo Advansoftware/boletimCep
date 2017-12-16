@@ -1,0 +1,18 @@
+.padding{
+	padding-top: 10px;
+	padding-bottom: 10px; 
+}
+
+.border-default{
+	border: 1px solid #dc3545;
+}
+
+body{
+	background-image: url('../imagens/fundo.jpg');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: 100% 100%;
+}
+.shadow-basic{
+	box-shadow: 0px 0px 15px 2px #000;
+}
