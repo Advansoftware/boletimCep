@@ -9,7 +9,7 @@
 				<script type="text/javascript" src="<?php echo $url; ?>js/Chart.js"></script>
 				<script type="text/javascript" src="<?php echo $url; ?>js/legend.js"></script>
 				<div style='color: silver; position: fixed; bottom: 0px; right: 0px;'>
-					<em>&copy;  <?php echo date("Y"); ?> Desenvolvido por Tadeu R. Torres </em>
+					<em>&copy;  <?php echo date("Y"); ?> - Advansoftware </em>
 				</div>
 			</div>
 		</body> 
