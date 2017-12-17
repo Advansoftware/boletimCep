@@ -1,5 +1,5 @@
 <?php
-	class Disciplina extends CI_Controller {
+	class Aluno extends CI_Controller {
 		/*
 			no construtor carregamos as bibliotecas necessarias e tambem nossa model
 		*/
@@ -8,8 +8,10 @@
 			parent::__construct();
 			
 			$this->load->model('login_model');
-			$this->load->model('Disciplina_model');
 			$this->load->model('Categoria_model');
+			$this->load->model('Disciplina_model');
+			$this->load->model('Curso_model');
+			$this->load->model('Aluno_model');
 			$this->load->helper('url_helper');
 			$this->load->helper('url');
 			$this->load->helper('html');
@@ -25,12 +27,12 @@
 		*/
 		public function index(){
 			$data['url'] = base_url();
-			$data['controller'] = 'disciplina';
-			$data['Disciplinas'] = $this->Disciplina_model->get_disciplina();
+			$data['controller'] = 'aluno';
+			$data['Alunos'] = $this->Aluno_model->get_aluno();
 			$data['title'] = 'Administração';
 			$data['message'] = 'Administração';
 			$this->load->view('templates/header_admin',$data);
-			$this->load->view('disciplina/index',$data);
+			$this->load->view('aluno/index',$data);
 			$this->load->view('templates/footer',$data);
 		}
 		
@@ -40,7 +42,7 @@
 		*/
 		public function deletar($id = null)
 		{
-			$this->Disciplina_model->delete_disciplina($id);
+			$this->Aluno_model->delete_aluno($id);
 		}
 		
 		/*
@@ -51,14 +53,14 @@
 		{
 			$data['url'] = base_url();
 
-			$data['Disciplina'] = $this->Disciplina_model->get_disciplina($id);
+			$data['Aluno'] = $this->Aluno_model->get_aluno($id);
 			
-			$data['Categoria'] = $this->Categoria_model->get_categoria();
+			$data['Cursos'] = $this->Curso_model->get_curso();
 			$data['title'] = 'Administração';
-			$data['controller'] = 'disciplina';
+			$data['controller'] = 'aluno';
 			$data['message'] = 'Administração';
 			$this->load->view('templates/header_admin',$data);
-			$this->load->view('disciplina/create_edit',$data);
+			$this->load->view('aluno/create_edit',$data);
 			$this->load->view('templates/footer',$data);
 		}
 		
@@ -67,16 +69,20 @@
 			$dataToSave = array(
 				'Id' => $this->input->post('Id'),
 				'Ativo' => 1,
-				'Nome' => $this->input->post('Nome'),
-				'CategoriaId' => $this->input->post('CategoriaId')
+				'Nome' => $this->input->post('NomeAluno'),
+				'Matricula' => $this->input->post('Matricula'),
+				'NumeroChamada' => $this->input->post('NumeroChamada'),
+				'DataNascimento' => $this->input->post('DataNascimento'),
+				'Sexo' => $this->input->post('Sexo'),
+				'CursoId' => $this->input->post('CursoId')
 			);
 			//bloquear acesso direto ao metodo store
 			 if(!empty($dataToSave['Nome']))
-				$this->Disciplina_model->set_disciplina($dataToSave);
+				$this->Aluno_model->set_aluno($dataToSave);
 			 else
 				redirect('admin/dashboard');
 			
-			$arr = array('response' => 'sucesso');
+			$arr = array('response' => $dataToSave['Sexo']);
 			header('Content-Type: application/json');
 			echo json_encode($arr);
 		}

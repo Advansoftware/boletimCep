@@ -54,51 +54,29 @@
 			}
 			else
 			{
-				$dataToSave = array(
-					'Id' => $data['Id'],
-					'Nome' => $data['NomeCurso'],
-					'Ativo' => $data['Ativo']
-				);
-				
 				$query = $this->db->query("SELECT DisciplinaId FROM disciplina_curso
 								WHERE CursoId = ".$this->db->escape($data['Id'])."");
 				$query = $query->result_array();
 				
-					
-					for($i = 0; $i < count($query); $i++)
+				//DELETA OS QUE FORAM REMOVIDOS NA TELA PELO USUARIO
+				for($i = 0; $i < count($query); $i++)
+				{
+					$flag = 0;
+					for($j = 0; $j < count($data['disciplinasId']); $j++)
 					{
-						$flag = 0;
-						for($j = 0; $j < count($data['disciplinasId']); $j++)
-						{
-							if($query[$i]['DisciplinaId'] == $data['disciplinasId'][$j])
-								$flag = 1;
-						}
-						if($flag == 0)
-							$this->db->query("DELETE FROM disciplina_curso 
-											WHERE DisciplinaId = ".$this->db->escape($query[$i]['DisciplinaId'])." AND CursoId =  
-											".$this->db->escape($data['Id'])."");
+						if($query[$i]['DisciplinaId'] == $data['disciplinasId'][$j])
+							$flag = 1;
 					}
-					
-					for($i = 0; $i < count($data['disciplinasId']); $i++)
-					{
-						$flag = 0;
-						for($j = 0; $j < count($query); $j++)
-						{
-							if($data['disciplinasId'][$i] == $query[$j]['DisciplinaId'])
-								$flag = 1;
-						}
-						if($flag == 0)
-						{
-							$dataToSave = array(
-								'DisciplinaId' => $data['disciplinasId'][$i],
-								'CursoId' => $data['Id']
-							);
-							$this->db->insert('disciplina_curso',$dataToSave);
-						}
-					}
-				
+					if($flag == 0)
+						$this->db->query("DELETE FROM disciplina_curso 
+										WHERE DisciplinaId = ".$this->db->escape($query[$i]['DisciplinaId'])." AND CursoId =  
+										".$this->db->escape($data['Id'])."");
+				}
+				//FAZ INSERT DE TODOS, POREM OS INSERE DE SUCESSO SÃO AQUELES QUE NÃO VIOLAM A CHAVE PRIMARI
+				for($i = 0; $i < count($data['disciplinasId']); $i++)
+					$this->db->query("INSERT IGNORE INTO disciplina_curso(DisciplinaId,CursoId)
+										VALUES(".$this->db->escape($data['disciplinasId'][$i]).",".$this->db->escape($data['Id']).")");
 			}
-			return "d";
 		}
 		
 		/*

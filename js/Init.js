@@ -37,9 +37,22 @@ $(document).ready(
 		$('#CategoriaId').blur(function() { 
 			if(this.value != '') Main.show_error("CategoriaId","error-CategoriaId","","form-control is-valid");
 		});
-		
-		
 		//event for form register
-
+		
+		$('#Matricula').blur(function() { 
+			if(this.value != '') Main.show_error("Matricula","error-matricula","","form-control is-valid");
+		});
+		
+		$('#NumeroChamada').blur(function() { 
+			if(this.value != '') Main.show_error("NumeroChamada","error-numero_chamada","","form-control is-valid");
+		});
+		
+		$('#DataNascimento').blur(function() { 
+			if(this.value != '') Main.show_error("DataNascimento","error-data_nascimento","","form-control is-valid");
+		});
+		
+		$('#CursoId').blur(function() { 
+			if(this.value != '0') Main.show_error("CursoId","error-curso_id","","form-control is-valid");
+		});
 	}
  );

@@ -1,8 +1,4 @@
 <?php
-
-define("MATERIA_TECNICA",1);
-define("MATERIA_ENSIO_MEDIO",2);
-
 	class Curso extends CI_Controller {
 		/*
 			no construtor carregamos as bibliotecas necessarias e tambem nossa model
@@ -43,7 +39,7 @@ define("MATERIA_ENSIO_MEDIO",2);
 			APAGAR UMA DISCIPLINA DESDE QUE EXISTA A SESSAO DE USUARIO E A MESMA
 			SEJA VALIDA
 		*/
-		public function delete($id = null)
+		public function deletar($id = null)
 		{
 			$this->Curso_model->delete_curso($id);
 		}

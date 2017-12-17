@@ -32,7 +32,7 @@
 				<a href="<?php echo $url; ?>index.php/admin/estatistica" ><i class="icon-form glyphicon glyphicon-book" style="margin-bottom: 10px;"></i><span>Turma</span></a>
 			</li>
 			<li>
-				<a href="<?php echo $url; ?>index.php/admin/estatistica" ><i class="icon-form glyphicon glyphicon-user" style="margin-bottom: 10px;"></i><span>Aluno</span></a>
+				<a href="<?php echo $url; ?>index.php/aluno/index" ><i class="icon-form glyphicon glyphicon-user" style="margin-bottom: 10px;"></i><span>Aluno</span></a>
 			</li>
 
 		</ul>

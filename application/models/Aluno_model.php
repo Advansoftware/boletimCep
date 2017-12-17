@@ -1,5 +1,5 @@
 <?php
-	class Lead_model extends CI_Model {
+	class Aluno_model extends CI_Model {
 		
 		/*
 			CONECTA AO BANCO DE DADOS DEIXANDO A CONEXÃO ACESSÍVEL PARA OS METODOS
@@ -14,41 +14,49 @@
 			RETORNA UM LEAD DE ACORDO COM O ID, 
 			CASO O PARAMETRO ID NAO SEJA PASSADO RETORNA UMA LISTA DE LEAD
 		*/
-		public function get_lead($id = FALSE)
+		public function get_aluno($id = FALSE)
 		{
 			if ($id === FALSE)//retorna todos se nao passar o parametro
 			{
-				
-				$this->db->order_by('data_registro','DESC');
-				$query =  $this->db->get('leads');
+				$query =  $this->db->query(
+					"SELECT a.Id, a.DataRegistro, a.Matricula, a.Nome as NomeAluno, a.Sexo, a.DataNascimento, a.NumeroChamada, a.CursoId, t.Nome as NomeTurma, c.Nome as NomeCurso 
+					FROM aluno a 
+					LEFT JOIN turma t ON a.TurmaId = t.Id 
+					INNER JOIN curso c ON a.CursoId = c.Id 
+					WHERE a.ativo = 1 ORDER BY a.DataRegistro DESC ");
 				return $query->result_array();
 			}
 
-			$query = $this->db->get_where('leads', array('id' => $id));
-			return $query->row_array();
+			$query =  $this->db->query(
+					"SELECT a.Id, a.DataRegistro, a.Matricula, a.Nome as NomeAluno, a.Sexo, a.DataNascimento, a.NumeroChamada, a.CursoId, t.Nome as NomeTurma, c.Nome as NomeCurso 
+					FROM aluno a 
+					LEFT JOIN turma t ON a.TurmaId = t.Id 
+					INNER JOIN curso c ON a.CursoId = c.Id 
+					WHERE a.ativo = 1 AND a.Id = ".$this->db->escape($id)." ORDER BY a.DataRegistro DESC ");
+			return $query->result_array();
 		}
 		
 		/*
 			INSERE OU ATUALIZA UM LEAD 
 		*/
-		public function set_lead($data)
+		public function set_aluno($data)
 		{
-			if(empty($data['id']))
-				return $this->db->insert('leads',$data);	
+			if(empty($data['Id']))
+				return $this->db->insert('Aluno',$data);
 			else
 			{
-				$this->db->where('id', $data['id']);
-				return $this->db->update('leads', $data);
+				$this->db->where('Id', $data['Id']);
+				return $this->db->update('Aluno', $data);
 			}
 		}
 		
 		/*
 			FAZ UM UPDATE DESATIVANDO O LEAD, CASO NECESSITAR REATIVA-LO ALGUM DIA
 		*/
-		public function delete_lead($id){
+		public function delete_curso($id){
 			// $this->db->where('id',$id);
 			// return $this->db->delete("leads");
-			return $this->db->query("UPDATE leads SET ativo = 0 WHERE id = ".$this->db->escape($id)."");
+			return $this->db->query("UPDATE curso SET Ativo = 0 WHERE Id = ".$this->db->escape($id)."");
 		}
 		
 		/*

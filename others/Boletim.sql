@@ -49,9 +49,10 @@ CREATE TABLE Turma_Disciplina (
 );
 
 CREATE TABLE Disciplina_Curso (
-	Id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 	DisciplinaId INT NOT NULL,
 	CursoId INT NOT NULL,
+	CONSTRAINT pk_disciplina_curso 
+		PRIMARY KEY(DisciplinaId,CursoId),
 	CONSTRAINT fk_Disciplina_Disciplina_Curso
 		FOREIGN KEY (DisciplinaId) REFERENCES Disciplina(Id),
 	CONSTRAINT fk_Curso_Disciplina_Curso
@@ -60,12 +61,14 @@ CREATE TABLE Disciplina_Curso (
 
 CREATE TABLE Aluno (
 	Id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	Ativo BOOLEAN,
+	DataRegistro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	Matricula INT,
 	Nome VARCHAR(100),
 	Sexo char(1),
 	DataNascimento DATE,
 	NumeroChamada INT,
-	TurmaId INT NOT NULL,
+	TurmaId INT,
 	CursoId INT NOT NULL,
 	CONSTRAINT fk_turmaAluno
 		FOREIGN KEY (TurmaId) REFERENCES Turma(Id),
