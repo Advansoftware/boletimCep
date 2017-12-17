@@ -10,7 +10,7 @@
 					<ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
 						<li class="nav-item">
 							<?php
-								echo"<div data-toggle='popover' data-html='true' data-placement='left' title='<div class=\"text-center\">Opções da conta</div>' 
+								echo"<div data-toggle='popover' data-html='true' data-placement='left' title='<div class=\"text-center\">OpÃ§Ãµes da conta</div>' 
 									data-content='
 										<button class=\"btn btn-outline-danger btn-block\" onclick=\"Main.logout()\">Sair</button>
 									
@@ -75,7 +75,7 @@
 				</div>
 				<?php
 					if(!isset($Disciplina['Id']))
-						echo"<input type='button' id='bt_cadastro_disciplina' class='btn btn-danger btn-block' value='Cadastrar'>";
+						echo"<input type='button' id='bt_cadastro_disciplina' class='btn btn-danger btn-block' style='width: 200px;' value='Cadastrar'>";
 					else
 						echo"<input type='button' id='bt_cadastro_disciplina' class='btn btn-danger btn-block' value='Atualizar'>";
 				?>
