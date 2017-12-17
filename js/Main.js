@@ -136,11 +136,11 @@ var Main = {
 		
 	},
 	delete_registro : function(id){
-		
+		alert(id);
 		if(confirm("Deseja realmente excluir o registro selecionado?") == true)
 		{
 			$.ajax({
-				url: Main.base_url+$("#controller").val()+'/delete/'+id,
+				url: Main.base_url+$("#controller").val()+'/_delete/'+id,
 				dataType:'json',
 				cache: false,
 				type: 'POST',

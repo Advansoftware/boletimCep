@@ -37,7 +37,7 @@
 			APAGAR UMA DISCIPLINA DESDE QUE EXISTA A SESSAO DE USUARIO E A MESMA
 			SEJA VALIDA
 		*/
-		public function delete($id = null)
+		public function _delete($id = null)
 		{
 			$this->Disciplina_model->delete_disciplina($id);
 		}

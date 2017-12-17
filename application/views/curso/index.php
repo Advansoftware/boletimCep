@@ -42,14 +42,14 @@
 		<p>Todos os cursos</p><br />
 		<input type='hidden' id='controller' value='<?php echo $controller; ?>'/>
 	</div>
-	<div class='row' id='container' name='container' style='border: 1px solid red;'>
+	<div class='row' id='container' name='container' style='border: 1px solid rgba(0,0,0,.1);'>
 		<?php
 			echo "<div class='col-lg-10 offset-lg-1'>";
 				echo "<div class='table-responsive'>";
 					echo "<table class='table table-striped table-hover'>";
 						echo "<thead>";
 							echo"<tr><td colspan='3' class='text-right'>";
-								echo"<a href='".$url."index.php/curso/create_edit/0/'>Novo curso</a>";
+								echo"<a class='btn btn-outline-danger' href='".$url."index.php/curso/create_edit/0/'>Novo curso</a>";
 							echo"</td></tr>";
 							echo "<tr>";
 								echo "<td>Nome</td>";

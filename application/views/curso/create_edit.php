@@ -68,8 +68,8 @@
 										if($Curso[$j]['DisciplinaId'] == $Disciplinas[$i]['Id'])
 											$checked = "checked";
 									
-									echo"<label for='".$Disciplinas[$i]['Id']."'>";
-										echo "<input $checked  id='". $Disciplinas[$i]['Id'] ."' value='". $Disciplinas[$i]['Id'] ."' type='checkbox' name='disciplinas[]' />".$Disciplinas[$i]["NomeDisciplina"];
+									echo"<div class='checkbox checbox-switch switch-success custom-controls-stacked'><label for='".$Disciplinas[$i]['Id']."'>";
+										echo "<input $checked  id='". $Disciplinas[$i]['Id'] ."' value='". $Disciplinas[$i]['Id'] ."' type='checkbox' name='disciplinas[]' /><span></span>".$Disciplinas[$i]["NomeDisciplina"];
 									echo"</label><br />";
 								}
 							}
@@ -87,8 +87,8 @@
 										if($Curso[$j]['DisciplinaId'] == $Disciplinas[$i]['Id'])
 											$checked = "checked";
 									
-									echo"<label for='".$Disciplinas[$i]['Id']."'>";
-										echo "<input $checked value='". $Disciplinas[$i]['Id'] ."' id='". $Disciplinas[$i]['Id'] ."' type='checkbox' name='disciplinas[]' />".$Disciplinas[$i]["NomeDisciplina"];
+									echo"<div class='checkbox checbox-switch switch-success custom-controls-stacked'><label for='".$Disciplinas[$i]['Id']."'>";
+										echo "<input $checked value='". $Disciplinas[$i]['Id'] ."' id='". $Disciplinas[$i]['Id'] ."' type='checkbox' name='disciplinas[]' /><span></span>".$Disciplinas[$i]["NomeDisciplina"];
 									echo"</label><br />";
 								}
 							}
@@ -104,4 +104,6 @@
 			</form>
 	</div>
 	</div>
+	
+                           
 </div>
