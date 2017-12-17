@@ -19,7 +19,6 @@
 			<h2>CEP - Admin</h2>
 		</div>
 		<div class="sidenav-header-logo"><a href="index.html" class="brand-small text-center">
-			<strong>A</strong><strong style='background-color: #e4773f;'>D</strong></a>
 			<strong>CEP</strong></a>
 		</div>
 	</div>
