@@ -26,7 +26,7 @@
 		<ul id="side-main-menu" class="side-menu list-unstyled">                  
 			<li>
 				<a href="<?php echo $url; ?>index.php/disciplina/index" > <i class="icon-home"></i><span>Disciplina</span></a>
-				<a href="<?php echo $url; ?>index.php/admin/dashboard" > <i class="icon-home"></i><span>Curso</span></a>
+				<a href="<?php echo $url; ?>index.php/curso/index" > <i class="icon-home"></i><span>Curso</span></a>
 			</li>
 			<li>
 				<a href="<?php echo $url; ?>index.php/admin/estatistica" ><i class="icon-form"></i><span>Turma</span></a>
@@ -41,7 +41,7 @@
 		</ul>
 	</div>
 </nav>
-<div class="modal fade" id="lead_modal_aguardar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="admin_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
 	<div class="modal-content">
 	  <div class="modal-header">

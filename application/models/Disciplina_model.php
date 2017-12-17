@@ -18,8 +18,8 @@
 		{
 			if ($id === FALSE)//retorna todos se nao passar o parametro
 			{
-				$query =  $this->db->query('SELECT d.Id, d.Nome as NomeDisciplina, d.Ativo, d.DataRegistro, c.Nome as NomeCategoria FROM Disciplina d
-											INNER JOIN Categoria c ON d.CategoriaId = c.Id WHERE d.Ativo = 1 ORDER BY d.DataRegistro');
+				$query =  $this->db->query('SELECT d.Id, d.Nome as NomeDisciplina, d.Ativo, d.DataRegistro, c.Nome as NomeCategoria, d.CategoriaId FROM Disciplina d
+											INNER JOIN Categoria c ON d.CategoriaId = c.Id WHERE d.Ativo = 1 ORDER BY d.DataRegistro DESC');
 				return $query->result_array();
 			}
 
@@ -47,7 +47,7 @@
 		public function delete_disciplina($id){
 			// $this->db->where('id',$id);
 			// return $this->db->delete("leads");
-			return $this->db->query("UPDATE disciplina SET ativo = 0 WHERE id = ".$this->db->escape($id)."");
+			return $this->db->query("UPDATE disciplina SET Ativo = 0 WHERE Id = ".$this->db->escape($id)."");
 		}
 		
 		/*

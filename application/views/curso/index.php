@@ -10,7 +10,7 @@
 					<ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
 						<li class="nav-item">
 							<?php
-								echo"<div data-toggle='popover' data-html='true' data-placement='left' title='<div class=\"text-center\">Opções da conta</div>' 
+								echo"<div data-toggle='popover' data-html='true' data-placement='left' title='<div class=\"text-center\">Op��es da conta</div>' 
 									data-content='
 										<button class=\"btn btn-outline-danger btn-block\" onclick=\"Main.logout()\">Sair</button>
 									
@@ -39,7 +39,8 @@
 	  </div>
 	</div>
 	<div class='row' style='padding: 30px;'>
-		<p>Todas as Disciplinas </p><br />
+		<p>Todos os cursos</p><br />
+		<input type='hidden' id='controller' value='<?php echo $controller; ?>'/>
 	</div>
 	<div class='row' id='container' name='container' style='border: 1px solid red;'>
 		<?php
@@ -48,29 +49,23 @@
 					echo "<table class='table table-striped table-hover'>";
 						echo "<thead>";
 							echo"<tr><td colspan='3' class='text-right'>";
-								echo"<a href='".$url."index.php/disciplina/create_edit/0/'>Nova disciplina</a>";
+								echo"<a href='".$url."index.php/curso/create_edit/0/'>Novo curso</a>";
 							echo"</td></tr>";
 							echo "<tr>";
 								echo "<td>Nome</td>";
-								echo "<td>Categoria</td>";
+								echo "<td>Data de registro</td>";
 								echo "<td>Ações</td>";
 							echo "<tr>";
 						echo "</thead>";
 						echo "<tbody>";
-							for($i = 0; $i < count($Disciplinas); $i++)
+							for($i = 0; $i < count($Cursos); $i++)
 							{
-								$ativo = "";
-								if($Disciplinas[$i]['Ativo'] == 1)
-									$ativo = "Sim";
-								else
-									$ativo = "Não";
 								echo "<tr>";
-									echo "<td>".$Disciplinas[$i]['NomeDisciplina']."</td>";
-									echo "<td>".$Disciplinas[$i]['NomeCategoria']."</td>";
-
+									echo "<td>".$Cursos[$i]['NomeCurso']."</td>";
+									echo "<td>".$Cursos[$i]['DataRegistro']."</td>";
 									echo "<td>";
-										echo "<a href='".$url."index.php/disciplina/create_edit/".$Disciplinas[$i]['Id']."' title='Editar' style='color: #dc3545; cursor: pointer;' class='glyphicon glyphicon-edit'></a>  |  ";
-										echo "<span onclick='Main.delete_registro(". $Disciplinas[$i]['Id'] .");' id='sp_lead_trash' name='sp_lead_trash' title='Apagar' style='color: #dc3545; cursor: pointer;' class='glyphicon glyphicon-trash'></span>";
+										echo "<a href='".$url."index.php/curso/create_edit/".$Cursos[$i]['Id']."' title='Editar' style='color: #dc3545; cursor: pointer;' class='glyphicon glyphicon-edit'></a>  |  ";
+										echo "<span onclick='Main.delete_registro(". $Cursos[$i]['Id'] .");' id='sp_lead_trash' name='sp_lead_trash' title='Apagar' style='color: #dc3545; cursor: pointer;' class='glyphicon glyphicon-trash'></span>";
 									echo "</td>";
 								echo "</tr>";
 							}

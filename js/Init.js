@@ -20,10 +20,15 @@ $(document).ready(
 		$('#senha').keypress(function() { 
 			if ((window.event ? event.keyCode : event.which) == 13){Main.login();}; 
 		});
+		//BTN CADASTROS
+		$('#bt_cadastro_curso').click(function() { 
+			Main.curso_validar();
+		});
 		
 		$('#bt_cadastro_disciplina').click(function() { 
 			Main.disciplina_validar();
 		});
+		//FIM BTN CADASTROS
 
 		$('#Nome').blur(function() { 
 			if(this.value != '') Main.show_error("Nome","error-nome","","form-control is-valid");

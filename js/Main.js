@@ -130,12 +130,19 @@ var Main = {
 		else
 			Main.create_edit();
 	},
-	deleta_disciplina : function(id){
+	curso_validar : function(){
+		Main.create_edit();
+		//if($("#Nome").val() == "")
+		//	Main.show_error("Nome","error-nome","Informe o nome do curso","form-control is-invalid");
 		
-		if(confirm("Deseja realmente exluir esta disciplina?") == true)
+		
+	},
+	delete_registro : function(id){
+		
+		if(confirm("Deseja realmente excluir o registro selecionado?") == true)
 		{
 			$.ajax({
-				url: Main.base_url+'disciplina/delete/'+id,
+				url: Main.base_url+$("#controller").val()+'/delete/'+id,
 				dataType:'json',
 				cache: false,
 				type: 'POST',

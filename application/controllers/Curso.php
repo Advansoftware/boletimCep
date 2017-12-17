@@ -1,5 +1,9 @@
 <?php
-	class Disciplina extends CI_Controller {
+
+define("MATERIA_TECNICA",1);
+define("MATERIA_ENSIO_MEDIO",2);
+
+	class Curso extends CI_Controller {
 		/*
 			no construtor carregamos as bibliotecas necessarias e tambem nossa model
 		*/
@@ -10,6 +14,7 @@
 			$this->load->model('login_model');
 			$this->load->model('Disciplina_model');
 			$this->load->model('Categoria_model');
+			$this->load->model('Curso_model');
 			$this->load->helper('url_helper');
 			$this->load->helper('url');
 			$this->load->helper('html');
@@ -25,11 +30,12 @@
 		*/
 		public function index(){
 			$data['url'] = base_url();
-			$data['Disciplinas'] = $this->Disciplina_model->get_disciplina();
+			$data['controller'] = 'curso';
+			$data['Cursos'] = $this->Curso_model->get_curso();
 			$data['title'] = 'Administração';
 			$data['message'] = 'Administração';
 			$this->load->view('templates/header_admin',$data);
-			$this->load->view('disciplina/index',$data);
+			$this->load->view('curso/index',$data);
 			$this->load->view('templates/footer',$data);
 		}
 		
@@ -39,7 +45,7 @@
 		*/
 		public function delete($id = null)
 		{
-			$this->Disciplina_model->delete_disciplina($id);
+			$this->Curso_model->delete_curso($id);
 		}
 		
 		/*
@@ -50,14 +56,14 @@
 		{
 			$data['url'] = base_url();
 
-			$data['Disciplina'] = $this->Disciplina_model->get_disciplina($id);
-			
-			$data['Categoria'] = $this->Categoria_model->get_categoria();
+			$data['Disciplinas'] = $this->Disciplina_model->get_disciplina();
+
+			$data['Curso'] = $this->Curso_model->get_curso($id);
 			$data['title'] = 'Administração';
-			$data['controller'] = 'disciplina';
+			$data['controller'] = 'curso';
 			$data['message'] = 'Administração';
 			$this->load->view('templates/header_admin',$data);
-			$this->load->view('disciplina/create_edit',$data);
+			$this->load->view('curso/create_edit',$data);
 			$this->load->view('templates/footer',$data);
 		}
 		
@@ -66,12 +72,12 @@
 			$dataToSave = array(
 				'Id' => $this->input->post('Id'),
 				'Ativo' => 1,
-				'Nome' => $this->input->post('Nome'),
-				'CategoriaId' => $this->input->post('CategoriaId')
+				'NomeCurso' => $this->input->post('NomeCurso'),
+				'disciplinasId' => $this->input->post('disciplinas')
 			);
 			//bloquear acesso direto ao metodo store
-			 if(!empty($dataToSave['Nome']))
-				$this->Disciplina_model->set_disciplina($dataToSave);
+			 if(!empty($dataToSave['NomeCurso']))
+				$this->Curso_model->set_curso($dataToSave);
 			 else
 				redirect('admin/dashboard');
 			

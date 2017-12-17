@@ -23,22 +23,4 @@
 			</div>
 		</nav>
 	</header>
-	<div class="modal fade" id="admin_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	  <div class="modal-dialog" role="document">
-		<div class="modal-content">
-		  <div class="modal-header">
-			
-		  </div>
-		  <div class="modal-body text-center" id='mensagem'>
-			
-		  </div>
-		  <div class="modal-footer">
-			
-		  </div>
-		</div>
-	  </div>
-	</div>
-	<div class='row' id='container' name='container'>
-		TESTE
-	</div>
 </div>
