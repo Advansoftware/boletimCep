@@ -18,7 +18,7 @@
 		<div class="sidenav-header-inner  text-center"><img src="<?php echo $url;?>imagens/logo.png" alt="CEP" class="img-fluid rounded-circle">
 			<h2>CEP - Admin</h2>
 		</div>
-		<div style="margin-top: 15px;" class="sidenav-header-logo"><a href="index.html" class="brand-small text-center">
+		<div style="margin-top: 15px;" class="sidenav-header-logo"><a href="#" class="brand-small text-center">
 			<strong>CEP</strong></a>
 		</div>
 	</div>
