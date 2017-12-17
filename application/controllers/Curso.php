@@ -43,7 +43,7 @@ define("MATERIA_ENSIO_MEDIO",2);
 			APAGAR UMA DISCIPLINA DESDE QUE EXISTA A SESSAO DE USUARIO E A MESMA
 			SEJA VALIDA
 		*/
-		public function delete($id = null)
+		public function deletar($id = null)
 		{
 			$this->Curso_model->delete_curso($id);
 		}

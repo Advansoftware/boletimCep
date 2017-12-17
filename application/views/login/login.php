@@ -33,7 +33,7 @@
 <div class='col-md-8 login offset-md-1 col-lg-4 offset-lg-0 padding shadow-basic' style='background-color: rgba(255,255,255,1);'>
 	<div class='text-center' style='margin-bottom: 10px;'>
 		<img  class="img-fluid" src="<?php echo $url?>imagens/logo.png">
-		<img class="img-fluid" src="<?php echo $url?>imagens/Optical.png" width="250px" style="position: absolute;left: 50px;top: 140px;z-index: -1;animation: mymove 5s infinite;">
+		<img class="img-fluid" src="<?php echo $url?>imagens/Optical.png" width="250px" style="position: absolute;left: 50px;top: 140px;z-index: 1;animation: mymove 5s infinite;">
 	</div>
 	<div class='form-group'>
 		<div class='input-group mb-2 mb-sm-0'>

@@ -25,6 +25,7 @@
 		*/
 		public function index(){
 			$data['url'] = base_url();
+			$data['controller'] = 'disciplina';
 			$data['Disciplinas'] = $this->Disciplina_model->get_disciplina();
 			$data['title'] = 'Administração';
 			$data['message'] = 'Administração';
@@ -37,7 +38,7 @@
 			APAGAR UMA DISCIPLINA DESDE QUE EXISTA A SESSAO DE USUARIO E A MESMA
 			SEJA VALIDA
 		*/
-		public function _delete($id = null)
+		public function deletar($id = null)
 		{
 			$this->Disciplina_model->delete_disciplina($id);
 		}

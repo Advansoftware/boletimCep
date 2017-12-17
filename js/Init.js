@@ -40,6 +40,8 @@ $(document).ready(
 		
 		
 		//event for form register
-
+		 $('#bt_delete').click(function() { 
+			Main.delete_registro();
+		});
 	}
  );

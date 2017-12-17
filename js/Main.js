@@ -135,20 +135,25 @@ var Main = {
 		
 		
 	},
-	delete_registro : function(id){
-		alert(id);
-		if(confirm("Deseja realmente excluir o registro selecionado?") == true)
-		{
-			$.ajax({
-				url: Main.base_url+$("#controller").val()+'/_delete/'+id,
-				dataType:'json',
-				cache: false,
-				type: 'POST',
-				complete: function (data) {
-					location.reload();
-				}
-			});
-		}
+	id_registro : "",
+	confirm_delete : function(id){
+		Main.id_registro = id;
+		$("#menssagem_confirm").html("Deseja realmente excluir o registro selecionado?");
+		$('#admin_confirm_modal').modal({
+			keyboard: false,
+			backdrop : 'static'
+		});
+	},
+	delete_registro : function(){
+		$.ajax({
+			url: Main.base_url+$("#controller").val()+'/deletar/'+Main.id_registro,
+			dataType:'json',
+			cache: false,
+			type: 'POST',
+			complete: function (data) {
+				location.reload();
+			}
+		});
 	},
 	estatistica : function(has_value){
 		

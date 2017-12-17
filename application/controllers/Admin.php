@@ -8,7 +8,6 @@
 			parent::__construct();
 			
 			$this->load->model('login_model');
-			$this->load->model('lead_model');
 			$this->load->helper('url_helper');
 			$this->load->helper('url');
 			$this->load->helper('html');
