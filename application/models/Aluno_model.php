@@ -53,10 +53,10 @@
 		/*
 			FAZ UM UPDATE DESATIVANDO O LEAD, CASO NECESSITAR REATIVA-LO ALGUM DIA
 		*/
-		public function delete_curso($id){
-			// $this->db->where('id',$id);
+		public function delete_aluno($id){
+			// $this->db->where('id',$id); 
 			// return $this->db->delete("leads");
-			return $this->db->query("UPDATE curso SET Ativo = 0 WHERE Id = ".$this->db->escape($id)."");
+			return $this->db->query("UPDATE aluno SET Ativo = 0 WHERE Id = ".$this->db->escape($id)."");
 		}
 		
 		/*
