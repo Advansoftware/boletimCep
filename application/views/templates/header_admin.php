@@ -32,16 +32,13 @@
 				<a href="<?php echo $url; ?>index.php/admin/estatistica" ><i class="icon-form"></i><span>Turma</span></a>
 			</li>
 			<li>
-				<a href="<?php echo $url; ?>index.php/admin/estatistica" ><i class="icon-form"></i><span>Disciplina</span></a>
-			</li>
-			<li>
 				<a href="<?php echo $url; ?>index.php/admin/estatistica" ><i class="icon-form"></i><span>Aluno</span></a>
 			</li>
 
 		</ul>
 	</div>
 </nav>
-<div class="modal fade" id="lead_modal_aguardar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="admin_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
 	<div class="modal-content">
 	  <div class="modal-header">

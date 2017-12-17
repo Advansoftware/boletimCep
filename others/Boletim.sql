@@ -85,9 +85,11 @@ CREATE TABLE Boletim (
 );
 
 CREATE TABLE Usuario(
-	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-	nome VARCHAR(100) NOT NULL,
-	email VARCHAR(50) NOT NULL,
-	senha VARCHAR(200) NOT NULL
+	Id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	Nome VARCHAR(100) NOT NULL,
+	Email VARCHAR(50) NOT NULL,
+	Senha VARCHAR(200) NOT NULL
 );
-INSERT INTO Usuario(nome,email,senha) VALUES('teste','teste@teste.com',sha2('teste',512));
+INSERT INTO Usuario(Nome,Email,Senha) VALUES('teste','teste@teste.com',sha2('teste',512));
+INSERT INTO Categoria(Nome) VALUES('Matérias Técnicas');
+INSERT INTO Categoria(Nome) VALUES('Matérias Ensino Médio');

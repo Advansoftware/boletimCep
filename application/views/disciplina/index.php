@@ -41,14 +41,14 @@
 	<div class='row' style='padding: 30px;'>
 		<p>Todas as Disciplinas </p><br />
 	</div>
-	<div class='row' id='container' name='container' style='border: 1px solid red;'>
+	<div class='row' id='container' name='container' style='border: 1px solid rgba(0,0,0,.1);'>
 		<?php
 			echo "<div class='col-lg-10 offset-lg-1'>";
 				echo "<div class='table-responsive'>";
 					echo "<table class='table table-striped table-hover'>";
 						echo "<thead>";
 							echo"<tr><td colspan='3' class='text-right'>";
-								echo"<a href='".$url."index.php/disciplina/create_edit/0/'>Nova disciplina</a>";
+								echo"<a class='btn btn-outline-danger' href='".$url."index.php/disciplina/create_edit/0/'>Nova disciplina</a>";
 							echo"</td></tr>";
 							echo "<tr>";
 								echo "<td>Nome</td>";
