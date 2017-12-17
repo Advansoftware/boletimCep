@@ -77,7 +77,7 @@
 					if(!isset($Disciplina['Id']))
 						echo"<input type='button' id='bt_cadastro_disciplina' class='btn btn-danger btn-block' style='width: 200px;' value='Cadastrar'>";
 					else
-						echo"<input type='button' id='bt_cadastro_disciplina' class='btn btn-danger btn-block' value='Atualizar'>";
+						echo"<input type='button' id='bt_cadastro_disciplina' class='btn btn-danger btn-block' style='width: 200px;' value='Atualizar'>";
 				?>
 			</form>
 	</div>

@@ -71,7 +71,7 @@
 
 									echo "<td>";
 										echo "<a href='".$url."index.php/disciplina/create_edit/".$Disciplinas[$i]['Id']."' title='Editar' style='color: #dc3545; cursor: pointer;' class='glyphicon glyphicon-edit'></a>  |  ";
-										echo "<span onclick='Main.delete_registro(". $Disciplinas[$i]['Id'] .");' id='sp_lead_trash' name='sp_lead_trash' title='Apagar' style='color: #dc3545; cursor: pointer;' class='glyphicon glyphicon-trash'></span>";
+										echo "<span onclick='Main.confirm_delete(". $Disciplinas[$i]['Id'] .");' id='sp_lead_trash' name='sp_lead_trash' title='Apagar' style='color: #dc3545; cursor: pointer;' class='glyphicon glyphicon-trash'></span>";
 									echo "</td>";
 								echo "</tr>";
 							}

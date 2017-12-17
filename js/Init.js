@@ -53,6 +53,9 @@ $(document).ready(
 		
 		$('#CursoId').blur(function() { 
 			if(this.value != '0') Main.show_error("CursoId","error-curso_id","","form-control is-valid");
+		//event for form register
+		 $('#bt_delete').click(function() { 
+			Main.delete_registro();
 		});
 	}
  );

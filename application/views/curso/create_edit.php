@@ -56,8 +56,9 @@
 					<div class='input-group mb-2 mb-sm-0 text-danger' id='error-nome'></div>
 				</div>
 				<div class='form-group'>
-					<fieldset>
+				
 						<legend>Disciplinas técnicas</legend>
+						<ul class="list-group">
 						<?php
 							for($i = 0; $i < count($Disciplinas); $i ++)
 							{
@@ -68,15 +69,17 @@
 										if($Curso[$j]['DisciplinaId'] == $Disciplinas[$i]['Id'])
 											$checked = "checked";
 									
-									echo"<label for='".$Disciplinas[$i]['Id']."'>";
-										echo "<input $checked  id='". $Disciplinas[$i]['Id'] ."' value='". $Disciplinas[$i]['Id'] ."' type='checkbox' name='disciplinas[]' />".$Disciplinas[$i]["NomeDisciplina"];
-									echo"</label><br />";
+									echo"<li class='list-group-item'><div class='checkbox checbox-switch switch-success custom-controls-stacked'><label for='".$Disciplinas[$i]['Id']."'>";
+										echo "<input $checked  id='". $Disciplinas[$i]['Id'] ."' value='". $Disciplinas[$i]['Id'] ."' type='checkbox' name='disciplinas[]' /><span></span>".$Disciplinas[$i]["NomeDisciplina"];
+									echo"</label></li>";
 								}
 							}
 						?>
-					</fieldset>
-					<fieldset>
+						</ul>
+			
+					
 						<legend>Disciplinas do ensino médio</legend>
+						<ul class="list-group">
 						<?php
 							for($i = 0; $i < count($Disciplinas); $i ++)
 							{
@@ -87,21 +90,23 @@
 										if($Curso[$j]['DisciplinaId'] == $Disciplinas[$i]['Id'])
 											$checked = "checked";
 									
-									echo"<label for='".$Disciplinas[$i]['Id']."'>";
-										echo "<input $checked value='". $Disciplinas[$i]['Id'] ."' id='". $Disciplinas[$i]['Id'] ."' type='checkbox' name='disciplinas[]' />".$Disciplinas[$i]["NomeDisciplina"];
-									echo"</label><br />";
+									echo"<li class='list-group-item'><div class='checkbox checbox-switch switch-success custom-controls-stacked'><label for='".$Disciplinas[$i]['Id']."'>";
+										echo "<input $checked value='". $Disciplinas[$i]['Id'] ."' id='". $Disciplinas[$i]['Id'] ."' type='checkbox' name='disciplinas[]' /><span></span>".$Disciplinas[$i]["NomeDisciplina"];
+									echo"</label></li>";
 								}
 							}
 						?>
-					</fieldset>
+						</ul>
 				</div>
 				<?php
 					if(!isset($Curso[0]['Id']))
-						echo"<input type='button' id='bt_cadastro_curso' class='btn btn-danger btn-block' value='Cadastrar'>";
+						echo"<input  type='button' id='bt_cadastro_curso' class='btn btn-danger btn-block' style='width: 200px' value='Cadastrar'>";
 					else
-						echo"<input type='button' id='bt_cadastro_curso' class='btn btn-danger btn-block' value='Atualizar'>";
+						echo"<input type='button' id='bt_cadastro_curso' class='btn btn-danger btn-block' style='width: 200px;'  value='Atualizar'>";
 				?>
 			</form>
 	</div>
 	</div>
+	
+                           
 </div>
