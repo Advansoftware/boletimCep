@@ -1,7 +1,5 @@
 var Main = {
-	// possui as funções js invocadas pelos eventos js colocados nas tags HTML
-	//especificar a base_url de acordo com o host
-	base_url : 'http://localhost/git/boletimCep/index.php/',
+	base_url : "http://"+window.location.host+"/git/boletimCep/index.php/",
 	load_mask : function(){
 		$(document).ready(function(){
 			$('[data-toggle="popover"]').popover(),
