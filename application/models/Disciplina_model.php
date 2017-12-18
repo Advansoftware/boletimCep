@@ -27,6 +27,14 @@
 			return $query->row_array();
 		}
 		
+		public function get_disciplina_por_curso($id)
+		{
+			$query = $this->db->query("SELECT d.Id, d.Nome FROM disciplina_curso dc 
+										INNER JOIN disciplina d ON dc.DisciplinaId = d.ID 
+										WHERE dc.CursoId = ".$this->db->escape($id)."");
+			return $query->result_array();
+		}
+		
 		/*
 			INSERE OU ATUALIZA UM LEAD 
 		*/

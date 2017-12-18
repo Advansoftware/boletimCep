@@ -1,8 +1,14 @@
+<script type='text/javascript'>
+	window.onload = function(){
+		
+		document.getElementById('menu_disciplina').className = "active";
+	}
+</script>
 <div class='row' style='padding: 30px;'>
 	<div class='col-lg-8 offset-lg-2'>
 		<p><?php if(isset($Disciplina['Id'])) echo"Editar disciplina"; else echo"Nova disciplina";  ?></p><br />
 		<?php
-			$atr = array('id' => 'form_cadastro','name' => 'form_cadastro');
+			$atr = array('id' => 'form_cadastro_disciplina','name' => 'form_cadastro');
 			echo form_open('disciplina/store',$atr);
 		?>
 		<br />
@@ -35,9 +41,9 @@
 			</div>
 			<?php
 				if(!isset($Disciplina['Id']))
-					echo"<input type='button' id='bt_cadastro_disciplina' class='btn btn-danger btn-block' style='width: 200px;' value='Cadastrar'>";
+					echo"<input type='submit' id='bt_cadastro_disciplina' class='btn btn-danger btn-block' style='width: 200px;' value='Cadastrar'>";
 				else
-					echo"<input type='button' id='bt_cadastro_disciplina' class='btn btn-danger btn-block' style='width: 200px;' value='Atualizar'>";
+					echo"<input type='submit' id='bt_cadastro_disciplina' class='btn btn-danger btn-block' style='width: 200px;' value='Atualizar'>";
 			?>
 		</form>
 	</div>

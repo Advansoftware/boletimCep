@@ -18,7 +18,9 @@
 		{
 			if ($id === FALSE)//retorna todos se nao passar o parametro
 			{
-				$query =  $this->db->query("SELECT Id, Nome as NomeCurso, DATE_FORMAT(DataRegistro, '%d/%m/%Y') as DataRegistro FROM Curso WHERE Ativo = 1 ORDER BY DataRegistro DESC");
+				$query =  $this->db->query("SELECT c.Id, c.Nome, DATE_FORMAT(c.DataRegistro, '%d/%m/%Y') as DataRegistro,  
+				(SELECT COUNT(*) FROM disciplina_curso dc WHERE dc.CursoId = c.Id) as Qtd_Disciplina 
+				FROM curso c WHERE Ativo = 1");
 				return $query->result_array();
 			}
 
@@ -76,6 +78,12 @@
 				for($i = 0; $i < count($data['disciplinasId']); $i++)
 					$this->db->query("INSERT IGNORE INTO disciplina_curso(DisciplinaId,CursoId)
 										VALUES(".$this->db->escape($data['disciplinasId'][$i]).",".$this->db->escape($data['Id']).")");
+				$dataToSave = array(
+					'Id' => $data['Id'],
+					'Nome' => $data['NomeCurso']
+				);
+				$this->db->where('Id', $data['Id']);
+				$this->db->update('Curso', $dataToSave);
 			}
 		}
 		

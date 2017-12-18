@@ -3,7 +3,6 @@ $(document).ready(
 	function () {
 
 		Main.load_mask();
-		
 		//event for form login
 	    $('#bt_login').click(function() { 
 			Main.login();
@@ -21,13 +20,31 @@ $(document).ready(
 			if ((window.event ? event.keyCode : event.which) == 13){Main.login();}; 
 		});
 		//BTN CADASTROS
-		$('#bt_cadastro_curso').click(function() { 
-			Main.curso_validar();
-		});
-		
-		$('#bt_cadastro_disciplina').click(function() { 
+		$( "#form_cadastro_disciplina" ).submit(function( event ) {
+			event.preventDefault();
 			Main.disciplina_validar();
 		});
+		
+		$( "#form_cadastro_curso" ).submit(function( event ) {
+			event.preventDefault();
+			Main.curso_validar();
+			
+		});
+		
+		$( "#form_cadastro_aluno" ).submit(function( event ) {
+			event.preventDefault();
+			Main.aluno_validar();
+		});
+		
+		$( "#form_cadastro_turma" ).submit(function( event ) {
+			event.preventDefault();
+			Main.turma_validar();
+		});
+		$( "#form_cadastro_troca_aluno" ).submit(function( event ) {
+			event.preventDefault();
+			Main.troca_aluno_validar();
+		});
+		
 		//FIM BTN CADASTROS
 
 		$('#Nome').blur(function() { 
@@ -58,5 +75,29 @@ $(document).ready(
 		 $('#bt_delete').click(function() { 
 			Main.delete_registro();
 		});
+		
+		////turma
+		// $('#bt_turma').click(function() { 
+			// Main.turma_validar();
+		// });
+		
+		$('#bt_disciplina_turma').click(function() { 
+			Main.disciplina_turma_validar();
+		});
+		
+		$('#bt_aluno_turma').click(function() { 
+			Main.aluno_turma_validar();
+		});
+		
+		$('#bt_trocar_aluno').click(function() {
+			$("#admin_trocar_aluno").modal('show');
+		});
+		$('#bt_trocar_aluno_continuar').click(function() {
+			Main.validar_turma_origem();
+		});
+		$('#TurmaId').click(function() {
+			if(this.value != '0') Main.show_error("TurmaId","error-turma","","form-control is-valid");
+		});
+		
 	}
  );

@@ -1,8 +1,14 @@
+<script type='text/javascript'>
+	window.onload = function(){
+		
+		document.getElementById('menu_aluno').className = "active";
+	}
+</script>
 <div class='row' style='padding: 30px;'>
 		<div class='col-lg-8 offset-lg-2'>
 		<p><?php if(isset($Aluno[0]['Id'])) echo"Editar aluno"; else echo"Novo aluno";  ?></p><br />
 		<?php
-			$atr = array('id' => 'form_cadastro','name' => 'form_cadastro');
+			$atr = array('id' => 'form_cadastro_aluno','name' => 'form_cadastro');
 			echo form_open('aluno/store',$atr);
 		?>
 			<br />
@@ -66,7 +72,7 @@
 									$selected = "";
 									if($Cursos[$i]['Id'] == $Aluno[0]['CursoId'])
 										$selected = "selected";
-									echo"<option $selected value='". $Cursos[$i]['Id'] ."'>".$Cursos[$i]['NomeCurso']."</option>";
+									echo"<option $selected value='". $Cursos[$i]['Id'] ."'>".$Cursos[$i]['Nome']."</option>";
 								}
 							?>
 						</select>
@@ -76,9 +82,9 @@
 				
 				<?php
 					if(!isset($Curso[0]['Id']))
-						echo"<input type='button' id='bt_cadastro_curso' class='btn btn-danger btn-block' value='Cadastrar'>";
+						echo"<input type='submit' class='btn btn-danger btn-block' value='Cadastrar'>";
 					else
-						echo"<input type='button' id='bt_cadastro_curso' class='btn btn-danger btn-block' value='Atualizar'>";
+						echo"<input type='submit' class='btn btn-danger btn-block' value='Atualizar'>";
 				?>
 			</form>
 	</div>

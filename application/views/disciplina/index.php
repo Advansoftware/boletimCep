@@ -1,3 +1,9 @@
+<script type='text/javascript'>
+	window.onload = function(){
+		
+		document.getElementById('menu_disciplina').className = "active";
+	}
+</script>
 <div class='row' style='padding: 30px;'>
 	<p>Todas as Disciplinas </p><br />
 	<input type='hidden' id='controller' value='<?php echo $controller; ?>'/>

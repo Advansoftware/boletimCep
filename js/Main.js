@@ -110,7 +110,7 @@ var Main = {
 		})
 		$.ajax({
 			url: Main.base_url+$("#controller").val()+'/store',
-			data: $("#form_cadastro").serialize(),
+			data: $("#"+$("form[name=form_cadastro]").attr("id")).serialize(),
 			dataType:'json',
 			cache: false,
 			type: 'POST',
@@ -121,12 +121,20 @@ var Main = {
 		});
 	},
 	disciplina_validar : function (){
+		
 		if($("#Nome").val() == "")
 			Main.show_error("Nome","error-nome","Informe o nome da disciplina","form-control is-invalid");
 		else if($("#CategoriaId").val() == "0")
 			Main.show_error("CategoriaId","error-CategoriaId","Selecione uma categoria","form-control is-invalid");
 		else
 			Main.create_edit();
+	},
+	aluno_validar : function(){
+		Main.create_edit();
+		//if($("#Nome").val() == "")
+		//	Main.show_error("Nome","error-nome","Informe o nome do curso","form-control is-invalid");
+		
+		
 	},
 	curso_validar : function(){
 		Main.create_edit();
@@ -155,53 +163,94 @@ var Main = {
 			}
 		});
 	},
-	estatistica : function(has_value){
-		
-		$("#mensagem").html("Aguarde... carregando dados");
-		
-		$('#admin_modal').modal({
+	turma_validar : function (){
+		Main.create_edit_turma();
+	},
+	disciplina_turma_validar : function (){
+		Main.create_edit_turma_disciplina();
+	},
+	aluno_turma_validar : function(){
+		Main.create_edit_turma_aluno();
+	},
+	create_edit_turma : function (){
+		$("#mensagem").html("Aguarde... processando dados");
+		$('#lead_modal_aguardar').modal({
 			keyboard: false,
 			backdrop : 'static'
-		});
-		
-		var mes = (new Date().getMonth() + 1);
-		var ano = new Date().getFullYear();
-
-		if(has_value == "filter")
-		{
-			mes = $("#mes").val();
-			ano = $("#ano").val();
-		}
+		})
 		$.ajax({
-			url: Main.base_url+'lead/estatistica/'+mes+"/"+ano,
+			url: Main.base_url+$("#controller").val()+'/store',
+			data: $("#"+$("form[name=form_cadastro]").attr("id")).serialize(),
 			dataType:'json',
 			cache: false,
 			type: 'POST',
-			success: function (response) {
-			
-				setTimeout(function(){
-					$('#admin_modal').modal('hide');
-				},500);
-			
-				var data = {
-					labels : response.dia,
-					datasets : [
-						{
-							fillColor : "rgba(255,255,255,0)",
-							strokeColor : "#dc3545",
-							pointColor : "rgba(255,255,255,1)",
-							pointStrokeColor : "#dc35d45",
-							data : response.qtd,
-							label : ''
-						}
-					]
-				};
-
-				var ctx = document.getElementById("lineChart").getContext("2d");
-				new Chart(ctx).Line(data);
-
-				legend(document.getElementById("lineLegend"), data);
+			success: function (msg) {
+				$("#mensagem").html("Dados salvos com sucesso");
+				window.location.assign(Main.base_url+msg.page);
 			}
 		});
-	}
+	},
+	create_edit_turma_disciplina : function (){
+		$("#mensagem").html("Aguarde... processando dados");
+		$('#lead_modal_aguardar').modal({
+			keyboard: false,
+			backdrop : 'static'
+		})
+		$.ajax({
+			url: Main.base_url+$("#controller").val()+'/store_disciplina',
+			data: $("#form_cadastro").serialize(),
+			dataType:'json',
+			cache: false,
+			type: 'POST',
+			success: function (msg) {
+				$("#mensagem").html("Dados salvos com sucesso");
+				window.location.assign(Main.base_url+msg.page);
+			}
+		});
+	},
+	create_edit_turma_aluno : function (){
+		$("#mensagem").html("Aguarde... processando dados");
+		$('#lead_modal_aguardar').modal({
+			keyboard: false,
+			backdrop : 'static'
+		})
+		$.ajax({
+			url: Main.base_url+$("#controller").val()+'/store_aluno',
+			data: $("#form_cadastro").serialize(),
+			dataType:'json',
+			cache: false,
+			type: 'POST',
+			success: function (msg) {
+				$("#mensagem").html("Dados salvos com sucesso");
+				window.location.assign(Main.base_url+msg.page);
+			}
+		});
+	},
+	validar_turma_origem : function(){
+		if($("#TurmaId").val() == "0")
+			Main.show_error("TurmaId","error-turma","Selecione uma turma para continuar","form-control is-invalid");
+		else
+			window.location.assign(Main.base_url+"turma/trocar_aluno/"+$("#TurmaId").val());
+			
+	},
+	troca_aluno_validar : function (){
+		if($("#TurmaId").val() == "0")
+			Main.show_error("TurmaId","error-turma","Selecione uma turma de destino","form-control is-invalid");
+		var checado = $("#form_cadastro_troca_aluno").find("input[name='alunos[]']:checked").length > 0;
+		if(checado == 1)
+			Main.troca_aluno();
+	},
+	troca_aluno : function(){
+		$.ajax({
+			url: Main.base_url+$("#controller").val()+'/store_troca_aluno',
+			data: $("#form_cadastro_troca_aluno").serialize(),
+			dataType:'json',
+			cache: false,
+			type: 'POST',
+			success: function (msg) {
+				$("#mensagem").html("Dados salvos com sucesso");
+				window.location.assign(Main.base_url+"/turma/index");
+			}
+		});
+	},
 };
