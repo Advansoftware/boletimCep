@@ -36,7 +36,7 @@
 							<a href="<?php echo $url; ?>index.php/aluno/index" ><i class="icon-form glyphicon glyphicon-user" style="margin-bottom: 10px;"></i><span>Aluno</span></a>
 						</li>
 						<li id='menu_boletim'>
-							<a href="<?php echo $url; ?>index.php/boletim/index" ><i class="icon-form glyphicon glyphicon-user" style="margin-bottom: 10px;"></i><span>Boletim</span></a>
+							<a href="<?php echo $url; ?>index.php/boletim/index" ><i class="icon-form glyphicon glyphicon-file" style="margin-bottom: 10px;"></i><span>Boletim</span></a>
 						</li>
 					</ul>
 				</div>
