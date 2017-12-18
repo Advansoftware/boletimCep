@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 17-Dez-2017 às 23:23
+-- Generation Time: 18-Dez-2017 às 16:54
 -- Versão do servidor: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -46,10 +46,9 @@ CREATE TABLE `aluno` (
 --
 
 INSERT INTO `aluno` (`Id`, `ativo`, `DataRegistro`, `Matricula`, `Nome`, `Sexo`, `DataNascimento`, `NumeroChamada`, `TurmaId`, `CursoId`) VALUES
-(1, 1, '2017-12-17 21:50:40', 1, 'teste', '1', '2017-12-15', 1, NULL, 1),
-(2, 1, '2017-12-17 21:51:24', 1123123, 'NomeAluno', '1', '2017-12-17', 44444, NULL, 1),
-(3, 1, '2017-12-17 21:51:46', 12, 'NomeAluno', '0', '2017-12-17', 22, NULL, 1),
-(4, 1, '2017-12-17 22:22:30', 22, 'NomeAluno', '0', '2017-12-17', 11, NULL, 1);
+(6, 1, '2017-12-18 11:57:04', 13567, 'Tadeu', '1', '2017-12-17', 1, 18, 1),
+(7, 1, '2017-12-18 11:57:25', 111123, 'Bruno', '1', '2017-12-29', 2, 17, 1),
+(8, 1, '2017-12-18 14:05:33', 1, 'yyy', '1', '2017-12-27', 2, 18, 1);
 
 -- --------------------------------------------------------
 
@@ -104,7 +103,13 @@ CREATE TABLE `curso` (
 
 INSERT INTO `curso` (`Id`, `Ativo`, `DataRegistro`, `Nome`) VALUES
 (1, 1, '2017-12-17 02:19:09', 'Eletrônica'),
-(2, 1, '2017-12-17 02:19:09', 'Informática');
+(2, 1, '2017-12-17 02:19:09', 'Informática'),
+(21, 1, '2017-12-18 01:58:06', 'Logística'),
+(26, 0, '2017-12-18 10:46:55', 'iii'),
+(27, 1, '2017-12-18 11:31:22', 'sdfsd'),
+(28, 1, '2017-12-18 11:31:43', 'dfgfd'),
+(29, 1, '2017-12-18 11:32:19', 'ggg'),
+(30, 1, '2017-12-18 11:32:34', 'dfgd');
 
 -- --------------------------------------------------------
 
@@ -128,7 +133,11 @@ INSERT INTO `disciplina` (`Id`, `Nome`, `Ativo`, `DataRegistro`, `CategoriaId`) 
 (1, 'Eletrônica', 1, '2017-12-17 02:02:57', 2),
 (2, 'Eletrônica Analógica', 1, '2017-12-17 02:03:15', 1),
 (5, 'Matemática', 0, '2017-12-17 02:31:02', 2),
-(6, 'Desenhp Técnico', 0, '2017-12-17 02:31:02', 1);
+(6, 'Desenhp Técnico', 0, '2017-12-17 02:31:02', 1),
+(7, 'História', 1, '2017-12-18 01:12:33', 2),
+(8, 'yyyy', 1, '2017-12-18 10:09:21', 1),
+(9, '8888888', 1, '2017-12-18 10:36:33', 1),
+(10, 'lll', 0, '2017-12-18 10:40:13', 1);
 
 -- --------------------------------------------------------
 
@@ -146,7 +155,9 @@ CREATE TABLE `disciplina_curso` (
 --
 
 INSERT INTO `disciplina_curso` (`DisciplinaId`, `CursoId`) VALUES
-(1, 1);
+(7, 1),
+(8, 1),
+(9, 1);
 
 -- --------------------------------------------------------
 
@@ -156,9 +167,39 @@ INSERT INTO `disciplina_curso` (`DisciplinaId`, `CursoId`) VALUES
 
 CREATE TABLE `turma` (
   `Id` int(11) NOT NULL,
+  `Ativo` tinyint(1) NOT NULL,
+  `DataRegistro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `Nome` varchar(100) DEFAULT NULL,
   `CursoId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `turma`
+--
+
+INSERT INTO `turma` (`Id`, `Ativo`, `DataRegistro`, `Nome`, `CursoId`) VALUES
+(17, 1, '2017-12-18 11:57:52', 'xx', 1),
+(18, 1, '2017-12-18 12:02:01', 'xx2', 1),
+(19, 1, '2017-12-18 15:24:07', 'uuu', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `turma_aluno`
+--
+
+CREATE TABLE `turma_aluno` (
+  `TurmaId` int(11) NOT NULL,
+  `AlunoId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `turma_aluno`
+--
+
+INSERT INTO `turma_aluno` (`TurmaId`, `AlunoId`) VALUES
+(17, 6),
+(17, 7);
 
 -- --------------------------------------------------------
 
@@ -167,10 +208,19 @@ CREATE TABLE `turma` (
 --
 
 CREATE TABLE `turma_disciplina` (
-  `Id` int(11) NOT NULL,
   `TurmaId` int(11) NOT NULL,
   `DisciplinaId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `turma_disciplina`
+--
+
+INSERT INTO `turma_disciplina` (`TurmaId`, `DisciplinaId`) VALUES
+(17, 7),
+(18, 9),
+(19, 7),
+(19, 8);
 
 -- --------------------------------------------------------
 
@@ -246,11 +296,17 @@ ALTER TABLE `turma`
   ADD KEY `fk_Curso` (`CursoId`);
 
 --
+-- Indexes for table `turma_aluno`
+--
+ALTER TABLE `turma_aluno`
+  ADD PRIMARY KEY (`TurmaId`,`AlunoId`),
+  ADD KEY `fk_aluno_turma_aluno` (`AlunoId`);
+
+--
 -- Indexes for table `turma_disciplina`
 --
 ALTER TABLE `turma_disciplina`
-  ADD PRIMARY KEY (`Id`),
-  ADD KEY `fk_turma` (`TurmaId`),
+  ADD PRIMARY KEY (`TurmaId`,`DisciplinaId`),
   ADD KEY `fk_Disciplina` (`DisciplinaId`);
 
 --
@@ -267,7 +323,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT for table `aluno`
 --
 ALTER TABLE `aluno`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `boletim`
@@ -285,25 +341,19 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT for table `curso`
 --
 ALTER TABLE `curso`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `disciplina`
 --
 ALTER TABLE `disciplina`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `turma`
 --
 ALTER TABLE `turma`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `turma_disciplina`
---
-ALTER TABLE `turma_disciplina`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `usuario`
@@ -347,6 +397,13 @@ ALTER TABLE `disciplina_curso`
 --
 ALTER TABLE `turma`
   ADD CONSTRAINT `fk_Curso` FOREIGN KEY (`CursoId`) REFERENCES `curso` (`Id`);
+
+--
+-- Limitadores para a tabela `turma_aluno`
+--
+ALTER TABLE `turma_aluno`
+  ADD CONSTRAINT `fk_aluno_turma_aluno` FOREIGN KEY (`AlunoId`) REFERENCES `aluno` (`Id`),
+  ADD CONSTRAINT `fk_turma_turma_aluno` FOREIGN KEY (`TurmaId`) REFERENCES `turma` (`Id`);
 
 --
 -- Limitadores para a tabela `turma_disciplina`
