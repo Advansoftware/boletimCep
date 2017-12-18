@@ -14,8 +14,8 @@
 			echo "<div class='table-responsive'>";
 				echo "<table class='table table-striped table-hover'>";
 					echo "<thead>";
-						echo"<tr><td colspan='3' class='text-right'>";
-							echo"<a class='btn btn-outline-danger' href='".$url."index.php/curso/create_edit/0/'>Novo curso</a>";
+						echo"<tr><td colspan='4' class='text-right'>";
+							echo"<a class='btn btn-success' href='".$url."index.php/curso/create_edit/0/'>Novo curso</a>";
 						echo"</td></tr>";
 						echo "<tr>";
 							echo "<td>Nome</td>";

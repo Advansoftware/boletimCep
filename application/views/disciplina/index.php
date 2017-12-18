@@ -15,7 +15,7 @@
 				echo "<table class='table table-striped table-hover'>";
 					echo "<thead>";
 						echo"<tr><td colspan='3' class='text-right'>";
-							echo"<a class='btn btn-outline-danger' href='".$url."index.php/disciplina/create_edit/0/'>Nova disciplina</a>";
+							echo"<a class='btn btn-success' href='".$url."index.php/disciplina/create_edit/0/'>Nova disciplina</a>";
 						echo"</td></tr>";
 						echo "<tr>";
 							echo "<td>Nome</td>";
