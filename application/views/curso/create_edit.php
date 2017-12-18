@@ -22,55 +22,64 @@
 				<div class='input-group mb-2 mb-sm-0 text-danger' id='error-nome'></div>
 			</div>
 			<div class='form-group'>
-				<legend>Disciplinas técnicas</legend>
-				<ul class="list-group">
-				<?php
-					for($i = 0; $i < count($Disciplinas); $i ++)
-					{
-						if($Disciplinas[$i]["CategoriaId"] == 1)
-						{
-							$checked = "";
-							for($j = 0; $j < count($Curso); $j++)
-								if($Curso[$j]['DisciplinaId'] == $Disciplinas[$i]['Id'])
-									$checked = "checked";
-							
-							echo"<li class='list-group-item'>";
-								echo"<div class='checkbox checbox-switch switch-success custom-controls-stacked'>";
-									echo"<label for='".$Disciplinas[$i]['Id']."'>";
-										echo "<input $checked  id='". $Disciplinas[$i]['Id'] ."' value='". $Disciplinas[$i]['Id'] ."' type='checkbox' name='disciplinas[]' /><span></span>".$Disciplinas[$i]["NomeDisciplina"];
-									echo"</label>";
-								echo"</div>";
-							echo"</li>";
-						}
-					}
-				?>
-				</ul>
+				<div class="card">
+				  <h3 class="card-header">Disciplinas técnicas</h3>
+					<div class="card-body">
+						<ul class="list-group">
+						<?php
+							for($i = 0; $i < count($Disciplinas); $i ++)
+							{
+								if($Disciplinas[$i]["CategoriaId"] == 1)
+								{
+									$checked = "";
+									for($j = 0; $j < count($Curso); $j++)
+										if($Curso[$j]['DisciplinaId'] == $Disciplinas[$i]['Id'])
+											$checked = "checked";
+									
+									echo"<li class='list-group-item'>";
+										echo"<div class='checkbox checbox-switch switch-success custom-controls-stacked'>";
+											echo"<label for='".$Disciplinas[$i]['Id']."'>";
+												echo "<input $checked  id='". $Disciplinas[$i]['Id'] ."' value='". $Disciplinas[$i]['Id'] ."' type='checkbox' name='disciplinas[]' /><span></span>".$Disciplinas[$i]["NomeDisciplina"];
+											echo"</label>";
+										echo"</div>";
+									echo"</li>";
+								}
+							}
+						?>
+						</ul>
+					</div>
+				</div>
 			</div>
 			<div class='form-group'>
-				<legend>Disciplinas do ensino médio</legend>
-				<ul class="list-group">
-				<?php
-					for($i = 0; $i < count($Disciplinas); $i ++)
-					{
-						if($Disciplinas[$i]["CategoriaId"] == 2)
-						{
-							$checked = "";
-							for($j = 0; $j < count($Curso); $j++)
-								if($Curso[$j]['DisciplinaId'] == $Disciplinas[$i]['Id'])
-									$checked = "checked";
-							
-							echo"<li class='list-group-item'>";
-								echo"<div class='checkbox checbox-switch switch-success custom-controls-stacked'>";
-									echo"<label for='".$Disciplinas[$i]['Id']."'>";
-										echo "<input $checked value='". $Disciplinas[$i]['Id'] ."' id='". $Disciplinas[$i]['Id'] ."' type='checkbox' name='disciplinas[]' /><span></span>".$Disciplinas[$i]["NomeDisciplina"];
-									echo"</label>";
-								echo"</div>";
-							echo"</li>";
-						}
-					}
-				?>
-				</ul>
+				<div class="card">
+				  <h3 class="card-header">Disciplinas do ensino médio</h3>
+					<div class="card-body">
+						<ul class="list-group">
+						<?php
+							for($i = 0; $i < count($Disciplinas); $i ++)
+							{
+								if($Disciplinas[$i]["CategoriaId"] == 2)
+								{
+									$checked = "";
+									for($j = 0; $j < count($Curso); $j++)
+										if($Curso[$j]['DisciplinaId'] == $Disciplinas[$i]['Id'])
+											$checked = "checked";
+									
+									echo"<li class='list-group-item'>";
+										echo"<div class='checkbox checbox-switch switch-success custom-controls-stacked'>";
+											echo"<label for='".$Disciplinas[$i]['Id']."'>";
+												echo "<input $checked value='". $Disciplinas[$i]['Id'] ."' id='". $Disciplinas[$i]['Id'] ."' type='checkbox' name='disciplinas[]' /><span></span>".$Disciplinas[$i]["NomeDisciplina"];
+											echo"</label>";
+										echo"</div>";
+									echo"</li>";
+								}
+							}
+						?>
+						</ul>
+					</div>
+				</div>
 			</div>
+			
 			<?php
 				if(!isset($Curso[0]['Id']))
 					echo"<input  type='submit' id='bt_cadastro_curso' class='btn btn-danger btn-block' style='width: 200px' value='Cadastrar'>";

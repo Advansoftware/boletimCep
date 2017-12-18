@@ -30,7 +30,8 @@
     </div>
   </div>
 </div>
-<div class='col-md-8 login offset-md-1 col-lg-4 offset-lg-0 padding shadow-basic' style='background-color: rgba(255,255,255,1);'>
+
+<div id="style-2" class='col-md-8 login offset-md-1 col-lg-4 offset-lg-0 padding shadow-basic' style='background-color: rgba(255,255,255,1);'>
 	<div class='text-center' style='margin-bottom: 10px;'>
 		<img  class="img-fluid" src="<?php echo $url?>imagens/logo.png">
 		<img class="img-fluid" src="<?php echo $url?>imagens/Optical.png" width="250px" style="position: absolute;left: 50px;top: 140px;z-index: 1;animation: mymove 5s infinite;">
@@ -51,5 +52,4 @@
 	</div>
 	<input type='button' id='bt_login' name='bt_login' value='Entrar' class='btn btn-primary btn-block' />
 </div>
-
 </form>

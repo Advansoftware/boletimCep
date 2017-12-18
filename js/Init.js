@@ -76,11 +76,6 @@ $(document).ready(
 			Main.delete_registro();
 		});
 		
-		////turma
-		// $('#bt_turma').click(function() { 
-			// Main.turma_validar();
-		// });
-		
 		$('#bt_disciplina_turma').click(function() { 
 			Main.disciplina_turma_validar();
 		});
@@ -98,6 +93,5 @@ $(document).ready(
 		$('#TurmaId').click(function() {
 			if(this.value != '0') Main.show_error("TurmaId","error-turma","","form-control is-valid");
 		});
-		
 	}
  );

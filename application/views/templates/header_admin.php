@@ -37,6 +37,16 @@
 						</li>
 						<li id='menu_boletim'>
 							<a href="<?php echo $url; ?>index.php/boletim/index" ><i class="icon-form glyphicon glyphicon-user" style="margin-bottom: 10px;"></i><span>Boletim</span></a>
+					<ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
+						<li class="nav-item">
+							<?php
+								echo"<div data-toggle='popover' data-html='true' data-placement='left' title='<div class=\"text-center\">Opções da conta</div>' 
+									data-content='
+										<button class=\"btn btn-outline-danger btn-block glyphicon glyphicon-cog\" onclick=\"Main.logout()\">&nbsp;Configurações</button><button class=\"btn btn-outline-danger btn-block glyphicon glyphicon-log-out\" onclick=\"Main.logout()\">&nbsp;Sair</button>
+									
+									'  style='font-size: 40px; color: #f5f5f5; cursor: pointer; padding: 10px; border: 1px solid #e9ecef; border-radius: 35px;'>
+										 <span class='glyphicon glyphicon-user'></span></div>";
+							  ?>
 						</li>
 					</ul>
 				</div>
