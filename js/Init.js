@@ -58,5 +58,9 @@ $(document).ready(
 		 $('#bt_delete').click(function() { 
 			Main.delete_registro();
 		});
+		$( "#target" ).submit(function( event ) {
+		  alert( "Handler for .submit() called." );
+		  event.preventDefault();
+		});
 	}
  );
