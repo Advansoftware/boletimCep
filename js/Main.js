@@ -253,4 +253,11 @@ var Main = {
 			}
 		});
 	},
+	lista_turma : function(curso){
+		window.location.assign(Main.base_url+"boletim/turmas/"+curso);
+	},
+	lista_alunos : function(turma){
+		window.location.assign(Main.base_url+"boletim/alunos/"+turma);
+	}
+	
 };

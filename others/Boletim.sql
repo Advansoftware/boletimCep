@@ -65,6 +65,7 @@ CREATE TABLE Disciplina_Curso (
 CREATE TABLE Turma_Aluno(
 	TurmaId INT,
 	AlunoId INT,
+	DataRegistro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	CONSTRAINT pk_turma_aluno 
 		PRIMARY KEY (TurmaId,AlunoId),
 	CONSTRAINT fk_turma_turma_aluno 

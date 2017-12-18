@@ -37,7 +37,7 @@
 			return $query->result_array();
 		}
 		
-		public function get_aluno_por_curso($id,$turma_id)
+		public function get_aluno_por_curso($id,$turma_id)//por curso e lista somente os alunos que nao possuem relacionamento com turma
 		{
 			$query = $this->db->query("SELECT a.Id, a.Nome,ta.TurmaId FROM aluno a 
 										LEFT JOIN turma_aluno ta ON a.Id = ta.AlunoId 

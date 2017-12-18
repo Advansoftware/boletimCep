@@ -40,10 +40,21 @@
 		}
 		
 		public function get_aluno_por_turma($turma_id){
-			$query = $this->db->query("SELECT ta.AlunoId, a.Nome FROM turma_aluno ta 
+			$query = $this->db->query("SELECT ta.AlunoId, a.Nome, a.NumeroChamada, c.Nome as NomeCurso, ta.TurmaId FROM turma_aluno ta 
 										INNER JOIN aluno a ON ta.AlunoId = a.Id 
+										INNER JOIN curso c ON a.CursoId = c.Id 
 										WHERE ta.TurmaId = ".$this->db->escape($turma_id)."");
 			return $query->result_array();
+		}
+		
+		public function get_turma_por_curso($id){
+			$query =  $this->db->query(
+					"SELECT t.Id, t.Ativo, DATE_FORMAT(t.DataRegistro, '%d/%m/%Y') as DataRegistro, t.Nome as NomeTurma, t.CursoId, c.Nome as NomeCurso, 
+					(SELECT count(*) FROM turma_aluno ta WHERE ta.TurmaId = t.Id) as Qtd_Aluno
+					FROM turma t 
+					INNER JOIN curso c ON t.CursoId = c.Id 
+					WHERE t.Ativo = 1 AND c.Id = ".$this->db->escape($id)." ORDER BY t.DataRegistro DESC");
+				return $query->result_array();
 		}
 		
 		public function troca_aluno($data){
