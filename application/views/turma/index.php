@@ -8,7 +8,7 @@
 	<p>Todas as turmas</p><br />
 	<input type='hidden' id='controller' value='<?php echo $controller; ?>'/>
 </div>
-<div class='row' id='container' name='container' style='border: 1px solid red;'>
+<div class='row' id='container' name='container' style='border: 1px solid rgba(0,0,0,.1);'>
 	<div id="admin_trocar_aluno" class="modal" tabindex="-1" role="dialog">
 	  <div class="modal-dialog" role="document">
 		<div class="modal-content">
@@ -54,7 +54,7 @@
 							echo"<button class='btn btn-outline-danger' id='bt_trocar_aluno'>Trocar aluno de turma</button>";
 						echo"</td>";
 						echo"<td class='text-right'>";
-							echo"<a href='".$url."index.php/$controller/create_edit/0/'>Nova turma</a>";
+							echo"<a class='btn btn-success' href='".$url."index.php/$controller/create_edit/0/'>Nova turma</a>";
 						echo"</td>";
 						echo"</tr>";
 						echo "<tr>";

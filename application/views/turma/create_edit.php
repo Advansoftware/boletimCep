@@ -41,10 +41,10 @@
 				</div>
 				<div class='row'>
 					<div class='col-lg-6'>
-						<button class='btn btn-danger btn-block' disabled="disabled"><span class='glyphicon glyphicon-menu-left'></span> Voltar</button>
+						<button class='btn btn-secondary btn-block' disabled="disabled"><span class='glyphicon glyphicon-menu-left'></span> Voltar</button>
 					</div>
 					<div class='col-lg-6'>
-						<input type='submit' value='Avançar' class='btn btn-danger btn-block'/>
+						<input type='submit' value='Avançar' class='btn btn-success btn-block'/>
 					</div>
 				</div>
 			</form>
