@@ -20,7 +20,7 @@
 			{
 				$query =  $this->db->query("SELECT c.Id, c.Nome, DATE_FORMAT(c.DataRegistro, '%d/%m/%Y') as DataRegistro,  
 				(SELECT COUNT(*) FROM disciplina_curso dc WHERE dc.CursoId = c.Id) as Qtd_Disciplina 
-				FROM curso c WHERE Ativo = 1");
+				FROM curso c WHERE Ativo = 1 ORDER BY c.DataRegistro DESC");
 				return $query->result_array();
 			}
 

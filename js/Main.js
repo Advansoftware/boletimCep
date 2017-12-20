@@ -104,7 +104,7 @@ var Main = {
 	},
 	create_edit : function (){
 		$("#mensagem").html("Aguarde... processando dados");
-		$('#lead_modal_aguardar').modal({
+		$('#admin_modal').modal({
 			keyboard: false,
 			backdrop : 'static'
 		})
@@ -174,7 +174,7 @@ var Main = {
 	},
 	create_edit_turma : function (){
 		$("#mensagem").html("Aguarde... processando dados");
-		$('#lead_modal_aguardar').modal({
+		$('#admin_modal').modal({
 			keyboard: false,
 			backdrop : 'static'
 		})
@@ -192,7 +192,7 @@ var Main = {
 	},
 	create_edit_turma_disciplina : function (){
 		$("#mensagem").html("Aguarde... processando dados");
-		$('#lead_modal_aguardar').modal({
+		$('#admin_modal').modal({
 			keyboard: false,
 			backdrop : 'static'
 		})
@@ -210,7 +210,7 @@ var Main = {
 	},
 	create_edit_turma_aluno : function (){
 		$("#mensagem").html("Aguarde... processando dados");
-		$('#lead_modal_aguardar').modal({
+		$('#admin_modal').modal({
 			keyboard: false,
 			backdrop : 'static'
 		})
@@ -258,6 +258,28 @@ var Main = {
 	},
 	lista_alunos : function(turma){
 		window.location.assign(Main.base_url+"boletim/alunos/"+turma);
+	},
+	atualiza_boletim : function(aluno,disciplina,bimestre,valor,boletim_id,campo){
+		if(valor != "" && valor != " ")
+		{
+			$("#mensagem").html("Aguarde... processando dados");
+			$('#admin_modal').modal({
+				keyboard: false,
+				backdrop : 'static'
+			})
+			$.ajax({
+				url: Main.base_url+$("#controller").val()+'/atualiza_boletim/'+aluno+"/"+disciplina+"/"+bimestre+"/"+valor+"/"+boletim_id+"/"+campo,
+				dataType:'json',
+				cache: false,
+				type: 'POST',
+				success: function (msg) {
+					
+					$("#mensagem").html("Dados salvos com sucesso");
+					setTimeout(function(){
+						$("#admin_modal").modal('hide');
+					},500);
+				}
+			});
+		}
 	}
-	
 };

@@ -1,4 +1,6 @@
 <?php
+define("POR_TURMA",1);
+define("POR_ALUNO",2);
 	class Boletim extends CI_Controller {
 		/*
 			no construtor carregamos as bibliotecas necessarias e tambem nossa model
@@ -65,12 +67,20 @@
 		public function boletim($aluno_id,$turma_id){
 			$data['url'] = base_url();
 			$data['controller'] = 'boletim';
-			//$data
+			$data['boletim'] = $this->Boletim_model->get_boletim(POR_ALUNO,$aluno_id,$turma_id);
 			$data['title'] = 'Administração';
 			$data['message'] = 'Administração';
 			$this->load->view('templates/header_admin',$data);
 			$this->load->view('boletim/boletim',$data);
 			$this->load->view('templates/footer',$data);
+		}
+		
+		public function atualiza_boletim($aluno_id,$disciplinaId,$bimestre,$valor,$boletim_id,$campo){
+			$this->Boletim_model->set_boletim($aluno_id,$disciplinaId,$bimestre,$valor,$boletim_id,$campo);
+			$arr = array('response' => '9');
+			header('Content-Type: application/json');
+			echo json_encode($arr);
+			
 		}
 	}
 ?>

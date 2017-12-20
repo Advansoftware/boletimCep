@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS Boletim;
+DROP TABLE IF EXISTS Turma_Aluno;
 DROP TABLE IF EXISTS Aluno;
 DROP TABLE IF EXISTS Disciplina_Curso;
 DROP TABLE IF EXISTS Turma_Disciplina;
@@ -62,18 +63,6 @@ CREATE TABLE Disciplina_Curso (
 		FOREIGN KEY(CursoId) REFERENCES Curso(Id)
 );
 
-CREATE TABLE Turma_Aluno(
-	TurmaId INT,
-	AlunoId INT,
-	DataRegistro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	CONSTRAINT pk_turma_aluno 
-		PRIMARY KEY (TurmaId,AlunoId),
-	CONSTRAINT fk_turma_turma_aluno 
-		FOREIGN KEY (TurmaId) REFERENCES Turma(Id),
-	CONSTRAINT fk_aluno_turma_aluno 
-		FOREIGN KEY (AlunoId) REFERENCES Aluno(Id)
-);
-
 CREATE TABLE Aluno (
 	Id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 	Ativo BOOLEAN,
@@ -91,10 +80,30 @@ CREATE TABLE Aluno (
 		FOREIGN KEY (CursoId) REFERENCES Curso(Id)
 );
 
+CREATE TABLE Turma_Aluno(
+	TurmaId INT,
+	AlunoId INT,
+	DataRegistro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	CONSTRAINT pk_turma_aluno 
+		PRIMARY KEY (TurmaId,AlunoId),
+	CONSTRAINT fk_turma_turma_aluno 
+		FOREIGN KEY (TurmaId) REFERENCES Turma(Id),
+	CONSTRAINT fk_aluno_turma_aluno 
+		FOREIGN KEY (AlunoId) REFERENCES Aluno(Id)
+);
+
 CREATE TABLE Boletim (
 	Id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-	Nota FLOAT,
-	Falta INT,
+	Ativo BOOLEAN,
+	DataRegistro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	Nota1 DOUBLE,
+	Falta1 INT,
+	Nota2 DOUBLE,
+	Falta2 INT,
+	Nota3 DOUBLE,
+	Falta3 INT,
+	Nota4 DOUBLE,
+	Falta5 INT,
 	Bimestre INT,
 	AlunoId INT NOT NULL,
 	DisciplinaId INT NOT NULL,

@@ -51,7 +51,6 @@
 					echo "<thead>";
 						echo "<tr>";
 							echo "<td>Nome</td>";
-							echo "<td>Data de registro</td>";
 						echo "<tr>";
 					echo "</thead>";
 					echo "<tbody>";
@@ -59,7 +58,6 @@
 						{
 							echo "<tr style='cursor: pointer;' onclick='Main.lista_turma(".$Cursos[$i]['Id'].");'>";
 								echo "<td>".$Cursos[$i]['Nome']."</td>";
-								echo "<td>".$Cursos[$i]['DataRegistro']."</td>";
 							echo "</tr>";
 						}
 					echo "</tbody>";
