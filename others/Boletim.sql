@@ -103,7 +103,7 @@ CREATE TABLE Boletim (
 	Nota3 DOUBLE,
 	Falta3 INT,
 	Nota4 DOUBLE,
-	Falta5 INT,
+	Falta4 INT,
 	Bimestre INT,
 	AlunoId INT NOT NULL,
 	DisciplinaId INT NOT NULL,

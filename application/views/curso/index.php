@@ -5,7 +5,7 @@
 	}
 </script>
 <div class='row' style='padding: 30px;'>
-	<p>Todos os cursos<?php echo $Cursos[0]['Nome']; ?></p><br />
+	<p>Todos os cursos</p><br />
 	<input type='hidden' id='controller' value='<?php echo $controller; ?>'/>
 </div>
 <div class='row' id='container' name='container' style='border: 1px solid rgba(0,0,0,.1);'>

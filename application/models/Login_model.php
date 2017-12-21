@@ -10,7 +10,7 @@
 		{
 			$dataResult = "";
 			$query = $this->db->query("SELECT id, senha FROM 
-								usuario WHERE email = ".$this->db->escape($email)." AND senha = sha2(".$this->db->escape($senha).",512)");
+								Usuario WHERE email = ".$this->db->escape($email)." AND senha = sha2(".$this->db->escape($senha).",512)");
 			$data =  $query->row_array();
 			if(!empty($data))
 				$dataResult = hash("sha512",$data['id'].$data['senha']);
@@ -19,7 +19,7 @@
 		
 		public function session_is_valid($hash){
 			$query = $this->db->query("SELECT id FROM 
-										usuario WHERE sha2(concat(id,senha),512) = ".$this->db->escape($hash)."");
+										Usuario WHERE sha2(concat(id,senha),512) = ".$this->db->escape($hash)."");
 			return $query->row_array();
 		}
 	}
