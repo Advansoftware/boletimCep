@@ -69,7 +69,7 @@
 			$dataToSave = array(
 				'Id' => $this->input->post('Id'),
 				'Ativo' => 1,
-				'Nome' => $this->input->post('NomeAluno'),
+				'Nome' => $this->input->post('N'),
 				'Matricula' => $this->input->post('Matricula'),
 				'NumeroChamada' => $this->input->post('NumeroChamada'),
 				'DataNascimento' => $this->input->post('DataNascimento'),
