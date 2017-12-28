@@ -69,7 +69,7 @@
 			$dataToSave = array(
 				'Id' => $this->input->post('Id'),
 				'Ativo' => 1,
-				'Nome' => $this->input->post('N'),
+				'Nome' => $this->input->post('NomeAluno'),
 				'Matricula' => $this->input->post('Matricula'),
 				'NumeroChamada' => $this->input->post('NumeroChamada'),
 				'DataNascimento' => $this->input->post('DataNascimento'),
@@ -86,26 +86,17 @@
 			header('Content-Type: application/json');
 			echo json_encode($arr);
 		}
-		public function alunoPdf(){
 
+		public function alunoPdf(){
 			$data['url'] = base_url();
 			$data['controller'] = 'aluno';
 			$data['Alunos'] = $this->Aluno_model->get_aluno();
 			$data['title'] = 'Administração';
 			$data['message'] = 'Administração';
-			 $html=$this->load->view('aluno/aluno_pdf', $data, true);
- 
-        //this the the PDF filename that user will get to download
-        $pdfFilePath = "output_pdf_name.pdf";
-        //load mPDF library
-      	$this->load->library('m_pdf');
- 		
-       //generate the PDF from the given html
-        $this->m_pdf->pdf->WriteHTML($html);
- 
-        //download it.
-        $this->m_pdf->pdf->Output($pdfFilePath, "D");
-
+			$this->load->library('pdfgenerator');
+			$html = $this->load->view('aluno/aluno_pdf', $data, true);
+			$filename = 'report_'.time();
+			$this->pdfgenerator->generate($html, $filename, true, 'A4', 'portrait');
 		}
 	}
 ?>
