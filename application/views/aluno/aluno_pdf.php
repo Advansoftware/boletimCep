@@ -1,3 +1,4 @@
+<head>
 <?= link_tag('css/bootstrap.min.css') ?>
 <style>
 .table{
@@ -12,9 +13,16 @@ h2{
 	text-align: center;
 }
 </style>
-<img  class="img-fluid" src="<?php echo $url?>imagens/topo.png">
+
+	
+</head>
+<body>
+	<header>
+		
+		<img  class="img-fluid" src="<?php echo $url?>imagens/topo.png">
+	</header>
 <div class='row'>
-	<h2>Lista de alunos</h2>
+	<h2>Lista de Alunos</h2>
 	<input type='hidden' id='controller' value='<?php echo $controller; ?>'/>
 </div>
 <div class='row' id='container' name='container' style='border: 1px solid rgba(0,0,0,.3); '>
@@ -46,3 +54,4 @@ h2{
 		echo "</table>";
 	?>
 </div>
+</body>

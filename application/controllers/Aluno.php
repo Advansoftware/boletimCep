@@ -95,7 +95,7 @@
 			$data['message'] = 'Administração';
 			$this->load->library('pdfgenerator');
 			$html = $this->load->view('aluno/aluno_pdf', $data, true);
-			$filename = 'report_'.time();
+			$filename = 'boletim_'.time();
 			$this->pdfgenerator->generate($html, $filename, true, 'A4', 'portrait');
 		}
 	}
