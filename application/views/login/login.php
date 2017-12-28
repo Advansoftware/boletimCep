@@ -1,7 +1,3 @@
-<?php
-	$atr = array('id' => 'form_login','name' => 'form_login');
-	echo form_open('login/validar',$atr);
-?>
 <div class="modal fade" id="login_modal_aguardar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -30,26 +26,37 @@
     </div>
   </div>
 </div>
-
-<div id="style-2" class='col-md-8 login offset-md-1 col-lg-4 offset-lg-0 padding shadow-basic' style='background-color: rgba(255,255,255,1);'>
-	<div class='text-center' style='margin-bottom: 10px;'>
-		<img  class="img-fluid" src="<?php echo $url?>imagens/logo.png">
-		<img class="img-fluid" src="<?php echo $url?>imagens/Optical.png" width="250px" style="position: absolute;left: 50px;top: 140px;z-index: 1;animation: mymove 5s infinite;">
-	</div>
-	<div class='form-group'>
-		<div class='input-group mb-2 mb-sm-0'>
-			<div class='input-group-addon'><span class='glyphicon glyphicon-envelope'></span></div>
-			<input type='text' spellcheck='false' placeholder='E-mail' class='form-control' id='email' name='email' autofocus />
+<div class="login-page">
+	<div class="container d-flex align-items-center">
+	<div class="form-holder has-shadow">
+		<div class="row">
+			<div class="col-lg-6 bg-white shadow-basic">
+				<div class="form d-flex align-items-center">
+					<div class="content">
+					  <?php
+							$atr = array('id' => 'form_login','name' => 'form_login');
+							echo form_open('login/validar',$atr);
+						?>
+							<div class="form-group">
+								<input id="email-login" autocomplete="false" spellcheck="false" name="email-login" type="text" class="input-material">
+								<label for="email-login" class="label-material">E-mail</label>
+								<div class='input-group mb-2 mb-sm-0 text-danger' id='error-email-login'></div>
+							</div>
+							<div class="form-group">
+								<input id="senha-login" name="senha-login" type="password" class="input-material">
+								<label for="senha-login" class="label-material">Senha</label>
+								<div class='input-group mb-2 mb-sm-0 text-danger' id='error-senha-login'></div>
+							</div>
+							<button type="submit" class="btn btn-primary">Login</button>
+						</form>
+						<a href="#" class="forgot-pass">Esquece sua senha?</a><br><small>Não tem uma conta? </small><a href="register.html" class="signup">Crie aqui</a>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class='input-group mb-2 mb-sm-0 text-danger' id='error-email'></div>
 	</div>
-	<div class='form-group'>
-		<div class='input-group mb-2 mb-sm-0'>
-			<div class='input-group-addon'><span class='glyphicon glyphicon-lock'></span></div>
-			<input type='password' placeholder='Senha' class='form-control' id='senha' name='senha'>
-		</div>
-		<div class='input-group mb-2 mb-sm-0 text-danger' id='error-senha'></div>
 	</div>
-	<input type='button' id='bt_login' name='bt_login' value='Entrar' class='btn btn-primary btn-block' />
+	<div class="copyrights text-center">
+		<p> <?php echo date("Y");?>  - Developed by Tadeu R. Torres</p>
+	</div>
 </div>
-</form>

@@ -109,7 +109,6 @@ table {
   width: calc(100% - 70px);
 }
 
-.login-page,
 .register-page {
   width: 100%;
 }
@@ -165,90 +164,109 @@ h2 {
   font-weight: 400 !important;
 }
 
-input.form-control-custom {
-  display: none;
-}
-
-input.form-control-custom:checked + label::before {
-  background: #59b357 !important;
-}
-
-input.form-control-custom:checked + label::after {
-  opacity: 1 !important;
-}
-
-input.form-control-custom.radio-custom + label::before {
-  border-radius: 50%;
-}
-
-input.form-control-custom.radio-custom + label::after {
-  content: '';
-  width: 6px;
-  height: 6px;
-  line-height: 6px;
-  background: #fff;
-  border-radius: 50%;
-  top: 7px;
-  left: 5px;
-}
-
-input.form-control-custom[disabled] + label {
-  cursor: not-allowed;
-}
-
-input.form-control-custom[disabled] + label::before, input.form-control-custom[disabled] + label::after {
-  border: 2px solid #aaa;
-  cursor: not-allowed;
-}
-
-input.form-control-custom[checked] + label::before, input.form-control-custom[checked] + label::after {
+input.input-material {
+  width: 100%;
   border: none;
+  border-bottom: 1px solid #444951;
+  padding: 10px 0;
+  background: none;
+  color: #8a8d93;
 }
 
-input.form-control-custom + label {
-  font-size: 0.75em;
-  margin-bottom: 0;
-  margin-left: 0;
-  color: #999;
-  padding-left: 25px;
-  padding-top: 2px;
-  position: relative;
+input.input-material:focus {
+  border-color: #DB6574;
 }
 
-input.form-control-custom + label span {
-  margin-left: 20px;
-}
-
-input.form-control-custom + label::before {
-  content: '';
-  display: block;
-  width: 16px;
-  height: 16px;
-  line-height: 16px;
-  background: #ddd;
-  color: #fff;
-  text-align: center;
+input.input-material ~ label {
+  color: #aaa;
   position: absolute;
-  top: 2px;
+  top: 14px;
   left: 0;
-  -webkit-transition: all 0.1s;
-  transition: all 0.1s;
-  cursor: pointer;
+  cursor: text;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  font-weight: 300;
 }
 
-input.form-control-custom + label::after {
-  content: '\f00c';
-  display: block;
-  font-family: 'FontAwesome';
-  font-size: 8px;
-  color: #fff;
+input.input-material ~ label.error {
+  color: #dc3545;
+  font-size: 0.75rem;
   position: absolute;
-  top: 4px;
-  left: 4px;
-  -webkit-transition: all 0.1s;
-  transition: all 0.1s;
-  opacity: 0;
-  cursor: pointer;
+  top: auto;
+  bottom: -30px;
+  left: 0;
+}
+
+input.input-material ~ label.active {
+  font-size: 0.85rem;
+  top: -10px;
+  color: #DB6574;
+}
+
+.form-group-material {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.input-group-addon {
+  /*background: #363a40;*/
+ background: rgba(255,255,255,0);
+  color: #fff;
+  /*font-weight: 300;
+  border-radius: 0;*/
+ padding: 0px;
+  border: 1px solid rgba(255,255,255,0);
+}
+
+.input-group .btn {
+  padding: 0.6rem 0.95rem;
+}
+
+.input-group .dropdown-toggle {
+  background: #363a40;
+  color: #8a8d93;
+  padding-right: 1.4rem;
+}
+
+.input-group .checkbox-template,
+.input-group .radio-template {
+  -webkit-transform: none;
+  transform: none;
+}
+
+.input-group .dropdown-menu {
+  padding: 15px;
+  color: #777;
+  border-radius: 0;
+  margin-top: 5px;
+}
+
+.input-group .dropdown-menu a {
+  padding: 5px 0;
+  color: inherit;
+  text-decoration: none;
+  display: block;
+}
+
+.input-group .dropdown-menu a:hover {
+  color: #DB6574;
+  background: none !important;
+}
+
+.custom-select.is-invalid:focus,
+.form-control.is-invalid:focus,
+.was-validated .custom-select:invalid:focus,
+.was-validated .form-control:invalid:focus,
+.custom-select.is-valid:focus,
+.form-control.is-valid:focus,
+.was-validated .custom-select:valid:focus,
+.was-validated .form-control:valid:focus {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.form-page .block {
+  margin-bottom: 30px;
 }
 
 button {
@@ -513,7 +531,7 @@ nav.side-navbar a {
 }
 
 nav.side-navbar a:focus, nav.side-navbar a:hover, nav.side-navbar a[aria-expanded="true"] {
-  background: #60ba00;
+  background: #218838;
   color: #fff;
   border-radius: 2px;
 }
@@ -1424,218 +1442,119 @@ section.forms .input-group-btn .dropdown-menu a {
 *     LOGIN PAGE
 * ==========================================================
 */
-.login-page,
-.register-page {
-  background: #f5f5f5;
-  min-height: auto;
-  padding-bottom: 0;
-}
-
-.login-page .form-outer,
-.register-page .form-outer {
-  min-height: 100vh;
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px 0;
+.login-page {
   position: relative;
 }
 
-.login-page .copyrights,
-.register-page .copyrights {
+.login-page::before {
+  content: '';
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: -1;
+background: url('../imagens/tec4.jpg');
+  background-size: cover;
   position: absolute;
+  top: 0;
   right: 0;
-  bottom: 0;
+}
+
+.login-page .container {
+  min-height: 100vh;
+  z-index: 1;
+  padding: 20px;
+}
+
+.login-page .form-holder {
   width: 100%;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 50px;
 }
 
-.login-page .copyrights p,
-.register-page .copyrights p {
-  font-size: 0.6em;
-  font-weight: 300;
-  margin-bottom: 10px;
+.login-page .form-holder .info,
+.login-page .form-holder .form {
+  min-height: 70vh;
+  padding: 40px;
+ 
 }
 
-.login-page .form-inner,
-.register-page .form-inner {
-  padding: 40px 30px;
-  background: #fff;
-  -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
+.login-page .form-holder div[class*='col-'] {
+  padding: 0;
 }
 
-.login-page .logo,
-.register-page .logo {
-  font-size: 2em;
-  font-weight: 500;
-}
-
-.login-page .logo span,
-.register-page .logo span {
-  color: #ccc;
-}
-
-.login-page p,
-.register-page p {
-  font-size: 0.8em;
-  font-weight: 300;
-  color: #aaa;
-  margin-bottom: 0;
-}
-
-.login-page form,
-.register-page form {
-  margin: 0 auto 10px;
-  max-width: 300px;
-}
-
-.login-page form .form-group,
-.register-page form .form-group {
-  position: relative;
-}
-
-.login-page form input,
-.register-page form input {
-  outline: none;
-  border-radius: 0;
-  width: 100%;
-  margin-right: 10px;
-  padding: 6px 10px;
-  color: #333;
-  font-weight: 300;
-  border: none;
-  border-bottom: 1px solid #ddd;
-  text-align: center;
-  margin-top: 20px;
-  font-size: 0.9em;
-}
-
-.login-page form input[type='text'], .login-page form input[type='password'], .login-page form input[type='email'],
-.register-page form input[type='text'],
-.register-page form input[type='password'],
-.register-page form input[type='email'] {
-  background: none;
-}
-
-.login-page form input[type='submit'],
-.register-page form input[type='submit'] {
-  width: 200px;
-  border-radius: 50px;
-  text-transform: uppercase;
-  font-weight: 300;
-  cursor: pointer;
-  font-size: 0.8em;
-  margin-bottom: 0;
+.login-page .form-holder .info {
+  background: rgba(219, 101, 116, 0.95);
   color: #fff;
 }
 
-.login-page form label.error,
-.register-page form label.error {
-  font-size: 0.7em;
-  color: #dc3545;
-  margin-bottom: 0;
+.login-page .form-holder .info h1 {
+  font-size: 2.5em;
+  font-weight: 700;
 }
 
-.login-page form label.label-custom,
-.register-page form label.label-custom {
-  font-size: 0.8em;
+.login-page .form-holder .info p {
   font-weight: 300;
-  color: #aaa;
-  position: absolute;
-  top: 30px;
-  right: 0;
+}
+
+.login-page .form-holder .form {
+  background: #2d3035;
+}
+
+.login-page .form-holder .form .form-group {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.login-page .form-holder .form .content {
   width: 100%;
-  cursor: text;
-  -webkit-transition: all 0.4s;
-  transition: all 0.4s;
 }
 
-.login-page form label.label-custom.active,
-.register-page form label.label-custom.active {
-  top: 5px;
-  color: #dc3545;
+.login-page .form-holder .form form {
+  width: 100%;
+  max-width: 400px;
 }
 
-.login-page a.forgot-pass,
-.login-page a.signup,
-.register-page a.forgot-pass,
-.register-page a.signup {
-  font-size: 0.65em;
-  color: #66b0ff;
+.login-page .form-holder .form #login,
+.login-page .form-holder .form #register {
+  margin-bottom: 20px;
+  cursor: pointer;
+  color: #fff;
 }
 
-.login-page a.forgot-pass:hover, .login-page a.forgot-pass:focus,
-.login-page a.signup:hover,
-.login-page a.signup:focus,
-.register-page a.forgot-pass:hover,
-.register-page a.forgot-pass:focus,
-.register-page a.signup:hover,
-.register-page a.signup:focus {
-  color: #66b0ff;
-  text-decoration: none;
+.login-page .form-holder .form a.forgot-pass,
+.login-page .form-holder .form a.signup {
+  font-size: 0.9rem;
+  color: #DB6574;
 }
 
-.login-page a.forgot-pass,
-.register-page a.forgot-pass {
-  display: block;
-}
-
-.login-page a.create-account,
-.register-page a.create-account {
-  border-radius: 50px;
-  font-size: 0.75em;
-  margin-top: 10px;
-  color: #999;
-  text-transform: uppercase;
-}
-
-.login-page .terms-conditions,
-.register-page .terms-conditions {
-  margin-top: 20px;
-}
-
-.login-page small,
-.register-page small {
-  font-size: 0.65em;
+.login-page .form-holder .form small {
   color: #aaa;
-  line-height: 0.9em;
 }
 
-/* LOGIN MEDIAQUERIES -------------------------- */
-@media (min-width: 768px) {
-  .login-page p,
-  .register-page p {
-    font-size: 0.9em;
-  }
-  .login-page form label.label-custom,
-  .register-page form label.label-custom {
-    font-size: 0.9em;
-  }
-  .login-page form small,
-  .register-page form small {
-    font-size: 0.8em;
-  }
-  .login-page .terms-conditions label,
-  .register-page .terms-conditions label {
-    font-size: 0.9em;
-  }
-  .login-page a.forgot-pass,
-  .login-page a.signup,
-  .register-page a.forgot-pass,
-  .register-page a.signup {
-    font-size: 0.8em;
-  }
-  .login-page small,
-  .register-page small {
-    font-size: 0.8em;
-  }
-  .login-page .copyrights p,
-  .register-page .copyrights p {
-    font-size: 0.85em;
-    font-weight: 400;
-  }
+.login-page .form-holder .form .terms-conditions label {
+  cursor: pointer;
+  color: #aaa;
+  font-size: 0.9rem;
 }
 
+.login-page .copyrights {
+  width: 100%;
+  z-index: 9999;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: #fff;
+}
+
+@media (max-width: 991px) {
+  .login-page .form-holder .info,
+  .login-page .form-holder .form {
+    min-height: auto;
+    padding: 40px;
+    height: 100%;
+  }
+}
 /*
 
 =====================

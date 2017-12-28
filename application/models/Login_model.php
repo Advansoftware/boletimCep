@@ -9,17 +9,22 @@
 		public function get_login($email = FALSE, $senha = FALSE)
 		{
 			$dataResult = "";
-			$query = $this->db->query("SELECT id, senha FROM 
-								Usuario WHERE email = ".$this->db->escape($email)." AND senha = sha2(".$this->db->escape($senha).",512)");
-			$data =  $query->row_array();
-			if(!empty($data))
-				$dataResult = hash("sha512",$data['id'].$data['senha']);
+			$query = $this->db->query("SELECT id, grupo_id, senha FROM 
+								usuario WHERE email = ".$this->db->escape($email)." AND senha = ".$this->db->escape($senha)."");
+			 $data =  $query->row_array();
+			 if(!empty($data))
+			 {
+				 //atualizar ultimo acesso
+				 $query = $this->db->query("UPDATE usuario SET ultimo_acesso = NOW()  
+				 					WHERE id = ".$this->db->escape($data['id'])."");
+				 $dataResult = $data;
+			 }
 			return $dataResult;
 		}
 		
-		public function session_is_valid($hash){
+		public function session_is_valid($id){
 			$query = $this->db->query("SELECT id FROM 
-										Usuario WHERE sha2(concat(id,senha),512) = ".$this->db->escape($hash)."");
+										usuario WHERE id = ".$this->db->escape($id)."");
 			return $query->row_array();
 		}
 	}

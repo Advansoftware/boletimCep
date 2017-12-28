@@ -1,5 +1,5 @@
 var Main = {
-	base_url : "http://"+window.location.host+"/git/boletimCep/index.php/",
+	base_url : "http://"+window.location.host+"/git/boletimCep/",
 	load_mask : function(){
 		$(document).ready(function(){
 			$('[data-toggle="popover"]').popover(),
@@ -56,12 +56,12 @@ var Main = {
 		});
 	},
 	login_isvalid : function (){
-		if($("#email").val() == "")
-			Main.show_error("email","error-email","Informe seu e-mail","form-control is-invalid");
-		else if(Main.valida_email($("#email").val()) == false)
-			Main.show_error("email","error-email","Formato de e-mail inválido","form-control is-invalid");
-		else if($("#senha").val() == "")
-			Main.show_error("senha","error-senha","Insira sua senha","form-control is-invalid");
+		if($("#email-login").val() == "")
+			Main.show_error("email-login","Informe seu e-mail","");
+		else if(Main.valida_email($("#email-login").val()) == false)
+			Main.show_error("email-login","Formato de e-mail inválido","");
+		else if($("#senha-login").val() == "")
+			Main.show_error("senha-login","Insira sua senha","");
 		else
 			return true;
 	},
@@ -80,27 +80,125 @@ var Main = {
 			(dominio.search(".") != -1) &&      
 			(dominio.indexOf(".") >= 1)&& 
 			(dominio.lastIndexOf(".") < dominio.length - 1)) 
-		{
-			document.getElementById('email').className = "form-control is-valid";
-			document.getElementById('error-email').innerHTML = "";
 			return true;
-		}
 		else
-		{
-			document.getElementById('email').className = "form-control is-invalid";
-			document.getElementById('error-email').innerHTML = "Formato de e-mail inválido.";
 			return false;
-		}
 	},
-	show_error : function(form, id_div_error, error, class_error)
+	show_error : function(form, error, class_error)
 	{
-		document.getElementById(form).className = class_error;
-		document.getElementById(id_div_error).innerHTML = error;
+		if(class_error != "")
+			document.getElementById(form).className = "form-control "+class_error;
+		document.getElementById("error-"+form).innerHTML = error;
 	},
 	limpa_login : function ()
 	{
-		$("#senha").val("");
-		$("#senha").focus();
+		$("#senha-login").val("");
+		$("#senha-login").focus();
+	},
+	create_edit : function (){
+		$("#mensagem").html("Aguarde... processando dados");
+		$('#admin_modal').modal({
+			keyboard: false,
+			backdrop : 'static'
+		})
+		$.ajax({
+			url: Main.base_url+$("#controller").val()+'/store',
+			data: $("#"+$("form[name=form_cadastro]").attr("id")).serialize(),
+			dataType:'json',
+			cache: false,
+			type: 'POST',
+			success: function (msg) {
+				if(msg.response == "sucesso")
+				{
+					$("#mensagem").html("Dados salvos com sucesso");
+					window.location.assign(Main.base_url+$("#controller").val()+"/index");
+				}
+				else
+				{
+					setTimeout(function(){
+						$("#admin_modal").modal('hide');
+						
+						$("#mensagem_warning").html(msg.response);
+						$('#admin_warning_modal').modal({
+							keyboard: false,
+							backdrop : 'static'
+						})	
+					},500);
+				}
+			}
+		});
+	},
+	usuario_validar : function(){
+		if($("#nome").val() == "")
+			Main.show_error("nome", 'Informe o nome de usuário', 'is-invalid');
+		else if($("#email").val() == "")
+			Main.show_error("email", 'Informe o e-mail de usuário', 'is-invalid');
+		else if(Main.valida_email($("#email").val()) == false)
+			Main.show_error("email", 'Formato de e-mail inválido', 'is-invalid');
+		else if($("#senha").val() == "")
+			Main.show_error("senha", 'Informe a senha de usuário', 'is-invalid');
+		else
+		{
+			var trava = 0;
+			if($("#id").val() == "")//se estiver criando um usuário
+			{
+				if($("#confirmar_senha").val() == "")
+				{
+					trava = 1;
+					Main.show_error("confirmar_senha", 'Repita a senha de usuário', 'is-invalid');
+				}
+				else if($("#senha").val() != $("#confirmar_senha").val())
+				{
+					trava = 1;
+					Main.show_error("confirmar_senha", 'Senha especificada é diferente da anterior', 'is-invalid');
+				}
+			}
+			if(trava == 0)
+			{
+				if($("#grupo_id").val() == "0")
+					Main.show_error("grupo_id", 'Selecione um tipo de usuário', 'is-invalid');
+				else if($("#nova_senha").val() != "")
+				{
+					if($("#confirmar_nova_senha").val() == "")
+						Main.show_error("confirmar_nova_senha", 'Repita a nova senha', 'is-invalid');
+					else if($("#nova_senha").val() != $("#confirmar_nova_senha").val())
+						Main.show_error("confirmar_nova_senha", 'Senha especificada é diferente da anterior', 'is-invalid');
+					else
+						Main.create_edit();
+				}
+				else
+					Main.create_edit();
+			}
+		}
+	},
+	menu_validar : function()
+	{
+		if($("#nome").val() == "")
+			Main.show_error("nome", 'Informe o nome de menu', 'is-invalid');
+		else if($("#ordem").val() == "")
+			Main.show_error("ordem", 'Informe o número da ordem', 'is-invalid');
+		else
+			Main.create_edit();
+	},
+	modulo_validar : function()
+	{
+		if($("#nome").val() == "")
+			Main.show_error("nome", 'Informe o nome de módulo', 'is-invalid');
+		else if($("#descricao").val() == "")
+			Main.show_error("descricao", 'Informe a descrição de módulo', 'is-invalid');
+		else if($("#url_modulo").val() == "")
+			Main.show_error("url_modulo", 'Informe a url de módulo', 'is-invalid');
+		else if($("#ordem").val() == "")
+			Main.show_error("ordem", 'Informe o número da ordem', 'is-invalid');
+		else
+			Main.create_edit();
+	},
+	grupo_validar : function()
+	{
+		if($("#nome").val() == "")
+			Main.show_error("nome", 'Informe o nome de grupo', 'is-invalid');
+		else
+			Main.create_edit();
 	},
 	create_edit : function (){
 		$("#mensagem").html("Aguarde... processando dados");

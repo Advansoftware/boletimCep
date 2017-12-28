@@ -1,5 +1,6 @@
 <?php
-	class Login extends CI_Controller {
+	require_once("Geral.php");
+	class Login extends Geral {
 		/*
 			no construtor carregamos as bibliotecas necessarias e tambem nossa model
 		*/
@@ -7,12 +8,7 @@
 		{
 			parent::__construct();
 			
-			$this->load->model('login_model');
-			$this->load->helper('url_helper');
-			$this->load->helper('url');
-			$this->load->helper('html');
-			$this->load->helper('form');
-			$this->load->library('session');
+
 		}
 		
 		/*
@@ -41,19 +37,20 @@
 			Valida os dados de login
 		*/
 		public function validar()
-		{ 
-			$email = $this->input->post('email');
-			$senha = $this->input->post('senha');
+		{
+			$email = $this->input->post('email-login');
+			$senha = $this->input->post('senha-login');
 			$response = $this->login_model->get_login($email,$senha);
 			$data['title'] = 'Login';
 			
-			//se ja houver uma sessao apenas dar um refresh na pagina e nao criar a sessao novamente
+			
 			if(!empty($this->login_model->session_is_valid($this->session->id)['id']))
 				$response = 'valido';
 			else if(!empty($response))
 			{
 				$login = array(
-				   'id'  => $response
+				   'id'  => $response['id'],
+				   'grupo_id'  => $response['grupo_id']
 				);
 				$this->session->set_userdata($login);
 				$response = 'valido';
