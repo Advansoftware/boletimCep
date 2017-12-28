@@ -4,14 +4,15 @@
 	font-size: 13px;
 }
 .img-fluid{
-	width:100px;
-	margin: 10px; 
+	width:100%;
+	margin-bottom: 30px; 
+	margin-top: -20px;
 }
 h2{
 	text-align: center;
 }
 </style>
-<img  class="img-fluid" src="<?php echo $url?>imagens/logo.png">
+<img  class="img-fluid" src="<?php echo $url?>imagens/topo.png">
 <div class='row'>
 	<h2>Lista de alunos</h2>
 	<input type='hidden' id='controller' value='<?php echo $controller; ?>'/>
