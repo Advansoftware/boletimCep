@@ -220,26 +220,36 @@ var Main = {
 	},
 	disciplina_validar : function (){
 		
-		if($("#Nome").val() == "")
-			Main.show_error("Nome","error-nome","Informe o nome da disciplina","form-control is-invalid");
+		if($("#nome").val() == "")
+			Main.show_error("nome","Informe o nome da disciplina","is-invalid");
 		else if($("#CategoriaId").val() == "0")
-			Main.show_error("CategoriaId","error-CategoriaId","Selecione uma categoria","form-control is-invalid");
+			Main.show_error("categoria_id","Selecione uma categoria","is-invalid");
 		else
 			Main.create_edit();
 	},
 	aluno_validar : function(){
-		Main.create_edit();
-		//if($("#Nome").val() == "")
-		//	Main.show_error("Nome","error-nome","Informe o nome do curso","form-control is-invalid");
-		
-		
+		if($("#nome").val() == "")
+			Main.show_error("nome","Informe o nome do aluno","is-invalid");
+		else if($("#matricula").val() == "")
+			Main.show_error("matricula","Informe a matrícula do aluno","is-invalid");
+		else if($("#numero_chamada").val() == "")
+			Main.show_error("numero_chamada","Informe o número da chamada do aluno","is-invalid");
+		else if($("#form_cadastro_aluno").find("input[name='sexo']:checked").length == 0)
+			Main.show_error("sexo","Selecione o sexo do aluno","");
+		else if($("#data_nascimento").val() == "")
+			Main.show_error("data_nascimento","Informe a data de nascimento do aluno","is-invalid");
+		else if($("#curso_id").val() == "0")
+			Main.show_error("curso_id","Selecione o curso do aluno","is-invalid");
+		else
+			Main.create_edit();
 	},
 	curso_validar : function(){
-		Main.create_edit();
-		//if($("#Nome").val() == "")
-		//	Main.show_error("Nome","error-nome","Informe o nome do curso","form-control is-invalid");
-		
-		
+		if($("#nome").val() == "")
+			Main.show_error("nome","Informe o nome do curso","is-invalid");
+		else if($("#form_cadastro_curso").find("input[name='disciplinas[]']:checked").length == 0)
+			Main.show_error("discip","Selecione ao menos uma disciplina","");
+		else
+			Main.create_edit();
 	},
 	id_registro : "",
 	confirm_delete : function(id){

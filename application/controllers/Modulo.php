@@ -62,7 +62,7 @@
 			$this->data['title'] = 'Módulo - Cadastro';
 			if($this->Geral_model->get_permissao(CREATE,get_class($this)) == true)
 			{
-				$this->data['obj'] = $this->Modulo_model->get_modulo_tela($id);
+				$this->data['obj'] = $this->Modulo_model->get_modulo_tela(0);
 				$this->data['lista_menus'] = $this->Menu_model->get_menu_tela();
 				
 				$this->view("modulo/create_edit",$this->data);

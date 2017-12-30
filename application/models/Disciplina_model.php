@@ -2,7 +2,7 @@
 	class Disciplina_model extends CI_Model {
 		
 		/*
-			CONECTA AO BANCO DE DADOS DEIXANDO A CONEXÃO ACESSÍVEL PARA OS METODOS
+			CONECTA AO BANCO DE DADOS DEIXANDO A CONEXï¿½O ACESSï¿½VEL PARA OS METODOS
 			QUE NECESSITAREM REALIZAR CONSULTAS.
 		*/
 		public function __construct()
@@ -14,24 +14,40 @@
 			RETORNA UM LEAD DE ACORDO COM O ID, 
 			CASO O PARAMETRO ID NAO SEJA PASSADO RETORNA UMA LISTA DE LEAD
 		*/
-		public function get_disciplina($id = FALSE)
+		public function get_disciplina($id = FALSE, $page = false)
 		{
 			if ($id === FALSE)//retorna todos se nao passar o parametro
 			{
-				$query =  $this->db->query('SELECT d.Id, d.Nome as NomeDisciplina, d.Ativo, d.DataRegistro, c.Nome as NomeCategoria, d.CategoriaId FROM Disciplina d
-											INNER JOIN Categoria c ON d.CategoriaId = c.Id WHERE d.Ativo = 1 ORDER BY d.DataRegistro DESC');
+				$limit = $page * ITENS_POR_PAGINA;
+				$inicio = $limit - ITENS_POR_PAGINA;
+				$step = ITENS_POR_PAGINA;	
+				
+				$pagination = " LIMIT ".$inicio.",".$step;
+				if($page === false)
+					$pagination = "";
+					
+				$query = $this->db->query("
+					SELECT (SELECT count(*) FROM  disciplina WHERE ativo = 1) AS size,  
+					d.id, d.nome as nome_disciplina, d.ativo, 
+					d.data_registro, c.nome as nome_categoria, d.categoria_id 
+						FROM disciplina d
+					INNER JOIN categoria c ON d.categoria_id = c.Id 
+					WHERE d.ativo = 1 
+					ORDER BY d.data_registro DESC ". $pagination ."");
+
 				return $query->result_array();
 			}
+			$query = $this->db->get_where('disciplina', array('id' => $id));
 
-			$query = $this->db->get_where('Disciplina', array('Id' => $id));
 			return $query->row_array();
 		}
 		
 		public function get_disciplina_por_curso($id)
 		{
-			$query = $this->db->query("SELECT d.Id, d.Nome FROM Disciplina_Curso dc 
-										INNER JOIN Disciplina d ON dc.DisciplinaId = d.ID 
-										WHERE dc.CursoId = ".$this->db->escape($id)."");
+			$query = $this->db->query("
+				SELECT d.id, d.nome FROM disciplina_curso dc 
+				INNER JOIN disciplina d ON dc.disciplina_id = d.id 
+				WHERE dc.curso_id = ".$this->db->escape($id)."");
 			return $query->result_array();
 		}
 		
@@ -40,12 +56,12 @@
 		*/
 		public function set_disciplina($data)
 		{
-			if(empty($data['Id']))
-				return $this->db->insert('Disciplina',$data);	
+			if(empty($data['id']))
+				return $this->db->insert('disciplina',$data);	
 			else
 			{
-				$this->db->where('Id', $data['Id']);
-				return $this->db->update('Disciplina', $data);
+				$this->db->where('id', $data['id']);
+				return $this->db->update('disciplina', $data);
 			}
 		}
 		
@@ -55,7 +71,8 @@
 		public function delete_disciplina($id){
 			// $this->db->where('id',$id);
 			// return $this->db->delete("leads");
-			return $this->db->query("UPDATE Disciplina SET Ativo = 0 WHERE Id = ".$this->db->escape($id)."");
+			return $this->db->query("
+				UPDATE disciplina SET ativo = 0 WHERE id = ".$this->db->escape($id)."");
 		}
 	}
 ?>

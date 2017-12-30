@@ -5,7 +5,7 @@ define("READ",'visualizar');
 define("UPDATE",'atualizar');
 define("DELETE",'apagar');
 
-define("ITENS_POR_PAGINA",1);
+define("ITENS_POR_PAGINA",10);
 
 	class Geral extends CI_Controller 
 	{
@@ -14,6 +14,7 @@ define("ITENS_POR_PAGINA",1);
 		public function __construct()
 		{
 			parent::__construct();
+			$this->load->library('pdfgenerator');
 			$this->load->model('login_model');
 			$this->load->model('Menu_model');
 			$this->load->model('Modulo_model');

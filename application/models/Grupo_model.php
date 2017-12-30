@@ -27,9 +27,13 @@
 				$inicio = $limit - ITENS_POR_PAGINA;
 				$step = ITENS_POR_PAGINA;
 				
+				$pagination = " LIMIT ".$inicio.",".$step;
+				if($page === false)
+					$pagination = "";
+				
 				$query = $this->db->query("SELECT (SELECT count(*) FROM  grupo) AS size, id, 
 											nome AS nome_grupo, ativo  
-											FROM grupo LIMIT ".$inicio.",".$step."");
+											FROM grupo ".$pagination."");
 				return $query->result_array();
 			}
 

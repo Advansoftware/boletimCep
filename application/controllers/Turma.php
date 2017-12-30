@@ -1,5 +1,8 @@
 <?php
-	class Turma extends CI_Controller {
+
+	require_once("Geral.php");
+
+	class Turma extends Geral {
 		/*
 			no construtor carregamos as bibliotecas necessarias e tambem nossa model
 		*/
@@ -7,34 +10,35 @@
 		{
 			parent::__construct();
 			
-			$this->load->model('login_model');
-			$this->load->model('Categoria_model');
+			if(empty($this->login_model->session_is_valid($this->session->id)['id']))
+				redirect('login/login');
 			$this->load->model('Disciplina_model');
+			$this->load->model('Categoria_model');
 			$this->load->model('Curso_model');
 			$this->load->model('Aluno_model');
 			$this->load->model('Turma_model');
-			$this->load->helper('url_helper');
-			$this->load->helper('url');
-			$this->load->helper('html');
-			$this->load->helper('form');
-			$this->load->library('session');
-			//verifica se o usuario este logado, a sessao alem de existir tambem deve ser valida
-			if(empty($this->login_model->session_is_valid($this->session->id)['id']))
-				redirect('login/login');
+			$this->set_menu();
+			$this->data['controller'] = get_class($this);
+			$this->data['menu_selectd'] = $this->Geral_model->get_identificador_menu(strtolower(get_class($this)));
 		}
 		
 		/*
 			listar as disciplinas cadastradas
 		*/
-		public function index(){
-			$data['url'] = base_url();
-			$data['controller'] = 'turma';
-			$data['Turmas'] = $this->Turma_model->get_turma();
-			$data['title'] = 'Administração';
-			$data['message'] = 'Administração';
-			$this->load->view('templates/header_admin',$data);
-			$this->load->view('turma/index',$data);
-			$this->load->view('templates/footer',$data);
+		public function index($page = false)
+		{
+			if($page === false)
+				$page = 1;
+			$this->data['title'] = 'Administração';
+			if($this->Geral_model->get_permissao(READ,get_class($this)) == true)
+			{
+				$this->data['Turmas'] = $this->Turma_model->get_turma(false, $page);
+				$this->data['paginacao']['size'] = $this->data['Turmas'][0]['size'];
+				$this->data['paginacao']['pg_atual'] = $page;
+				$this->view("turma/index",$this->data);
+			}
+			else
+				$this->view("templates/permissao",$this->data);
 		}
 		
 		/*
@@ -52,12 +56,9 @@
 		*/
 		public function create_edit($id = null, $pagina = null)
 		{
-			$data['url'] = base_url();
 			$data['Turma'] = $this->Turma_model->get_turma($id);
 			$data['Cursos'] = $this->Curso_model->get_curso();
 			$data['title'] = 'Administração';
-			$data['controller'] = 'turma';
-			$data['message'] = 'Administração';
 			
 			if($id == 0 || $pagina == 1)
 			{

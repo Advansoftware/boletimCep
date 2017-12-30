@@ -8,10 +8,13 @@
 		
 		public function get_modulo()//usado apenas para montar o menu
 		{
-			$query = $this->db->query("SELECT mo.nome as nome_modulo, mo.id as id_modulo,
-										mo.menu_id, mo.url as url_modulo, mo.icone 
-										FROM modulo mo 
-										WHERE mo.ativo = 1 ORDER BY mo.ordem");
+			$query = $this->db->query("
+				SELECT mo.nome as nome_modulo, mo.id as id_modulo,
+				mo.menu_id, mo.url as url_modulo, mo.icone 
+					FROM modulo mo 
+				WHERE mo.ativo = 1 
+				ORDER BY mo.ordem");
+			
 			return $query->result_array();
 		}
 		
@@ -22,33 +25,39 @@
 				$limit = $page * ITENS_POR_PAGINA;
 				$inicio = $limit - ITENS_POR_PAGINA;
 				$step = ITENS_POR_PAGINA;
+				
+				$pagination = " LIMIT ".$inicio.",".$step;
+				if($page === false)
+					$pagination = "";
 
+				$query = $this->db->query("
+					SELECT (SELECT count(*) FROM  modulo) AS size, me.nome AS nome_menu, 
+					mo.descricao, mo.ativo, mo.ordem, 
+					DATE_FORMAT(mo.data_registro, '%d/%m/%Y') as data_registro, 
+					mo.nome as nome_modulo, mo.id, mo.url as url_modulo, mo.icone 
+						FROM menu me 
+					RIGHT JOIN modulo mo ON me.Id = mo.menu_id 
+					ORDER BY mo.data_registro DESC ".$pagination."");
 
-				$query = $this->db->query("SELECT (SELECT count(*) FROM  modulo) AS size, me.nome AS nome_menu, 
-											mo.descricao, mo.ativo, mo.ordem, 
-											DATE_FORMAT(mo.data_registro, '%d/%m/%Y') as data_registro, 
-											mo.nome as nome_modulo, mo.id, mo.url as url_modulo, 
-											mo.icone 
-												FROM menu me 
-											RIGHT JOIN modulo mo ON me.Id = mo.menu_id 
-											ORDER BY mo.data_registro DESC LIMIT ".$inicio.",".$step."");
 				return $query->result_array();
 			}
-			$query = $this->db->query("SELECT me.nome AS nome_menu, mo.descricao, mo.ativo, mo.ordem, 
-											DATE_FORMAT(mo.data_registro, '%d/%m/%Y') as data_registro,
-											mo.nome as nome_modulo, mo.id, mo.url as url_modulo, mo.menu_id,  
-											mo.icone 
-												FROM menu me 
-											RIGHT JOIN modulo mo ON me.Id = mo.menu_id 
-											WHERE mo.id = ".$this->db->escape($id)." 
-											ORDER BY mo.ordem, me.ordem");
+			$query = $this->db->query("
+				SELECT me.nome AS nome_menu, mo.descricao, mo.ativo, mo.ordem, 
+				DATE_FORMAT(mo.data_registro, '%d/%m/%Y') as data_registro,
+				mo.nome as nome_modulo, mo.id, mo.url as url_modulo, mo.menu_id, mo.icone 
+					FROM menu me 
+				RIGHT JOIN modulo mo ON me.Id = mo.menu_id 
+				WHERE mo.id = ".$this->db->escape($id)." 
+				ORDER BY mo.ordem, me.ordem");
+
 			return $query->row_array();
 		}
 		
 		public function deletar($id)
 		{
-			return $this->db->query("UPDATE modulo SET ativo = 0 
-										WHERE id = ".$this->db->escape($id)."");
+			return $this->db->query("
+				UPDATE modulo SET ativo = 0 
+				WHERE id = ".$this->db->escape($id)."");
 		}
 		
 		public function set_modulo($data)

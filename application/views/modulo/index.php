@@ -16,7 +16,7 @@
 						echo"<tr>";
 							echo"<td class='text-right' colspan='6'>";
 								if(permissao::get_permissao(CREATE,$controller))
-									echo"<a class='btn btn-success' href='".$url."$controller/create/'>Novo módulo</a>";
+									echo"<a class='btn btn-success' href='".$url."$controller/create/0/'>Novo módulo</a>";
 							echo"</td>";
 						echo"</tr>";
 						echo "<tr>";

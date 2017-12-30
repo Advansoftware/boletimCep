@@ -1,5 +1,8 @@
 <?php
-	class Aluno extends CI_Controller {
+
+	require_once("Geral.php");
+
+	class Aluno extends Geral {
 		/*
 			no construtor carregamos as bibliotecas necessarias e tambem nossa model
 		*/
@@ -7,33 +10,48 @@
 		{
 			parent::__construct();
 			
-			$this->load->model('login_model');
-			$this->load->model('Categoria_model');
-			$this->load->model('Disciplina_model');
-			$this->load->model('Curso_model');
-			$this->load->model('Aluno_model');
-			$this->load->helper('url_helper');
-			$this->load->helper('url');
-			$this->load->helper('html');
-			$this->load->helper('form');
-			$this->load->library('session');
-			//verifica se o usuario este logado, a sessao alem de existir tambem deve ser valida
 			if(empty($this->login_model->session_is_valid($this->session->id)['id']))
 				redirect('login/login');
+			$this->load->model('Disciplina_model');
+			$this->load->model('Categoria_model');
+			$this->load->model('Curso_model');
+			$this->load->model('Aluno_model');
+			$this->set_menu();
+			$this->data['controller'] = get_class($this);
+			$this->data['menu_selectd'] = $this->Geral_model->get_identificador_menu(strtolower(get_class($this)));
 		}
 		
 		/*
 			listar as disciplinas cadastradas
 		*/
-		public function index(){
-			$data['url'] = base_url();
-			$data['controller'] = 'aluno';
-			$data['Alunos'] = $this->Aluno_model->get_aluno();
-			$data['title'] = 'Administração';
-			$data['message'] = 'Administração';
-			$this->load->view('templates/header_admin',$data);
-			$this->load->view('aluno/index',$data);
-			$this->load->view('templates/footer',$data);
+		public function index($page = false)
+		{
+			if($page === false)
+				$page = 1;
+			
+			$this->data['title'] = 'Administração';
+			if($this->Geral_model->get_permissao(READ,get_class($this)) == true)
+			{
+				$this->data['Alunos'] = $this->Aluno_model->get_aluno(false, $page);	
+				$this->data['paginacao']['size'] = $this->data['Alunos'][0]['size'];
+				$this->data['paginacao']['pg_atual'] = $page;
+				$this->view("aluno/index",$this->data);
+			}
+			else
+				$this->view("templates/permissao",$this->data);
+		}
+
+		public function detalhes($id = false)
+		{
+			$this->data['title'] = 'Administração - Detalhes';
+			if($this->Geral_model->get_permissao(READ,get_class($this)) == true)
+			{
+				$this->data['obj'] = $this->Aluno_model->get_aluno($id);
+	
+				$this->view("aluno/detalhes",$this->data);
+			}
+			else
+				$this->view("templates/permissao",$this->data);
 		}
 		
 		/*
@@ -42,59 +60,68 @@
 		*/
 		public function deletar($id = null)
 		{
-			$this->Aluno_model->delete_aluno($id);
+			if($this->Geral_model->get_permissao(DELETE,get_class($this)) == true)
+				$this->Aluno_model->delete_aluno($id);
+			else
+				$this->view("templates/permissao",$this->data);
 		}
 		
 		/*
 			APAGAR UMA DISCIPLINA DESDE QUE EXISTA A SESSAO DE USUARIO E A MESMA
 			SEJA VALIDA
 		*/
-		public function create_edit($id = null)
+		public function edit($id = null)
 		{
-			$data['url'] = base_url();
-
-			$data['Aluno'] = $this->Aluno_model->get_aluno($id);
-			
-			$data['Cursos'] = $this->Curso_model->get_curso();
-			$data['title'] = 'Administração';
-			$data['controller'] = 'aluno';
-			$data['message'] = 'Administração';
-			$this->load->view('templates/header_admin',$data);
-			$this->load->view('aluno/create_edit',$data);
-			$this->load->view('templates/footer',$data);
+			$this->data['title'] = 'Administração';
+			if($this->Geral_model->get_permissao(UPDATE,get_class($this)) == true)
+			{
+				$this->data['Aluno'] = $this->Aluno_model->get_aluno($id);
+				$this->data['Cursos'] = $this->Curso_model->get_curso();
+				$this->view("aluno/create_edit",$this->data);
+			}
+			else
+				$this->view("templates/permissao",$this->data);
 		}
 		
+		public function create($id = null)
+		{
+			$this->data['title'] = 'Administração';
+			if($this->Geral_model->get_permissao(CREATE,get_class($this)) == true)
+			{
+				$this->data['Aluno'] = $this->Aluno_model->get_aluno($id);
+				$this->data['Cursos'] = $this->Curso_model->get_curso();
+				$this->view("aluno/create_edit",$this->data);
+			}
+			else
+				$this->view("templates/permissao",$this->data);
+		}
+
 		public function store()
 		{
 			$dataToSave = array(
-				'Id' => $this->input->post('Id'),
-				'Ativo' => 1,
-				'Nome' => $this->input->post('NomeAluno'),
-				'Matricula' => $this->input->post('Matricula'),
-				'NumeroChamada' => $this->input->post('NumeroChamada'),
-				'DataNascimento' => $this->input->post('DataNascimento'),
-				'Sexo' => $this->input->post('Sexo'),
-				'CursoId' => $this->input->post('CursoId')
+				'id' => $this->input->post('id'),
+				'ativo' => 1,
+				'nome' => $this->input->post('nome'),
+				'matricula' => $this->input->post('matricula'),
+				'numero_chamada' => $this->input->post('numero_chamada'),
+				'data_nascimento' => $this->input->post('data_nascimento'),
+				'sexo' => $this->input->post('sexo'),
+				'curso_id' => $this->input->post('curso_id')
 			);
 			//bloquear acesso direto ao metodo store
-			 if(!empty($dataToSave['Nome']))
+			 if(!empty($dataToSave['nome']))
 				$this->Aluno_model->set_aluno($dataToSave);
 			 else
 				redirect('admin/dashboard');
 			
-			$arr = array('response' => $dataToSave['Sexo']);
+			$arr = array('response' => 'sucesso');
 			header('Content-Type: application/json');
 			echo json_encode($arr);
 		}
 
 		public function alunoPdf(){
-			$data['url'] = base_url();
-			$data['controller'] = 'aluno';
-			$data['Alunos'] = $this->Aluno_model->get_aluno();
-			$data['title'] = 'Administração';
-			$data['message'] = 'Administração';
-			$this->load->library('pdfgenerator');
-			$html = $this->load->view('aluno/aluno_pdf', $data, true);
+			$this->data['Alunos'] = $this->Aluno_model->get_aluno();
+			$html = $this->load->view('aluno/aluno_pdf', $this->data, true);
 			$filename = 'boletim_'.time();
 			$this->pdfgenerator->generate($html, $filename, true, 'A4', 'portrait');
 		}

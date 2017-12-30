@@ -15,14 +15,16 @@
 				$inicio = $limit - ITENS_POR_PAGINA;
 				$step = ITENS_POR_PAGINA;
 				
-				
+				$pagination = " LIMIT ".$inicio.",".$step;
+				if($page === false)
+					$pagination = "";
 				
 				$query = $this->db->query("SELECT (SELECT count(*) FROM  usuario) AS size, u.id, 
 											u.nome as nome_usuario, u.email, 
 											u.ativo, g.nome AS nome_grupo 
 												FROM usuario u 
 											LEFT JOIN grupo g ON u.grupo_id = g.Id 
-											ORDER BY u.data_registro DESC LIMIT ".$inicio.",".$step."");
+											ORDER BY u.data_registro DESC ".$pagination."");
 				return $query->result_array();
 			}
 

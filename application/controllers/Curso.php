@@ -1,38 +1,40 @@
 <?php
-	class Curso extends CI_Controller {
+	require_once("Geral.php");
+	class Curso extends Geral {
 		/*
 			no construtor carregamos as bibliotecas necessarias e tambem nossa model
 		*/
 		public function __construct()
 		{
 			parent::__construct();
-			
-			$this->load->model('login_model');
+			if(empty($this->login_model->session_is_valid($this->session->id)['id']))
+				redirect('login/login');
 			$this->load->model('Disciplina_model');
 			$this->load->model('Categoria_model');
 			$this->load->model('Curso_model');
-			$this->load->helper('url_helper');
-			$this->load->helper('url');
-			$this->load->helper('html');
-			$this->load->helper('form');
-			$this->load->library('session');
-			//verifica se o usuario este logado, a sessao alem de existir tambem deve ser valida
-			if(empty($this->login_model->session_is_valid($this->session->id)['id']))
-				redirect('login/login');
+			$this->set_menu();
+			$this->data['controller'] = get_class($this);
+			$this->data['menu_selectd'] = $this->Geral_model->get_identificador_menu(strtolower(get_class($this)));
 		}
 		
 		/*
 			listar as disciplinas cadastradas
 		*/
-		public function index(){
-			$data['url'] = base_url();
-			$data['controller'] = 'curso';
-			$data['Cursos'] = $this->Curso_model->get_curso();
-			$data['title'] = 'Administração';
-			$data['message'] = 'Administração';
-			$this->load->view('templates/header_admin',$data);
-			$this->load->view('curso/index',$data);
-			$this->load->view('templates/footer',$data);
+		public function index($page = false)
+		{
+			if($page === false)
+				$page = 1;
+			
+			$this->data['title'] = 'Administração';
+			if($this->Geral_model->get_permissao(READ,get_class($this)) == true)
+			{
+				$this->data['Cursos'] = $this->Curso_model->get_curso(false, $page);
+				$this->data['paginacao']['size'] = $this->data['Cursos'][0]['size'];
+				$this->data['paginacao']['pg_atual'] = $page;
+				$this->view("curso/index",$this->data);
+			}
+			else
+				$this->view("templates/permissao",$this->data);
 		}
 		
 		/*
@@ -41,38 +43,52 @@
 		*/
 		public function deletar($id = null)
 		{
-			$this->Curso_model->delete_curso($id);
+			if($this->Geral_model->get_permissao(DELETE,get_class($this)) == true)
+				$this->Curso_model->delete_curso($id);
+			else
+				$this->view("templates/permissao",$this->data);
 		}
 		
 		/*
 			APAGAR UMA DISCIPLINA DESDE QUE EXISTA A SESSAO DE USUARIO E A MESMA
 			SEJA VALIDA
 		*/
-		public function create_edit($id = null)
+
+		public function edit($id = null)
 		{
-			$data['url'] = base_url();
+			$this->data['title'] = 'Administração';
+			if($this->Geral_model->get_permissao(UPDATE,get_class($this)) == true)
+			{
+				$this->data['Disciplinas'] = $this->Disciplina_model->get_disciplina();
+				$this->data['Curso'] = $this->Curso_model->get_curso($id);
+				$this->view("curso/create_edit",$this->data);
+			}
+			else
+				$this->view("templates/permissao",$this->data);		
+			
+		}
 
-			$data['Disciplinas'] = $this->Disciplina_model->get_disciplina();
-
-			$data['Curso'] = $this->Curso_model->get_curso($id);
-			$data['title'] = 'Administração';
-			$data['controller'] = 'curso';
-			$data['message'] = 'Administração';
-			$this->load->view('templates/header_admin',$data);
-			$this->load->view('curso/create_edit',$data);
-			$this->load->view('templates/footer',$data);
+		public function create($id = null)
+		{
+			$this->data['title'] = 'Administração';
+			if($this->Geral_model->get_permissao(CREATE,get_class($this)) == true)
+			{
+				$this->data['Disciplinas'] = $this->Disciplina_model->get_disciplina();
+				$this->data['Curso'] = $this->Curso_model->get_curso($id);
+			}
+			$this->view("curso/create_edit",$this->data);
 		}
 		
 		public function store()
 		{
 			$dataToSave = array(
-				'Id' => $this->input->post('Id'),
-				'Ativo' => 1,
-				'NomeCurso' => $this->input->post('NomeCurso'),
-				'disciplinasId' => $this->input->post('disciplinas')
+				'id' => $this->input->post('id'),
+				'ativo' => 1,
+				'nome' => $this->input->post('nome'),
+				'disciplinas_id' => $this->input->post('disciplinas')
 			);
 			//bloquear acesso direto ao metodo store
-			 if(!empty($dataToSave['NomeCurso']))
+			 if(!empty($dataToSave['nome']))
 				$this->Curso_model->set_curso($dataToSave);
 			 else
 				redirect('admin/dashboard');
@@ -81,6 +97,5 @@
 			header('Content-Type: application/json');
 			echo json_encode($arr);
 		}
-		
 	}
 ?>

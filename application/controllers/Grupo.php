@@ -74,8 +74,8 @@
 			$this->data['title'] = 'Grupo - Cadastro';
 			if($this->Geral_model->get_permissao(CREATE,get_class($this)) == true)
 			{
-				$this->data['obj'] = $this->Grupo_model->get_grupo_tela($id);
-				$this->data['lista_grupos_acesso'] = $this->Grupo_model->get_grupo_acesso($id);
+				$this->data['obj'] = $this->Grupo_model->get_grupo_tela(0);
+				$this->data['lista_grupos_acesso'] = $this->Grupo_model->get_grupo_acesso(0);
 				$this->view("grupo/create_edit",$this->data);
 			}
 			else

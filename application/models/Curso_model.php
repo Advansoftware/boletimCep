@@ -14,20 +14,36 @@
 			RETORNA UM LEAD DE ACORDO COM O ID, 
 			CASO O PARAMETRO ID NAO SEJA PASSADO RETORNA UMA LISTA DE LEAD
 		*/
-		public function get_curso($id = FALSE)
+		public function get_curso($id = FALSE, $page = FALSE)
 		{
 			if ($id === FALSE)//retorna todos se nao passar o parametro
 			{
-				$query =  $this->db->query("SELECT c.Id, c.Nome, DATE_FORMAT(c.DataRegistro, '%d/%m/%Y') as DataRegistro,  
-				(SELECT COUNT(*) FROM Disciplina_Curso dc WHERE dc.CursoId = c.Id) as Qtd_Disciplina 
-				FROM Curso c WHERE Ativo = 1 ORDER BY c.DataRegistro DESC");
+				$limit = $page * ITENS_POR_PAGINA;
+				$inicio = $limit - ITENS_POR_PAGINA;
+				$step = ITENS_POR_PAGINA;	
+				
+				$pagination = " LIMIT ".$inicio.",".$step;
+				if($page === false)
+					$pagination = "";
+
+				$query =  $this->db->query("SELECT (SELECT count(*) FROM  curso WHERE ativo = 1) AS size, 
+											c.id, c.nome, 
+											DATE_FORMAT(c.data_registro, '%d/%m/%Y') as data_registro, 
+												(SELECT COUNT(*) FROM disciplina_curso dc 
+													WHERE dc.curso_id = c.id) as qtd_disciplina  
+											FROM curso c 
+											WHERE ativo = 1 ORDER BY c.data_registro DESC 
+											". $pagination ."");
 				return $query->result_array();
 			}
 
-			$query =  $this->db->query("SELECT c.Id, c.Nome as NomeCurso, DATE_FORMAT(c.DataRegistro, '%d/%m/%Y') as DataRegistro, dc.DisciplinaId FROM Curso c 
-										LEFT JOIN Disciplina_Curso dc ON c.Id = dc.CursoId 
-										LEFT JOIN Disciplina d ON dc.DisciplinaId = d.Id 
-										WHERE c.Ativo = 1 AND c.Id = ".$this->db->escape($id)."");
+			$query =  $this->db->query("SELECT c.id, c.nome as nome_curso, 
+										DATE_FORMAT(c.data_registro, '%d/%m/%Y') as data_registro, 
+										dc.disciplina_id 
+											FROM curso c 
+										LEFT JOIN disciplina_curso dc ON c.id = dc.curso_id 
+										LEFT JOIN disciplina d ON dc.disciplina_id = d.id 
+										WHERE c.ativo = 1 AND c.id = ".$this->db->escape($id)."");
 			return $query->result_array();
 		}
 		
@@ -36,54 +52,54 @@
 		*/
 		public function set_curso($data)
 		{
-			if(empty($data['Id']))
+			if(empty($data['id']))
 			{
 				$dataToSave = array(
-					'Nome' => $data['NomeCurso'],
-					'Ativo' => $data['Ativo']
+					'nome' => $data['nome'],
+					'ativo' => $data['ativo']
 				);
-				$this->db->insert('Curso',$dataToSave);
-				$query = $this->db->query('SELECT Id FROM Curso ORDER BY Id DESC LIMIT 1');
+				$this->db->insert('curso',$dataToSave);
+				$query = $this->db->query('SELECT id FROM curso ORDER BY id DESC LIMIT 1');
 				$query = $query->row_array();
-				for($i = 0; $i < count($data['disciplinasId']); $i++)
+				for($i = 0; $i < count($data['disciplinas_id']); $i++)
 				{
 					$dataToSave = array(
-						'DisciplinaId' => $data['disciplinasId'][$i],
-						'CursoId' => $query['Id']
+						'disciplina_id' => $data['disciplinas_id'][$i],
+						'curso_id' => $query['id']
 					);
 					$this->db->insert('disciplina_curso',$dataToSave);
 				}
 			}
 			else
 			{
-				$query = $this->db->query("SELECT DisciplinaId FROM Disciplina_Curso
-								WHERE CursoId = ".$this->db->escape($data['Id'])."");
+				$query = $this->db->query("SELECT disciplina_id FROM disciplina_curso
+								WHERE curso_id = ".$this->db->escape($data['id'])."");
 				$query = $query->result_array();
 				
 				//DELETA OS QUE FORAM REMOVIDOS NA TELA PELO USUARIO
 				for($i = 0; $i < count($query); $i++)
 				{
 					$flag = 0;
-					for($j = 0; $j < count($data['disciplinasId']); $j++)
+					for($j = 0; $j < count($data['disciplinas_id']); $j++)
 					{
-						if($query[$i]['DisciplinaId'] == $data['disciplinasId'][$j])
+						if($query[$i]['disciplina_d'] == $data['disciplinas_id'][$j])
 							$flag = 1;
 					}
 					if($flag == 0)
-						$this->db->query("DELETE FROM Disciplina_Curso 
-										WHERE DisciplinaId = ".$this->db->escape($query[$i]['DisciplinaId'])." AND CursoId =  
-										".$this->db->escape($data['Id'])."");
+						$this->db->query("DELETE FROM disciplina_curso 
+										WHERE disciplina_id = ".$this->db->escape($query[$i]['disciplina_id'])." AND curso_id =  
+										".$this->db->escape($data['id'])."");
 				}
 				//FAZ INSERT DE TODOS, POREM OS INSERE DE SUCESSO SÃO AQUELES QUE NÃO VIOLAM A CHAVE PRIMARI
-				for($i = 0; $i < count($data['disciplinasId']); $i++)
-					$this->db->query("INSERT IGNORE INTO Disciplina_Curso(DisciplinaId,CursoId)
-										VALUES(".$this->db->escape($data['disciplinasId'][$i]).",".$this->db->escape($data['Id']).")");
+				for($i = 0; $i < count($data['disciplinas_id']); $i++)
+					$this->db->query("INSERT IGNORE INTO disciplina_curso(disciplina_id, curso_id)
+										VALUES(".$this->db->escape($data['disciplinas_id'][$i]).",".$this->db->escape($data['id']).")");
 				$dataToSave = array(
-					'Id' => $data['Id'],
-					'Nome' => $data['NomeCurso']
+					'id' => $data['id'],
+					'nome' => $data['nome_curso']
 				);
-				$this->db->where('Id', $data['Id']);
-				$this->db->update('Curso', $dataToSave);
+				$this->db->where('id', $data['id']);
+				$this->db->update('curso', $dataToSave);
 			}
 		}
 		
@@ -93,7 +109,7 @@
 		public function delete_curso($id){
 			// $this->db->where('id',$id);
 			// return $this->db->delete("leads");
-			return $this->db->query("UPDATE Curso SET Ativo = 0 WHERE Id = ".$this->db->escape($id)."");
+			return $this->db->query("UPDATE curso SET ativo = 0 WHERE id = ".$this->db->escape($id)."");
 		}
 	}
 ?>

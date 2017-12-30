@@ -19,10 +19,14 @@
 				$limit = $page * ITENS_POR_PAGINA;
 				$inicio = $limit - ITENS_POR_PAGINA;
 				$step = ITENS_POR_PAGINA;
-
-				$query = $this->db->query("SELECT (SELECT count(*) FROM  menu) AS size, 
-											id, nome, ordem, ativo FROM menu ORDER BY data_registro DESC 
-											LIMIT ".$inicio.",".$step."");
+				
+				$pagination = " LIMIT ".$inicio.",".$step;
+				if($page === false)
+					$pagination = "";
+				
+				$query = $this->db->query("SELECT (SELECT count(*) FROM  menu) AS size,  
+											id, nome, ordem, ativo FROM menu 
+											ORDER BY data_registro DESC ".$pagination."");
 				return $query->result_array();
 			}
 			

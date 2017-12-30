@@ -18,11 +18,11 @@
 		{
 			if ($id === FALSE)//retorna todos se nao passar o parametro
 			{
-				$query =  $this->db->query('SELECT Id, Nome FROM Categoria');
+				$query =  $this->db->query('SELECT id, nome FROM categoria');
 				return $query->result_array();
 			}
 
-			$query = $this->db->get_where('Categoria', array('Id' => $id));
+			$query = $this->db->get_where('categoria', array('id' => $id));
 			return $query->row_array();
 		}
 	}

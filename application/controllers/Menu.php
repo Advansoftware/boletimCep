@@ -57,7 +57,7 @@
 			$this->data['title'] = 'Menu - Cadastro';
 			if($this->Geral_model->get_permissao(CREATE,get_class($this)) == true)
 			{
-				$this->data['obj'] = $this->Menu_model->get_menu_tela($id);
+				$this->data['obj'] = $this->Menu_model->get_menu_tela(0);
 				$this->view("menu/create_edit",$this->data);
 			}
 			else

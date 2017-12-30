@@ -1,5 +1,5 @@
 <head>
-<?= link_tag('css/bootstrap.min.css') ?>
+<?= link_tag('content/css/bootstrap.min.css') ?>
 <style>
 .table{
 	font-size: 13px;
@@ -19,7 +19,7 @@ h2{
 <body>
 	<header>
 		
-		<img  class="img-fluid" src="<?php echo $url?>imagens/topo.png">
+		<img  class="img-fluid" src="<?php echo $url?>content/imagens/topo.png">
 	</header>
 <div class='row'>
 	<h2>Lista de Alunos</h2>
@@ -42,12 +42,12 @@ h2{
 				for($i = 0; $i < count($Alunos); $i++)
 				{
 					echo "<tr>";
-						echo "<th scope='row'>".$Alunos[$i]['NumeroChamada']."</td>";
-						echo "<td>".$Alunos[$i]['NomeAluno']."</td>";
-						echo "<td>".$Alunos[$i]['DataNascimento']."</td>";
-						echo "<td>".(($Alunos[$i]['Sexo'] == 1)? "Masculino" : "Feminino")."</td>";
-						echo "<td>".$Alunos[$i]['NomeTurma']."</td>";
-						echo "<td>".$Alunos[$i]['NomeCurso']."</td>";
+						echo "<th scope='row'>".$Alunos[$i]['numero_chamada']."</td>";
+						echo "<td>".$Alunos[$i]['nome_aluno']."</td>";
+						echo "<td>".$Alunos[$i]['data_nascimento']."</td>";
+						echo "<td>".(($Alunos[$i]['sexo'] == 1)? "Masculino" : "Feminino")."</td>";
+						echo "<td>".$Alunos[$i]['nome_turma']."</td>";
+						echo "<td>".$Alunos[$i]['nome_curso']."</td>";
 					echo "</tr>";
 				}
 			echo "</tbody>";

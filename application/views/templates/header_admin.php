@@ -64,7 +64,7 @@
 						}
 						for ($i = 0; $i < count($modulo); $i++)
 							if (empty($modulo[$i]['menu_id']))
-								echo "<li><a href='" . $modulo[$i]['url_modulo'] . "'><i class='" . $modulo[$i]['icone'] . "' style='margin-bottom: 10px;'></i><span>" . $modulo[$i]['nome_modulo'] . "</span></a></li>";
+								echo "<li><a href='" .$url. $modulo[$i]['url_modulo'] . "'><i class='" . $modulo[$i]['icone'] . "' style='margin-bottom: 10px;'></i><span>" . $modulo[$i]['nome_modulo'] . "</span></a></li>";
 					?>
 					</ul>
 				</div>

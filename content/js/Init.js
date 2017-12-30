@@ -22,6 +22,8 @@ $(document).ready(
 		$('#senha-login').blur(function() { 
 			if(this.value != '') Main.show_error("senha-login", '', '');
 		});
+		//LOGIN
+		
 		
 		$('#nome').blur(function() { 
 			if(this.value != '') Main.show_error("nome", '', 'is-valid');
@@ -84,7 +86,8 @@ $(document).ready(
 		
 		$('#senha').keypress(function() { 
 			if ((window.event ? event.keyCode : event.which) == 13){Main.login();}; 
-		});
+		});		
+		
 		//BTN CADASTROS
 		$( "#form_cadastro_Usuario").submit(function( event ) {
 			event.preventDefault();
@@ -133,25 +136,33 @@ $(document).ready(
 		
 		//FIM BTN CADASTROS
 
-		$('#CategoriaId').blur(function() { 
-			if(this.value != '') Main.show_error("CategoriaId","error-CategoriaId","","form-control is-valid");
+		$('#categoria_id').blur(function() { 
+			if(this.value != '') Main.show_error("categoria_id","","is-valid");
 		});
 		//event for form register
 		
-		$('#Matricula').blur(function() { 
-			if(this.value != '') Main.show_error("Matricula","error-matricula","","form-control is-valid");
+		$('#matricula').blur(function() { 
+			if(this.value != '') Main.show_error("matricula","","is-valid");
 		});
 		
-		$('#NumeroChamada').blur(function() { 
-			if(this.value != '') Main.show_error("NumeroChamada","error-numero_chamada","","form-control is-valid");
+		$('#numero_chamada').blur(function() { 
+			if(this.value != '') Main.show_error("numero_chamada","","is-valid");
 		});
 		
-		$('#DataNascimento').blur(function() { 
-			if(this.value != '') Main.show_error("DataNascimento","error-data_nascimento","","form-control is-valid");
+		$('#data_nascimento').blur(function() {
+			if(this.value != '') Main.show_error("data_nascimento","","is-valid");
 		});
 		
-		$('#CursoId').blur(function() { 
-			if(this.value != '0') Main.show_error("CursoId","error-curso_id","","form-control is-valid");
+		$('#curso_id').blur(function() { 
+			if(this.value != '0') Main.show_error("curso_id","","is-valid");
+		});
+
+		$('#masculino').change(function() { 
+			Main.show_error("sexo","","");
+		});
+
+		$('#feminino').change(function() { 
+			Main.show_error("sexo","","");
 		});
 		//event for form register
 		 $('#bt_delete').click(function() {
