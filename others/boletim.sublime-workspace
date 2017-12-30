@@ -1,0 +1,292 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"we",
+				"Welcome"
+			],
+			[
+				"mar",
+				"margin"
+			],
+			[
+				"head",
+				"header"
+			],
+			[
+				"tex",
+				"text-align"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"border-co",
+				"border-collapse"
+			],
+			[
+				"bo",
+				"border"
+			],
+			[
+				"back",
+				"background-color"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "lo",
+		"selected_items":
+		[
+			[
+				"lo",
+				"Convert Case: Lower Case"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"low",
+				"Convert Case: Lower Case"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"sf",
+				"SFTP: Edit Server…"
+			],
+			[
+				"",
+				"Build: Cancel"
+			],
+			[
+				"convert ",
+				"Package Control: Upgrade/Overwrite All Packages"
+			],
+			[
+				"uper",
+				"Convert Case: Upper Case"
+			]
+		],
+		"width": 412.0
+	},
+	"console":
+	{
+		"height": 150.0,
+		"history":
+		[
+			"commit",
+			"git "
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/xampp/htdocs/git/boletimCep",
+		"/C/xampp/htdocs/git/boletimCep/others"
+	],
+	"file_history":
+	[
+		"/C/xampp/htdocs/git/boletimCep/others/Boletim.sql",
+		"/C/xampp/htdocs/git/boletimCep/composer.lock",
+		"/C/xampp/htdocs/git/boletimCep/sftp-config.json",
+		"/C/xampp/htdocs/git/boletimCep/others/boletim_dump.sql",
+		"/C/xampp/htdocs/git/boletimCep/.htaccess",
+		"/C/xampp/htdocs/teste/index.php",
+		"/C/xampp/htdocs/teste/application/config/config.php",
+		"/C/xampp/htdocs/teste/application/libraries/Pdfgenerator.php",
+		"/C/xampp/htdocs/teste/application/views/pdf_gerado.php",
+		"/C/xampp/htdocs/teste/application/views/welcome_message.php",
+		"/C/xampp/htdocs/teste/application/controllers/Welcome.php",
+		"/C/xampp/htdocs/teste/composer.json",
+		"/C/xampp/htdocs/git/boletimCep/composer.json",
+		"/C/xampp/htdocs/git/boletimCep/application/controllers/Aluno.php",
+		"/C/xampp/htdocs/git/boletimCep/application/controllers/Turma.php",
+		"/C/xampp/htdocs/boletim/index.html",
+		"/C/xampp/htdocs/boletim/dados.csv",
+		"/C/xampp/htdocs/boletim/Boletim Ensino Médio.xls",
+		"/C/xampp/htdocs/git/boletimCep/application/libraries/Pdfgenerator.php",
+		"/C/Users/Bruno Antunes/Desktop/Boletim Ensino Médio.csv",
+		"/C/xampp/htdocs/git/boletimCep/application/views/aluno/index.php",
+		"/C/xampp/htdocs/git/boletimCep/application/views/aluno/aluno_pdf.php",
+		"/C/xampp/htdocs/git/boletimCep/application/composer.json",
+		"/C/xampp/htdocs/git/boletimCep/application/libraries/M_pdfteste.php",
+		"/C/xampp/htdocs/git/boletimCep/application/views/boletim/boletim.php",
+		"/C/xampp/htdocs/git/boletimCep/application/controllers/Boletim.php",
+		"/C/xampp/htdocs/git/boletimCep/application/views/boletim/alunos.php",
+		"/C/xampp/htdocs/git/boletimCep/application/views/boletim/boletim_pdf.php",
+		"/C/xampp/htdocs/vendor/php-console/php-console/examples/index.php",
+		"/C/xampp/htdocs/vendor/autoload.php",
+		"/C/xampp/htdocs/composer.lock",
+		"/C/xampp/htdocs/git/boletimCep/application/views/boletim/turmas.php",
+		"/C/xampp/htdocs/git/boletimCep/application/views/templates/header_admin.php",
+		"/C/xampp/htdocs/git/boletimCep/application/views/welcome_message.php",
+		"/C/xampp/htdocs/git/boletimCep/application/welcome.php",
+		"/C/xampp/htdocs/git/boletimCep/application/libraries/M_pdf.php",
+		"/C/xampp/htdocs/git/app/system/helpers/dompdf/composer.json",
+		"/C/xampp/htdocs/git/app/system/helpers/dompdf/composer.bat",
+		"/C/xampp/htdocs/git/app/system/helpers/dompdf/VERSION",
+		"/C/xampp/htdocs/git/app/system/helpers/dompdf/phpcs.xml",
+		"/C/xampp/htdocs/git/app/system/helpers/dompdf/src/Canvas.php",
+		"/C/downloads/dompdf-master/LICENSE.LGPL",
+		"/C/downloads/dompdf-master/CONTRIBUTING.md",
+		"/C/downloads/dompdf-master/composer.json",
+		"/C/xampp/htdocs/git/boletimCep/application/models/Boletim_model.php",
+		"/C/Program Files/IP-TV Player/IpTvPlayer.html",
+		"/C/xampp/htdocs/mvc/composer.bat"
+	],
+	"find":
+	{
+		"height": 31.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"asdas"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 31.0
+	},
+	"input":
+	{
+		"height": 38.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.sftp":
+	{
+		"height": 90.0
+	},
+	"pinned_build_system": "",
+	"project": "boletim.sublime-project",
+	"replace":
+	{
+		"height": 58.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"index.php"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 220.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

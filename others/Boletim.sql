@@ -1,124 +1,123 @@
-DROP TABLE IF EXISTS Boletim;
-DROP TABLE IF EXISTS Turma_Aluno;
-DROP TABLE IF EXISTS Aluno;
-DROP TABLE IF EXISTS Disciplina_Curso;
-DROP TABLE IF EXISTS Turma_Disciplina;
-DROP TABLE IF EXISTS Disciplina;
-DROP TABLE IF EXISTS Categoria;
-DROP TABLE IF EXISTS Turma;
-DROP TABLE IF EXISTS Curso;
-DROP TABLE IF EXISTS Usuario;
+DROP TABLE IF EXISTS boletim;
+DROP TABLE IF EXISTS turma_aluno;
+DROP TABLE IF EXISTS aluno;
+DROP TABLE IF EXISTS disciplina_curso;
+DROP TABLE IF EXISTS turma_disciplina;
+DROP TABLE IF EXISTS disciplina;
+DROP TABLE IF EXISTS categoria;
+DROP TABLE IF EXISTS turma;
+DROP TABLE IF EXISTS curso;
+DROP TABLE IF EXISTS usuario;
 
-CREATE TABLE Categoria(
-	Id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-	Nome VARCHAR(100)
+CREATE TABLE categoria(
+	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	nome VARCHAR(100)
 );
 
-CREATE TABLE Curso (
-	Id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-	Nome VARCHAR(100),
-	Ativo BOOLEAN,
-	DataRegistro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+CREATE TABLE curso (
+	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	nome VARCHAR(100),
+	ativo BOOLEAN,
+	data_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE Turma (
-	Id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-	Ativo BOOLEAN,
-	DataRegistro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	Nome VARCHAR(100),
-	CursoId INT NOT NULL,
-	CONSTRAINT fk_Curso
-		FOREIGN KEY(CursoId) REFERENCES Curso(Id)
+CREATE TABLE turma (
+	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	ativo BOOLEAN,
+	data_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	nome VARCHAR(100),
+	curso_id INT NOT NULL,
+	CONSTRAINT fk_curso
+		FOREIGN KEY(curso_id) REFERENCES curso(id)
 );
 
-CREATE TABLE Disciplina (
-	Id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-	Nome VARCHAR(100),
-	Ativo BOOLEAN,
-	DataRegistro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	CategoriaId INT NOT NULL,
-	CONSTRAINT fk_Categoria
-		FOREIGN KEY(CategoriaId) REFERENCES Categoria(Id)
+CREATE TABLE disciplina (
+	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	nome VARCHAR(100),
+	ativo BOOLEAN,
+	data_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	categoria_id INT NOT NULL,
+	CONSTRAINT fk_categoria
+		FOREIGN KEY(categoria_id) REFERENCES categoria(id)
 );
 
-CREATE TABLE Turma_Disciplina (
-	TurmaId INT NOT NULL,
-	DisciplinaId INT NOT NULL,
+CREATE TABLE turma_disciplina (
+	turma_id INT NOT NULL,
+	disciplina_id INT NOT NULL,
 	CONSTRAINT pk_turma_disciplina 
-		PRIMARY KEY (TurmaId, DisciplinaId),
+		PRIMARY KEY (turma_id, disciplina_id),
 	CONSTRAINT fk_turma
-		FOREIGN KEY (TurmaId) REFERENCES Turma(Id),
-	CONSTRAINT fk_Disciplina
-		FOREIGN KEY (DisciplinaId) REFERENCES Disciplina(Id)
+		FOREIGN KEY (turma_id) REFERENCES turma(id),
+	CONSTRAINT fk_disciplina
+		FOREIGN KEY (disciplina_id) REFERENCES disciplina(id)
 );
 
-CREATE TABLE Disciplina_Curso (
-	DisciplinaId INT NOT NULL,
-	CursoId INT NOT NULL,
+CREATE TABLE disciplina_curso (
+	disciplina_id INT NOT NULL,
+	curso_id INT NOT NULL,
 	CONSTRAINT pk_disciplina_curso 
-		PRIMARY KEY(DisciplinaId,CursoId),
-	CONSTRAINT fk_Disciplina_Disciplina_Curso
-		FOREIGN KEY (DisciplinaId) REFERENCES Disciplina(Id),
-	CONSTRAINT fk_Curso_Disciplina_Curso
-		FOREIGN KEY(CursoId) REFERENCES Curso(Id)
+		PRIMARY KEY(disciplina_id,curso_id),
+	CONSTRAINT fk_disciplina_disciplina_curso
+		FOREIGN KEY (disciplina_id) REFERENCES disciplina(id),
+	CONSTRAINT fk_curso_disciplina_curso
+		FOREIGN KEY(curso_id) REFERENCES curso(id)
 );
 
-CREATE TABLE Aluno (
-	Id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-	Ativo BOOLEAN,
-	DataRegistro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	Matricula INT,
-	Nome VARCHAR(100),
-	Sexo char(1),
-	DataNascimento DATE,
-	NumeroChamada INT,
-	TurmaId INT,
-	CursoId INT NOT NULL,
-	CONSTRAINT fk_turmaAluno
-		FOREIGN KEY (TurmaId) REFERENCES Turma(Id),
-	CONSTRAINT fk_CursoAluno
-		FOREIGN KEY (CursoId) REFERENCES Curso(Id)
+CREATE TABLE aluno (
+	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	ativo BOOLEAN,
+	data_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	matricula INT,
+	nome VARCHAR(100),
+	sexo char(1),
+	data_nascimento DATE,
+	numero_chamada INT,
+	turma_id INT,
+	curso_id INT NOT NULL,
+	CONSTRAINT fk_turma_aluno
+		FOREIGN KEY (turma_id) REFERENCES turma(id),
+	CONSTRAINT fk_curso_aluno
+		FOREIGN KEY (curso_id) REFERENCES curso(id)
 );
 
-CREATE TABLE Turma_Aluno(
-	TurmaId INT,
-	AlunoId INT,
-	DataRegistro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+CREATE TABLE turma_aluno(
+	turma_id INT,
+	aluno_id INT,
+	data_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	CONSTRAINT pk_turma_aluno 
-		PRIMARY KEY (TurmaId,AlunoId),
+		PRIMARY KEY (turma_id,aluno_id),
 	CONSTRAINT fk_turma_turma_aluno 
-		FOREIGN KEY (TurmaId) REFERENCES Turma(Id),
+		FOREIGN KEY (turma_id) REFERENCES turma(id),
 	CONSTRAINT fk_aluno_turma_aluno 
-		FOREIGN KEY (AlunoId) REFERENCES Aluno(Id)
+		FOREIGN KEY (aluno_id) REFERENCES aluno(id)
 );
 
-CREATE TABLE Boletim (
-	Id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-	Ativo BOOLEAN,
-	DataRegistro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	Nota1 DOUBLE,
-	Falta1 INT,
-	Nota2 DOUBLE,
-	Falta2 INT,
-	Nota3 DOUBLE,
-	Falta3 INT,
-	Nota4 DOUBLE,
-	Falta4 INT,
-	Bimestre INT,
-	AlunoId INT NOT NULL,
-	DisciplinaId INT NOT NULL,
-	CONSTRAINT fk_AlunoBoletim
-		FOREIGN KEY (AlunoId) REFERENCES Aluno(Id),
-	CONSTRAINT fk_DisciplinaBoletim
-		FOREIGN KEY (DisciplinaId) REFERENCES Disciplina(Id)
+CREATE TABLE boletim (
+	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	ativo BOOLEAN,
+	data_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	nota1 DOUBLE,
+	falta1 INT,
+	nota2 DOUBLE,
+	falta2 INT,
+	nota3 DOUBLE,
+	falta3 INT,
+	nota4 DOUBLE,
+	falta4 INT,
+	bimestre INT,
+	aluno_id INT NOT NULL,
+	disciplina_id INT NOT NULL,
+	CONSTRAINT fk_aluno_boletim
+		FOREIGN KEY (aluno_id) REFERENCES aluno(id),
+	CONSTRAINT fk_disciplina_boletim
+		FOREIGN KEY (disciplina_id) REFERENCES disciplina(id)
 );
 
-CREATE TABLE Usuario(
-	Id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-	Nome VARCHAR(100) NOT NULL,
-	Email VARCHAR(50) NOT NULL,
-	Senha VARCHAR(200) NOT NULL
+CREATE TABLE usuario(
+	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	nome VARCHAR(100) NOT NULL,
+	email VARCHAR(50) NOT NULL,
+	senha VARCHAR(200) NOT NULL
 );
-INSERT INTO Usuario(Nome,Email,Senha) VALUES('teste','teste@teste.com',sha2('teste',512));
-INSERT INTO Categoria(Nome) VALUES('Matérias Técnicas');
-INSERT INTO Categoria(Nome) VALUES('Matérias Ensino Médio');
+INSERT INTO categoria(nome) VALUES('Matérias Técnicas');
+INSERT INTO categoria(nome) VALUES('Matérias Ensino Médio');
