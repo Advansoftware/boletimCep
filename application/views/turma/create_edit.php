@@ -1,38 +1,32 @@
-<script type='text/javascript'>
-	window.onload = function(){
-		
-		document.getElementById('menu_turma').className = "active";
-	}
-</script>
 <div class='row' style='padding: 30px;'>
 		<div class='col-lg-8 offset-lg-2'>
-		<p><?php if(isset($Turma[0]['Id'])) echo"Editar turma"; else echo"Nova turma";  ?></p><br />
+		<p><?php if(isset($Turma[0]['id'])) echo"Editar turma"; else echo"Nova turma";  ?></p><br />
 		<?php
 			$atr = array('id' => 'form_cadastro_turma','name' => 'form_cadastro');
 			echo form_open("$controller/store",$atr);
 		?>
 			<br />
-				<input type='hidden' id='Id' name='Id' value='<?php if(!empty($Turma[0]['Id'])) echo $Turma[0]['Id']; ?>'/>
+				<input type='hidden' id='id' name='id' value='<?php if(!empty($Turma[0]['id'])) echo $Turma[0]['id']; ?>'/>
 				<input type='hidden' id='controller' value='<?php echo $controller; ?>'/>
 				<div class='form-group'>
 					<div class='input-group mb-2 mb-sm-0'>
 						<div class='input-group-addon'>Nome</div>
-						<input name='Nome' id='Nome' value='<?php if(!empty($Turma[0]['NomeTurma'])) echo $Turma[0]['NomeTurma']; ?>' type='text' class='form-control' placeholder='Nome' autofocus />
+						<input name='nome' id='nome' value='<?php if(!empty($Turma[0]['nome_turma'])) echo $Turma[0]['nome_turma']; ?>' type='text' class='form-control' placeholder='Nome' autofocus />
 					</div>
 					<div class='input-group mb-2 mb-sm-0 text-danger' id='error-nome'></div>
 				</div>
 				<div class='form-group'>
 					<div class='input-group mb-2 mb-sm-0'>
 						<div class='input-group-addon'>Curso</div>
-						<select name='CursoId' id='CursoId' class='form-control'>
+						<select name='curso_id' id='curso_id' class='form-control'>
 							<option value='0'>Selecione</option>
 							<?php
 								for($i = 0; $i < count($Cursos); $i++)
 								{
 									$selected = "";
-									if($Cursos[$i]['Id'] == $Turma[0]['CursoId'])
+									if($Cursos[$i]['id'] == $Turma[0]['curso_id'])
 										$selected = "selected";
-									echo"<option $selected value='". $Cursos[$i]['Id'] ."'>".$Cursos[$i]['Nome']."</option>";
+									echo"<option $selected value='". $Cursos[$i]['id'] ."'>".$Cursos[$i]['nome']."</option>";
 								}
 							?>
 						</select>

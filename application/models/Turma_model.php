@@ -51,7 +51,7 @@
 		{
 			$query = $this->db->query("
 				SELECT td.disciplina_id, d.nome 
-					FROM  turma__disciplina td 
+					FROM  turma_disciplina td 
 				INNER JOIN disciplina d ON td.disciplina_id = d.id 
 				WHERE td.turma_id = ".$this->db->escape($turma_id)."");
 
@@ -82,7 +82,7 @@
 				return $query->result_array();
 		}
 		
-		public function troca_aluno($data){
+		public function troca_aluno($data){//ok
 			$query = $this->db->query("
 				UPDATE turma_aluno SET turma_id = ".$this->db->escape($data['turma_id'])."
 				WHERE aluno_id = ".$this->db->escape($data['aluno_id'])." AND 
@@ -145,7 +145,7 @@
 		
 		public function set_turma_aluno($data)
 		{
-			$query = $this->db->query("SELECT AlunoId FROM turma_aluno
+			$query = $this->db->query("SELECT aluno_id FROM turma_aluno
 							WHERE turma_id = ".$this->db->escape($data['turma_id'])."");
 			$query = $query->result_array();
 			

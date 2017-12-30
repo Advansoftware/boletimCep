@@ -20,17 +20,17 @@
 				<div class='input-group mb-2 mb-sm-0'>
 					<div class='input-group-addon'>Turmas</div>
 					<select name='turma_id' id='turma_id' class='form-control'>
-						<option value='0'>Selecione uma turma</option>
+						<option value='0'>Selecione uma turm de origem</option>
 						<?php
 							for($i = 0; $i < count($Turmas); $i++)
 							{
 								if($Turmas[$i]['qtd_aluno'] > 0)
-									echo"<option $selected value='". $Turmas[$i]['id'] ."'>".$Turmas[$i]['nome_turma']."</option>";
+									echo"<option value='". $Turmas[$i]['id'] ."'>".$Turmas[$i]['nome_turma']."</option>";
 							}
 						?>
 					</select>
 				</div>
-				<div class='input-group mb-2 mb-sm-0 text-danger' id='error-turma'></div>
+				<div class='input-group mb-2 mb-sm-0 text-danger' id='error-turma_id'></div>
 			</div>
 		  </div>
 		  <div class="modal-footer">
@@ -52,7 +52,7 @@
 						echo"</td>";
 						echo"<td class='text-right'>";
 						if(permissao::get_permissao(CREATE,$controller))
-							echo"<a class='btn btn-success' href='".$url."$controller/create/0/'>Nova turma</a>";
+							echo"<a class='btn btn-success' href='".$url."$controller/create_edit/0/'>Nova turma</a>";
 						echo"</td>";
 						echo"</tr>";
 						echo "<tr>";
@@ -73,7 +73,7 @@
 								echo "<td>".$Turmas[$i]['qtd_aluno']."</td>";
 								echo "<td>";
 								if(permissao::get_permissao(UPDATE,$controller))
-									echo "<a href='".$url."$controller/edit/".$Turmas[$i]['id']."' title='Editar' style='color: #dc3545; cursor: pointer;' class='glyphicon glyphicon-edit'></a>  |  ";
+									echo "<a href='".$url."$controller/create_edit/".$Turmas[$i]['id']."' title='Editar' style='color: #dc3545; cursor: pointer;' class='glyphicon glyphicon-edit'></a>  |  ";
 								if(permissao::get_permissao(DELETE,$controller))
 									echo "<span onclick='Main.confirm_delete(". $Turmas[$i]['id'] .");' id='sp_lead_trash' name='sp_lead_trash' title='Apagar' style='color: #dc3545; cursor: pointer;' class='glyphicon glyphicon-trash'></span>";
 								echo "</td>";

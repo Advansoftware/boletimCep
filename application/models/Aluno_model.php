@@ -33,11 +33,12 @@
 					LEFT JOIN turma t ON ta.turma_id = t.id
 					INNER JOIN curso c ON a.curso_id = c.id 
 					WHERE a.ativo = 1 ORDER BY a.numero_chamada ASC ". $pagination ."");
+
 				return $query->result_array();
 			}
 
 			$query =  $this->db->query("
-					SELECT a.id, a.matricula, a.nome as nome_aluno, a.sexo,
+					SELECT a.id, a.matricula, a.nome as nome_aluno, a.sexo, 
 					DATE_FORMAT(a.data_nascimento, '%d/%m/%Y') as data_nascimento,
 					DATE_FORMAT(a.data_registro, '%d/%m/%Y') as data_registro, 
 					a.numero_chamada, a.curso_id, t.nome as nome_turma, c.nome as nome_curso, a.ativo  
@@ -46,15 +47,18 @@
 					INNER JOIN curso c ON a.curso_id = c.id 
 					WHERE a.ativo = 1 AND a.id = ".$this->db->escape($id)." 
 					ORDER BY a.data_registro DESC ");
+
 			return $query->result_array();
 		}
 		
-		public function get_aluno_por_curso($id,$turma_id)//por curso e lista somente os alunos que nao possuem relacionamento com turma
+		public function get_aluno_por_curso($id,$turma_id)//por curso e lista somente os alunos que nao possuem relacionamento com turma (nao estao em uma turma)
 		{
-			$query = $this->db->query("SELECT a.id, a.nome, ta.turma_id FROM aluno a 
-										LEFT JOIN turma_aluno ta ON a.id = ta.aluno_id 
-										WHERE a.curso_id = ".$this->db->escape($id)." AND 
-										(ta.turma_id is null OR ta.turma_id = ".$this->db->escape($turma_id).")");
+			$query = $this->db->query("
+				SELECT a.id, a.nome, ta.turma_id FROM aluno a 
+				LEFT JOIN turma_aluno ta ON a.id = ta.aluno_id 
+				WHERE a.curso_id = ".$this->db->escape($id)." AND 
+				(ta.turma_id is null OR ta.turma_id = ".$this->db->escape($turma_id).")");
+
 			return $query->result_array();
 		}
 		

@@ -272,9 +272,15 @@ var Main = {
 		});
 	},
 	turma_validar : function (){
-		Main.create_edit_turma();
+		if($("#nome").val() == "")
+			Main.show_error("nome","Informe o nome da turma","is-invalid");
+		else if($("#curso_id").val() == "0")
+			Main.show_error("curso_id","Selecione o curso do aluno","is-invalid");
+		else
+			Main.create_edit_turma();
 	},
 	disciplina_turma_validar : function (){
+
 		Main.create_edit_turma_disciplina();
 	},
 	aluno_turma_validar : function(){
@@ -335,17 +341,17 @@ var Main = {
 		});
 	},
 	validar_turma_origem : function(){
-		if($("#TurmaId").val() == "0")
-			Main.show_error("TurmaId","error-turma","Selecione uma turma para continuar","form-control is-invalid");
+		if($("#turma_id").val() == "0")
+			Main.show_error("turma_id","Selecione a turma de origem para continuar","is-invalid");
 		else
-			window.location.assign(Main.base_url+"turma/trocar_aluno/"+$("#TurmaId").val());
-			
+			window.location.assign(Main.base_url+"turma/trocar_aluno/"+$("#turma_id").val());
 	},
 	troca_aluno_validar : function (){
-		if($("#TurmaId").val() == "0")
-			Main.show_error("TurmaId","error-turma","Selecione uma turma de destino","form-control is-invalid");
-		var checado = $("#form_cadastro_troca_aluno").find("input[name='alunos[]']:checked").length > 0;
-		if(checado == 1)
+		if($("#turma_id").val() == "0")
+			Main.show_error("turma_id","Selecione uma turma de destino","is-invalid");
+		else if($("#form_cadastro_troca_aluno").find("input[name='alunos[]']:checked").length == 0)
+			Main.show_error("alunos_selecionados","Selecione ao menos um aluno","");
+		else
 			Main.troca_aluno();
 	},
 	troca_aluno : function(){

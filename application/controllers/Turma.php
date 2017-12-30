@@ -56,65 +56,53 @@
 		*/
 		public function create_edit($id = null, $pagina = null)
 		{
-			$data['Turma'] = $this->Turma_model->get_turma($id);
-			$data['Cursos'] = $this->Curso_model->get_curso();
-			$data['title'] = 'Administração';
+			$this->data['Turma'] = $this->Turma_model->get_turma($id);
+			$this->data['Cursos'] = $this->Curso_model->get_curso();
+			$this->data['title'] = 'Administração';
 			
 			if($id == 0 || $pagina == 1)
-			{
-				$this->load->view('templates/header_admin',$data);
-				$this->load->view('turma/create_edit',$data);
-				$this->load->view('templates/footer',$data);
-			}
+				$this->view("turma/create_edit",$this->data);
 			else if(count($this->Turma_model->get_disciplina_por_turma($id)) == 0 || $pagina == 2)
 			{
-				$data['disciplinas_turma'] = $this->Turma_model->get_disciplina_por_turma($id);
-				$this->create_edit_disciplina($data);
+				$this->data['disciplinas_turma'] = $this->Turma_model->get_disciplina_por_turma($id);
+				$this->create_edit_disciplina();
 			}
 			else if(count($this->Turma_model->get_aluno_por_turma($id)) == 0 || $pagina == 3)
 			{
-				$data['alunos_turma'] = $this->Turma_model->get_aluno_por_turma($id);
-				$this->create_edit_aluno($data);
+				$this->data['alunos_turma'] = $this->Turma_model->get_aluno_por_turma($id);
+				$this->create_edit_aluno();
 			}
 			else
-			{
-				$this->load->view('templates/header_admin',$data);
-				$this->load->view('turma/create_edit',$data);
-				$this->load->view('templates/footer',$data);
-			}
+				$this->view("turma/create_edit",$this->data);
 		}
 		
-		public function create_edit_disciplina($data)
+		public function create_edit_disciplina()
 		{
 			//ate aqui ja se tem a turma carregada
 			//agora carregar todas as disciplinas pra ela de acordo com o curso
-			$data['disciplinas'] = $this->Disciplina_model->get_disciplina_por_curso($data['Turma'][0]['CursoId']);
-			$this->load->view('templates/header_admin',$data);
-			$this->load->view('turma/create_edit_disciplina',$data);
-			$this->load->view('templates/footer',$data);
+			$this->data['disciplinas'] = $this->Disciplina_model->get_disciplina_por_curso($this->data['Turma'][0]['curso_id']);
+			$this->view("turma/create_edit_disciplina",$this->data);
 		}
 		
-		public function create_edit_aluno($data)
+		public function create_edit_aluno()
 		{
 			//ate aqui ja se tem a turma carregada
 			//agora carregar todos os alunos acordo com o curso
-			$data['alunos'] = $this->Aluno_model->get_aluno_por_curso($data['Turma'][0]['CursoId'],$data['Turma'][0]['Id']);
-			$this->load->view('templates/header_admin',$data);
-			$this->load->view('turma/create_edit_aluno',$data);
-			$this->load->view('templates/footer',$data);
+			$this->data['alunos'] = $this->Aluno_model->get_aluno_por_curso($this->data['Turma'][0]['curso_id'],$this->data['Turma'][0]['id']);
+			$this->view("turma/create_edit_aluno",$this->data);
 		}
 		
 		public function store()
 		{
 			$dataToSave = array(
-				'Id' => $this->input->post('Id'),
-				'Nome' => $this->input->post('Nome'),
-				'Ativo' => 1,
-				'CursoId' => $this->input->post('CursoId')
+				'id' => $this->input->post('id'),
+				'nome' => $this->input->post('nome'),
+				'ativo' => 1,
+				'curso_id' => $this->input->post('curso_id')
 			);
 			$idTurma = "";
 			//bloquear acesso direto ao metodo store
-			 if(!empty($dataToSave['Nome']))
+			 if(!empty($dataToSave['nome']))
 				$idTurma = $this->Turma_model->set_turma($dataToSave);
 			 else
 				redirect('admin/dashboard');
@@ -127,12 +115,12 @@
 		public function store_disciplina()
 		{
 			$dataToSave = array(
-				'TurmaId' => $this->input->post('Id'),
-				'disciplinasId' => $this->input->post('disciplinas')
+				'turma_id' => $this->input->post('id'),
+				'disciplinas_id' => $this->input->post('disciplinas')
 			);
 			$idTurma = "";
 			//bloquear acesso direto ao metodo store
-			 if(!empty($dataToSave['TurmaId']))
+			 if(!empty($dataToSave['turma_id']))
 				$idTurma = $this->Turma_model->set_turma_disciplina($dataToSave);
 			 else
 				redirect('admin/dashboard');
@@ -143,22 +131,21 @@
 		}
 		public function store_aluno()
 		{
-			
 			$dataToSave = array(
-				'TurmaId' => $this->input->post('Id'),
-				'alunosId' => $this->input->post('alunos')
+				'turma_id' => $this->input->post('id'),
+				'alunos_id' => $this->input->post('alunos')
 			);
 			//bloquear acesso direto ao metodo store
-			 if(!empty($dataToSave['TurmaId']))
+			 if(!empty($dataToSave['turma_id']))
 				$this->Turma_model->set_turma_aluno($dataToSave);
 			 else
 				redirect('admin/dashboard');
 			
-			for($i = 0; $i < count($dataToSave['alunosId']); $i++)
+			for($i = 0; $i < count($dataToSave['alunos_id']); $i++)
 			{
 				$data = array(
-					'Id' => $dataToSave['alunosId'][$i],
-					'TurmaId' => $dataToSave['TurmaId']
+					'id' => $dataToSave['alunos_id'][$i],
+					'turma_id' => $dataToSave['turma_id']
 				);
 				$this->Aluno_model->set_aluno($data);
 			}
@@ -168,31 +155,28 @@
 			echo json_encode($arr);
 		}
 		
-		public function trocar_aluno($id){
-			$data['url'] = base_url();
-			$data['controller'] = 'turma';
-			$data['turma_atual'] = $this->Turma_model->get_turma($id);
-			$data['alunos'] = $this->Turma_model->get_aluno_por_turma($id);
-			$data['turmas'] = $this->Turma_model->get_turma();
-			$data['title'] = 'Administração';
-			$data['message'] = 'Administração';
-			$this->load->view('templates/header_admin',$data);
-			$this->load->view('turma/trocar_aluno',$data);
-			$this->load->view('templates/footer',$data);
+		public function trocar_aluno($id)
+		{
+			$this->data['title'] = 'Administração';
+			$this->data['turma_atual'] = $this->Turma_model->get_turma($id);
+			$this->data['alunos'] = $this->Turma_model->get_aluno_por_turma($id);
+			$this->data['turmas'] = $this->Turma_model->get_turma();
+			
+			$this->view("turma/trocar_aluno",$this->data);
 		}
 		public function store_troca_aluno(){
 			$data = array(
-					'TurmaId' => $this->input->post('TurmaId'), //id da turma de destino
-					'alunosId' => $this->input->post('alunos'), //alunos que trocarao de turma
-					'Id_atual' => $this->input->post('Id_atual'), //id_atual_turma
+					'turma_id' => $this->input->post('turma_id'), //id da turma de destino
+					'alunos_id' => $this->input->post('alunos'), //alunos que trocarao de turma
+					'id_atual' => $this->input->post('id_atual'), //id_atual_turma
 				);
 			
-			 for($i = 0; $i < count($data['alunosId']); $i++)
+			 for($i = 0; $i < count($data['alunos_id']); $i++)
 			 {
 				$dataToSave = array(
-					'AlunoId' => $data['alunosId'][$i],
-					'TurmaId' => $data['TurmaId'],
-					'Id_atual' => $data['Id_atual']
+					'aluno_id' => $data['alunos_id'][$i],
+					'turma_id' => $data['turma_id'],
+					'id_atual' => $data['id_atual']
 				);
 				$this->Turma_model->troca_aluno($dataToSave);
 			 }
