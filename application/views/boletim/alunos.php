@@ -1,11 +1,8 @@
-<script type='text/javascript'>
-	window.onload = function(){
-		
-		document.getElementById('menu_boletim').className = "active";
-	}
-</script>
+<?php $this->load->helper("permissao");?>
+<?php $this->load->helper("paginacao");?>
+
 <div class='row' style='padding: 30px;'>
-	<p>Todos os alunos da turma <?php echo $NomeTurma; ?></p><br />
+	<p>Todos os alunos da turma <?php echo $nome_turma; ?></p><br />
 	<input type='hidden' id='controller' value='<?php echo $controller; ?>'/>
 </div>
 <div class='row' id='container' name='container' style='border: 1px solid red; border: 1px solid rgba(0,0,0,.1);'>
@@ -24,17 +21,18 @@
 						for($i = 0; $i < count($Alunos); $i++)
 						{
 							echo "<tr>";
-								echo "<td>".$Alunos[$i]['Nome']."</td>";
-								echo "<td>".$Alunos[$i]['NumeroChamada']."</td>";
-								echo "<td>".$Alunos[$i]['NomeCurso']."</td>";
+								echo "<td>".$Alunos[$i]['nome']."</td>";
+								echo "<td>".$Alunos[$i]['numero_chamada']."</td>";
+								echo "<td>".$Alunos[$i]['nome_curso']."</td>";
 								echo "<td>";
-									echo "<a href='".$url."index.php/boletim/boletim/".$Alunos[$i]['AlunoId']."/".$Alunos[$i]['TurmaId']."' title='Editar' style='color: #dc3545; cursor: pointer;' class='glyphicon glyphicon-edit'></a>";
+									echo "<a href='".$url."boletim/boletim/".$Alunos[$i]['aluno_id']."/".$Alunos[$i]['turma_id']."' title='Editar' style='color: #dc3545; cursor: pointer;' class='glyphicon glyphicon-edit'></a>";
 								echo "</td>";
 							echo "</tr>";
 						}
 					echo "</tbody>";
 				echo "</table>";
 			echo "</div>";
+			paginacao::get_paginacao($paginacao,$controller);
 		echo "</div>";
 	?>
 </div>

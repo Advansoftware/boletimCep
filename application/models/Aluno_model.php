@@ -37,7 +37,7 @@
 				return $query->result_array();
 			}
 
-			$query =  $this->db->query("
+			$query = $this->db->query("
 					SELECT a.id, a.matricula, a.nome as nome_aluno, a.sexo, 
 					DATE_FORMAT(a.data_nascimento, '%d/%m/%Y') as data_nascimento,
 					DATE_FORMAT(a.data_registro, '%d/%m/%Y') as data_registro, 

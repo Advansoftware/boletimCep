@@ -26,7 +26,7 @@
 									$selected = "";
 									if($Cursos[$i]['id'] == $Turma[0]['curso_id'])
 										$selected = "selected";
-									echo"<option $selected value='". $Cursos[$i]['id'] ."'>".$Cursos[$i]['nome']."</option>";
+									echo"<option $selected value='". $Cursos[$i]['id'] ."'>".$Cursos[$i]['ome']."</option>";
 								}
 							?>
 						</select>

@@ -14,43 +14,52 @@
 			RETORNA UM LEAD DE ACORDO COM O ID, 
 			CASO O PARAMETRO ID NAO SEJA PASSADO RETORNA UMA LISTA DE LEAD
 		*/
-		public function get_boletim($busca,$AlunoId, $TurmaId)
+		public function get_boletim($busca,$aluno_id, $turma_id)
 		{
 			if($busca == POR_ALUNO)
-				$sql_parcial = " AND t.Id = ".$this->db->escape($TurmaId)." AND a.Id = ".$this->db->escape($AlunoId);
+				$sql_parcial = " AND t.id = ".$this->db->escape($turma_id)." AND a.id = ".$this->db->escape($aluno_id);
 			else if($busca == POR_TURMA)
-				$sql_parcial = " AND t.Id = ".$this->db->escape($TurmaId);
+				$sql_parcial = " AND t.id = ".$this->db->escape($turma_id);
 
-			$query = $this->db->query("SELECT t.Nome as NomeTurma, d.Nome as NomeDisciplina, c.Nome as NomeCategoria,
-										a.Nome as NomeAluno, a.NumeroChamada, UPPER(cs.Nome) as NomeCurso,
-										b.Nota1, b.Falta1, b.Nota2, b.Falta2, b.Nota3, b.Falta3, b.Nota4, b.Falta4,
-										b.Bimestre,
-										c.Id as categoriaId, t.Id as TurmaId, d.Id as DisciplinaId, a.Id as AlunoId, 
-										b.Id as BoletimId 
-										FROM Turma t 
-											INNER JOIN Turma_Disciplina td ON t.Id = td.TurmaId 
-											INNER JOIN Disciplina d ON td.DisciplinaId = d.Id
-											INNER JOIN Categoria c ON d.CategoriaId = c.Id
-											INNER JOIN Turma_Aluno ta ON t.Id = ta.TurmaId
-											INNER JOIN Aluno a ON ta.AlunoId = a.Id
-											INNER JOIN Curso cs ON a.CursoId = cs.Id
-											LEFT JOIN Boletim b ON a.Id = b.AlunoId  AND d.Id = b.DisciplinaId
-										WHERE true ".$sql_parcial." AND YEAR(ta.DataRegistro) = YEAR(NOW()) ORDER BY d.CategoriaId DESC");
+			$query = $this->db->query("
+				SELECT t.nome as nome_turma, d.nome as nome_disciplina, c.nome as nome_categoria,
+				a.nome as nome_aluno, a.numero_chamada, UPPER(cs.nome) as nome_curso,
+				b.nota1, b.falta1, b.nota2, b.falta2, b.nota3, b.falta3, b.nota4, b.falta4,b.bimestre,
+				c.id as categoria_id, t.id as turma_id, d.id as disciplina_id, a.id as aluno_id, 
+				b.id as boletim_id 
+				FROM turma t 
+					INNER JOIN turma_disciplina td ON t.id = td.turma_id 
+					INNER JOIN disciplina d ON td.disciplina_id = d.id
+					INNER JOIN categoria c ON d.categoria_id = c.id
+					INNER JOIN turma_aluno ta ON t.id = ta.turma_id
+					INNER JOIN aluno a ON ta.aluno_id = a.id
+					INNER JOIN curso cs ON a.curso_id = cs.id
+					LEFT JOIN boletim b ON a.id = b.aluno_id  AND d.id = b.disciplina_id
+				WHERE true ".$sql_parcial." AND YEAR(ta.data_registro) = YEAR(NOW()) 
+				ORDER BY d.categoria_id DESC");
+
 			return $query->result_array();
 		}
 		
-		public function set_boletim($alunoId,$disciplinaId,$bimestre,$valor,$boletim_id,$campo){
+		public function set_boletim($aluno_id,$disciplina_id,$bimestre,$valor,$boletim_id,$campo){
 			if(empty($this->busca_registro($alunoId,$disciplinaId)))
-				$this->db->query("INSERT INTO Boletim(Ativo, AlunoId, DisciplinaId, Bimestre, $campo)
-								VALUES(1,".$this->db->escape($alunoId).",".$this->db->escape($disciplinaId).",".$this->db->escape($bimestre).",".$this->db->escape($valor).");");
+				$this->db->query("
+					INSERT INTO boletim(ativo, aluno_id, disciplina_id, bimestre, $campo)
+					VALUES(1,".$this->db->escape($aluno_id).",".$this->db->escape($disciplina_id).","
+					.$this->db->escape($bimestre).",".$this->db->escape($valor).");");
 			else
-				$this->db->query("UPDATE Boletim SET $campo = ".$this->db->escape($valor)." WHERE Id = ".$this->busca_registro($alunoId,$disciplinaId)['Id']."");
-			
+				$this->db->query("
+					UPDATE boletim SET $campo = ".$this->db->escape($valor)." 
+					WHERE id = ".$this->busca_registro($aluno_id,$disciplina_id)['id']."");
 		}
 		
-		public function busca_registro($alunoId,$disciplinaId)
+		public function busca_registro($aluno_id,$disciplina_id)
 		{
-			$query = $this->db->query("SELECT Id FROM Boletim WHERE AlunoId = ".$this->db->escape($alunoId)." AND DisciplinaId = ".$this->db->escape($disciplinaId)." AND YEAR(DataRegistro) = YEAR(NOW())");
+			$query = $this->db->query("
+				SELECT id FROM boletim 
+				WHERE aluno_id = ".$this->db->escape($aluno_id)." 
+				AND disciplina_id = ".$this->db->escape($disciplina_id)." 
+				AND YEAR(DataRegistro) = YEAR(NOW())");
 			return $query->row_array();
 		}
 	}

@@ -58,31 +58,59 @@
 			return $query->result_array();
 		}
 		
-		public function get_aluno_por_turma($turma_id)
+		public function get_aluno_por_turma($turma_id, $page = false)
 		{
+			$limit = $page * ITENS_POR_PAGINA;
+			$inicio = $limit - ITENS_POR_PAGINA;
+			$step = ITENS_POR_PAGINA;
+			
+			$pagination = " LIMIT ".$inicio.",".$step;
+			if($page === false)
+				$pagination = "";
+
 			$query = $this->db->query("
-				SELECT ta.aluno_id, a.nome, a.numero_chamada, c.nome as nome_curso, ta.turma_id 
+				SELECT (
+					SELECT count(*) FROM turma_aluno 
+					WHERE turma_id = ".$this->db->escape($turma_id).") 
+					AS size,
+				ta.aluno_id, a.nome, a.numero_chamada, c.nome as nome_curso, ta.turma_id 
 				FROM turma_aluno ta 
 				INNER JOIN aluno a ON ta.aluno_id = a.id 
 				INNER JOIN curso c ON a.curso_id = c.id 
-				WHERE ta.turma_id = ".$this->db->escape($turma_id)."");
+				WHERE ta.turma_id = ".$this->db->escape($turma_id)."".$pagination."");
+
 			return $query->result_array();
 		}
 		
-		public function get_turma_por_curso($id)
+		public function get_turma_por_curso($id, $page)
 		{
+			$limit = $page * ITENS_POR_PAGINA;
+			$inicio = $limit - ITENS_POR_PAGINA;
+			$step = ITENS_POR_PAGINA;
+			
+			$pagination = " LIMIT ".$inicio.",".$step;
+			if($page === false)
+				$pagination = "";
+			
 			$query =  $this->db->query(
-				"SELECT t.id, t.ativo, DATE_FORMAT(t.data_registro, '%d/%m/%Y') as data_registro, 
+				"SELECT (
+						SELECT count(*) FROM turma t2 
+						INNER JOIN curso c2 ON t2.curso_id = c2.id 
+						WHERE t2.ativo = 1 AND c2.id = ".$this->db->escape($id).") 
+						AS size, 
+				t.id, t.ativo, DATE_FORMAT(t.data_registro, '%d/%m/%Y') as data_registro, 
 				t.nome as nome_turma, t.curso_id, c.nome as nome_curso, 
-				(SELECT count(*) FROM turma_aluno ta WHERE ta.turma_id = t.id) as qtd_aluno
+				(SELECT count(*) FROM turma_aluno ta WHERE ta.turma_id = t.id) as qtd_aluno 
 					FROM turma t 
 				INNER JOIN curso c ON t.curso_id = c.id 
-				WHERE t.ativo = 1 AND c.id = ".$this->db->escape($id)." ORDER BY t.data_registro DESC");
+				WHERE t.ativo = 1 AND c.id = ".$this->db->escape($id)." 
+				ORDER BY t.data_registro DESC ".$pagination."");
 
 				return $query->result_array();
 		}
 		
-		public function troca_aluno($data){//ok
+		public function troca_aluno($data)
+		{//ok
 			$query = $this->db->query("
 				UPDATE turma_aluno SET turma_id = ".$this->db->escape($data['turma_id'])."
 				WHERE aluno_id = ".$this->db->escape($data['aluno_id'])." AND 

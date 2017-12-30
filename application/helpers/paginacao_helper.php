@@ -4,10 +4,16 @@
 		public static function get_paginacao($paginacao,$controller)
 		{
 			$qtd_paginas = $paginacao['size'] / $paginacao['itens_por_pagina'];
+			//echo $paginacao['size'];
+			$method = "index";
+
+			if(isset($paginacao['method']))
+				$method = $paginacao['method'];
+
 			if(ceil($qtd_paginas) > 1)
 			{
 				$inicio = $paginacao['pg_atual'] - 2;
-				echo $paginacao['size'];
+				
 				$offset = 0;
 				if($inicio < 1)
 				{
@@ -32,7 +38,7 @@
 						echo"<ul class='pagination'>";
 							echo"<li class='page-item'>";
 								if(!empty($paginacao['pg_atual']) && $paginacao['pg_atual'] > 1)						
-									echo"<a class='page-link disabled' href='".$paginacao['url'] . $controller."/index/". ($paginacao['pg_atual'] - 1) ."' aria-label='Previous'><span class='glyphicon glyphicon-menu-left'></span>&nbsp;</a>";
+									echo"<a class='page-link disabled' href='".$paginacao['url'] . $controller."/".$method."/". ($paginacao['pg_atual'] - 1) ."' aria-label='Previous'><span class='glyphicon glyphicon-menu-left'></span>&nbsp;</a>";
 							echo"</li>";
 							for($i = $inicio; $i <= $fim; $i++)
 							{
@@ -40,12 +46,12 @@
 								if($i == $paginacao['pg_atual'])
 									$active = "active";
 								echo"<li class='page-item ".$active."'>";
-									echo"<a class='page-link' href='".$paginacao['url'] . $controller."/index/".$i."'>".$i."</a>";
+									echo"<a class='page-link' href='".$paginacao['url'] . $controller."/".$method."/".$i."'>".$i."</a>";
 								echo"</li>";
 							}
 							echo"<li class='page-item'>";
 								if($paginacao['pg_atual'] < ceil($qtd_paginas))
-									echo"<a class='page-link' href='".$paginacao['url'] . $controller."/index/". ($paginacao['pg_atual'] + 1) ."' aria-label='Next'><span class='glyphicon glyphicon-menu-right'></span>&nbsp;</a>";
+									echo"<a class='page-link' href='".$paginacao['url'] . $controller."/".$method."/". ($paginacao['pg_atual'] + 1) ."' aria-label='Next'><span class='glyphicon glyphicon-menu-right'></span>&nbsp;</a>";
 							echo"</li>";
 						echo"</ul>";
 					echo"</nav>";
