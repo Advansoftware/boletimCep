@@ -60,7 +60,7 @@
 		
 		public function create()
 		{
-			if($this->Geral_model->get_permissao(UPDATE,get_class($this)) == true)
+			if($this->Geral_model->get_permissao(CREATE,get_class($this)) == true)
 			{
 				$this->data['obj'] = $this->Usuario_model->get_usuario(0);
 				$this->data['title'] = 'Usuario - Cadastro';

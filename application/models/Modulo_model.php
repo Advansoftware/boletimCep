@@ -12,7 +12,8 @@
 				SELECT mo.nome as nome_modulo, mo.id as id_modulo,
 				mo.menu_id, mo.url as url_modulo, mo.icone 
 					FROM modulo mo 
-				WHERE mo.ativo = 1 
+				INNER JOIN acesso a ON mo.id = a.modulo_id
+				WHERE mo.ativo = 1 AND  grupo_id = ".$this->session->grupo_id."  AND a.visualizar = 1
 				ORDER BY mo.ordem");
 			
 			return $query->result_array();
@@ -46,7 +47,7 @@
 				DATE_FORMAT(mo.data_registro, '%d/%m/%Y') as data_registro,
 				mo.nome as nome_modulo, mo.id, mo.url as url_modulo, mo.menu_id, mo.icone 
 					FROM menu me 
-				RIGHT JOIN modulo mo ON me.Id = mo.menu_id 
+				RIGHT JOIN modulo mo ON me.id = mo.menu_id 
 				WHERE mo.id = ".$this->db->escape($id)." 
 				ORDER BY mo.ordem, me.ordem");
 

@@ -271,13 +271,13 @@ var Main = {
 			}
 		});
 	},
-	turma_validar : function (){
+	turma_validar : function (type){
 		if($("#nome").val() == "")
 			Main.show_error("nome","Informe o nome da turma","is-invalid");
 		else if($("#curso_id").val() == "0")
 			Main.show_error("curso_id","Selecione o curso do aluno","is-invalid");
 		else
-			Main.create_edit_turma();
+			Main.create_edit_turma(type);
 	},
 	disciplina_turma_validar : function (){
 
@@ -286,21 +286,24 @@ var Main = {
 	aluno_turma_validar : function(){
 		Main.create_edit_turma_aluno();
 	},
-	create_edit_turma : function (){
+	create_edit_turma : function (type){
 		$("#mensagem").html("Aguarde... processando dados");
 		$('#admin_modal').modal({
 			keyboard: false,
 			backdrop : 'static'
 		})
 		$.ajax({
-			url: Main.base_url+$("#controller").val()+'/store',
+			url: Main.base_url+$("#controller").val()+'/store/',
 			data: $("#"+$("form[name=form_cadastro]").attr("id")).serialize(),
 			dataType:'json',
 			cache: false,
 			type: 'POST',
 			success: function (msg) {
 				$("#mensagem").html("Dados salvos com sucesso");
-				window.location.assign(Main.base_url+msg.page);
+				if(type == "Finalizar")
+					window.location.assign(Main.base_url+"Turma/index");
+				else
+					window.location.assign(Main.base_url+msg.page);
 			}
 		});
 	},

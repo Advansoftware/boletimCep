@@ -125,10 +125,11 @@ $(document).ready(
 			Main.aluno_validar();
 		});
 		
-		$( "#form_cadastro_turma" ).submit(function( event ) {
-			event.preventDefault();
-			Main.turma_validar();
+		$("#form_cadastro_turma").on("click", ":submit", function(e){
+		    event.preventDefault();
+			Main.turma_validar($(this).val());
 		});
+
 		$( "#form_cadastro_troca_aluno" ).submit(function( event ) {
 			event.preventDefault();
 			Main.troca_aluno_validar();

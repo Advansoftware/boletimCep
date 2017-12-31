@@ -24,21 +24,24 @@
 								for($i = 0; $i < count($Cursos); $i++)
 								{
 									$selected = "";
-									if($Cursos[$i]['id'] == $Turma[0]['curso_id'])
+									if(isset($Turma[0]['curso_id']) && $Cursos[$i]['id'] == $Turma[0]['curso_id'])
 										$selected = "selected";
-									echo"<option $selected value='". $Cursos[$i]['id'] ."'>".$Cursos[$i]['ome']."</option>";
+									echo"<option $selected value='". $Cursos[$i]['id'] ."'>".$Cursos[$i]['nome']."</option>";
 								}
 							?>
 						</select>
 					</div>
 					<div class='input-group mb-2 mb-sm-0 text-danger' id='error-curso_id'></div>
-				</div>
+				<eudiv>
 				<div class='row'>
-					<div class='col-lg-6'>
+					<div class='col-lg-4'>
 						<button class='btn btn-secondary btn-block' disabled="disabled"><span class='glyphicon glyphicon-menu-left'></span> Voltar</button>
 					</div>
-					<div class='col-lg-6'>
+					<div class='col-lg-4'>
 						<input type='submit' value='Avançar' class='btn btn-success btn-block'/>
+					</div>
+					<div class='col-lg-4'>
+						<input type='submit' value='Finalizar' class='btn btn-success btn-block'/>
 					</div>
 				</div>
 			</form>

@@ -33,7 +33,7 @@
 			if($page === false)
 				$page = 1;
 
-			$data['title'] = 'Administração';
+			$this->data['title'] = 'Administração';
 			if($this->Geral_model->get_permissao(READ,get_class($this)) == true)
 			{
 				$this->data['Cursos'] = $this->Curso_model->get_curso(false, $page);
