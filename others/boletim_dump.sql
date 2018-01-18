@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 30-Dez-2017 às 02:28
+-- Generation Time: 18-Jan-2018 às 20:17
 -- Versão do servidor: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -56,7 +56,15 @@ INSERT INTO `acesso` (`id`, `data_registro`, `modulo_id`, `criar`, `visualizar`,
 (10, '2017-12-29 06:17:23', 5, 1, 1, 1, 1, 2),
 (11, '2017-12-29 20:12:49', 6, 1, 1, 1, 1, 1),
 (12, '2017-12-29 21:26:26', 7, 1, 1, 1, 1, 1),
-(13, '2017-12-30 01:17:07', 8, 1, 1, 1, 1, 1);
+(13, '2017-12-30 01:17:07', 8, 1, 1, 1, 1, 1),
+(14, '2018-01-18 19:04:31', 1, 0, 0, 0, 0, 3),
+(15, '2018-01-18 19:04:31', 2, 0, 0, 0, 0, 3),
+(16, '2018-01-18 19:04:31', 3, 0, 0, 0, 0, 3),
+(17, '2018-01-18 19:04:31', 4, 1, 1, 1, 1, 3),
+(18, '2018-01-18 19:04:32', 5, 0, 0, 0, 0, 3),
+(19, '2018-01-18 19:04:32', 6, 0, 0, 0, 0, 3),
+(20, '2018-01-18 19:04:32', 7, 0, 0, 0, 0, 3),
+(21, '2018-01-18 19:04:32', 8, 0, 0, 0, 0, 3);
 
 -- --------------------------------------------------------
 
@@ -252,7 +260,8 @@ CREATE TABLE `grupo` (
 
 INSERT INTO `grupo` (`id`, `data_registro`, `ativo`, `nome`) VALUES
 (1, '2017-12-28 22:40:46', 1, 'Administrador'),
-(2, '2017-12-29 06:17:22', 1, 'Professor');
+(2, '2017-12-29 06:17:22', 1, 'Professor'),
+(3, '2018-01-18 19:04:31', 1, 'Coordenador');
 
 -- --------------------------------------------------------
 
@@ -332,7 +341,9 @@ INSERT INTO `turma` (`id`, `ativo`, `data_registro`, `nome`, `curso_id`) VALUES
 (20, 1, '2017-12-18 18:27:43', 'ii', 21),
 (21, 1, '2017-12-18 18:28:23', 'iii', 21),
 (22, 1, '2017-12-20 06:42:17', 'OOO2', 21),
-(23, 1, '2017-12-28 01:02:36', 'ateste', 1);
+(23, 1, '2017-12-28 01:02:36', 'ateste', 1),
+(24, 1, '2017-12-31 06:52:08', 'Administrador', 34),
+(25, 1, '2017-12-31 06:52:24', 'hhhhh', 33);
 
 -- --------------------------------------------------------
 
@@ -403,7 +414,8 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id`, `data_registro`, `ultimo_acesso`, `grupo_id`, `ativo`, `nome`, `email`, `senha`) VALUES
-(1, '2017-12-28 22:40:46', '2017-12-30 01:12:42', 1, 1, 'Admin', 'admin@dominio.com.br', 'admin123');
+(1, '2017-12-28 22:40:46', '2018-01-18 19:16:13', 1, 1, 'Admin', 'admin@dominio.com.br', 'admin123'),
+(2, '2018-01-18 19:02:38', '0000-00-00 00:00:00', 2, 1, 'nomed2', 'example@example.com', 'password');
 
 --
 -- Indexes for dumped tables
@@ -514,7 +526,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT for table `acesso`
 --
 ALTER TABLE `acesso`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `aluno`
@@ -550,7 +562,7 @@ ALTER TABLE `disciplina`
 -- AUTO_INCREMENT for table `grupo`
 --
 ALTER TABLE `grupo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `menu`
@@ -568,13 +580,13 @@ ALTER TABLE `modulo`
 -- AUTO_INCREMENT for table `turma`
 --
 ALTER TABLE `turma`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
@@ -591,15 +603,15 @@ ALTER TABLE `acesso`
 -- Limitadores para a tabela `aluno`
 --
 ALTER TABLE `aluno`
-  ADD CONSTRAINT `fk_CursoAluno` FOREIGN KEY (`curso_id`) REFERENCES `curso` (`Id`),
-  ADD CONSTRAINT `fk_turmaAluno` FOREIGN KEY (`turma_id`) REFERENCES `turma` (`Id`);
+  ADD CONSTRAINT `fk_CursoAluno` FOREIGN KEY (`curso_id`) REFERENCES `curso` (`id`),
+  ADD CONSTRAINT `fk_turmaAluno` FOREIGN KEY (`turma_id`) REFERENCES `turma` (`id`);
 
 --
 -- Limitadores para a tabela `boletim`
 --
 ALTER TABLE `boletim`
-  ADD CONSTRAINT `fk_AlunoBoletim` FOREIGN KEY (`aluno_id`) REFERENCES `aluno` (`Id`),
-  ADD CONSTRAINT `fk_DisciplinaBoletim` FOREIGN KEY (`disciplina_id`) REFERENCES `disciplina` (`Id`);
+  ADD CONSTRAINT `fk_AlunoBoletim` FOREIGN KEY (`aluno_id`) REFERENCES `aluno` (`id`),
+  ADD CONSTRAINT `fk_DisciplinaBoletim` FOREIGN KEY (`disciplina_id`) REFERENCES `disciplina` (`id`);
 
 --
 -- Limitadores para a tabela `disciplina`
@@ -611,8 +623,8 @@ ALTER TABLE `disciplina`
 -- Limitadores para a tabela `disciplina_curso`
 --
 ALTER TABLE `disciplina_curso`
-  ADD CONSTRAINT `fk_Curso_Disciplina_Curso` FOREIGN KEY (`curso_id`) REFERENCES `curso` (`Id`),
-  ADD CONSTRAINT `fk_Disciplina_Curso` FOREIGN KEY (`disciplina_id`) REFERENCES `disciplina` (`Id`);
+  ADD CONSTRAINT `fk_Curso_Disciplina_Curso` FOREIGN KEY (`curso_id`) REFERENCES `curso` (`id`),
+  ADD CONSTRAINT `fk_Disciplina_Curso` FOREIGN KEY (`disciplina_id`) REFERENCES `disciplina` (`id`);
 
 --
 -- Limitadores para a tabela `modulo`
@@ -624,21 +636,21 @@ ALTER TABLE `modulo`
 -- Limitadores para a tabela `turma`
 --
 ALTER TABLE `turma`
-  ADD CONSTRAINT `fk_Curso` FOREIGN KEY (`curso_id`) REFERENCES `curso` (`Id`);
+  ADD CONSTRAINT `fk_Curso` FOREIGN KEY (`curso_id`) REFERENCES `curso` (`id`);
 
 --
 -- Limitadores para a tabela `turma_aluno`
 --
 ALTER TABLE `turma_aluno`
-  ADD CONSTRAINT `fk_aluno_turma_aluno` FOREIGN KEY (`aluno_id`) REFERENCES `aluno` (`Id`),
-  ADD CONSTRAINT `fk_turma_turma_aluno` FOREIGN KEY (`turma_id`) REFERENCES `turma` (`Id`);
+  ADD CONSTRAINT `fk_aluno_turma_aluno` FOREIGN KEY (`aluno_id`) REFERENCES `aluno` (`id`),
+  ADD CONSTRAINT `fk_turma_turma_aluno` FOREIGN KEY (`turma_id`) REFERENCES `turma` (`id`);
 
 --
 -- Limitadores para a tabela `turma_disciplina`
 --
 ALTER TABLE `turma_disciplina`
-  ADD CONSTRAINT `fk_Disciplina` FOREIGN KEY (`disciplina_id`) REFERENCES `disciplina` (`Id`),
-  ADD CONSTRAINT `fk_turma` FOREIGN KEY (`turma_id`) REFERENCES `turma` (`Id`);
+  ADD CONSTRAINT `fk_Disciplina` FOREIGN KEY (`disciplina_id`) REFERENCES `disciplina` (`id`),
+  ADD CONSTRAINT `fk_turma` FOREIGN KEY (`turma_id`) REFERENCES `turma` (`id`);
 
 --
 -- Limitadores para a tabela `usuario`
