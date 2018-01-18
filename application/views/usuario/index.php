@@ -15,7 +15,6 @@
 						echo"</tr>";
 						echo"<tr>";
 							echo"<td class='text-right' colspan='5'>";
-								echo"<a class='btn btn-danger' href='#'>PDF</a>";
 							if(permissao::get_permissao(CREATE,$controller))
 								echo"<a class='btn btn-success' href='".$url."$controller/create/0/'>Novo usuário</a>";
 							echo"</td>";
