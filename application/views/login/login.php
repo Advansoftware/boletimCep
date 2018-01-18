@@ -47,14 +47,12 @@
 								<label for="senha-login" class="label-material">Senha</label>
 								<div class='input-group mb-2 mb-sm-0 text-danger' id='error-senha-login'></div>
 							</div>
-							<button type="submit" class="btn btn-primary">Login</button>
+							<button type="submit" class="btn btn-success">Login</button>
 						</form>
-						<a href="#" class="forgot-pass">Esquece sua senha?</a><br><small>Não tem uma conta? </small><a href="register.html" class="signup">Crie aqui</a>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 	</div>
 	<div class="copyrights text-center">
 		<p> <?php echo date("Y");?>  - Advansoftware</p>

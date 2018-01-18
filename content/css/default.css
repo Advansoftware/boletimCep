@@ -200,7 +200,7 @@ input.input-material ~ label.error {
 input.input-material ~ label.active {
   font-size: 0.85rem;
   top: -10px;
-  color: #DB6574;
+  color: #dbcc65;
 }
 
 .form-group-material {
@@ -1452,7 +1452,7 @@ section.forms .input-group-btn .dropdown-menu a {
   height: 100%;
   display: block;
   z-index: -1;
-background: url('../imagens/tec4.jpg');
+background: url('../imagens/fundo.jpg');
   background-size: cover;
   position: absolute;
   top: 0;
