@@ -14,3 +14,9 @@
 * {
 	outline: none;
 }
+.img-login{
+	width: 100px;
+	margin-top: -10px;
+	margin-bottom: 15px;
+	text-align: center;
+}

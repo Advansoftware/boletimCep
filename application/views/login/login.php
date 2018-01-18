@@ -15,6 +15,7 @@
 <div class="modal fade" id="login_modal_erro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
+
       <div class="modal-header">
       </div>
       <div class="modal-body text-center">
@@ -32,11 +33,12 @@
 		<div class="row">
 			<div class="col-lg-6 bg-white shadow-basic">
 				<div class="form d-flex align-items-center">
-					<div class="content">
+					<div class="content text-center">
 					  <?php
 							$atr = array('id' => 'form_login','name' => 'form_login');
 							echo form_open('login/validar',$atr);
-						?>
+						?> 
+							<img class="mx-auto d-block img-login" src="<?php echo $url;?>/content/imagens/logo.png">	
 							<div class="form-group">
 								<input id="email-login" autocomplete="false" spellcheck="false" name="email-login" type="text" class="input-material">
 								<label for="email-login" class="label-material">E-mail</label>
