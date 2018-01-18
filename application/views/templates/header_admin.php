@@ -30,10 +30,11 @@
 			<nav class="side-navbar">
 				<div class="sidenav-header d-flex align-items-center justify-content-center">
 					<div class="sidenav-header-inner  text-center">
-						<h2>Admin</h2> <br />
+						<img class="img-fluid rounded-circle" src="<?php echo $url;?>/content/imagens/logo.png">
+						<h2>CEP - Admin</h2> <br />
 					</div>
 					<div style="margin-top: 15px;" class="sidenav-header-logo"><a href="#" class="brand-small text-center">
-						<strong>AD</strong></a>
+						<strong>CEP</strong></a>
 					</div>
 				</div>
 				<div class="main-menu">
