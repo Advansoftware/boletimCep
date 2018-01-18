@@ -9,11 +9,7 @@
 		{
 			$this->load->database();
 		}
-		
-		/*
-			RETORNA UM LEAD DE ACORDO COM O ID, 
-			CASO O PARAMETRO ID NAO SEJA PASSADO RETORNA UMA LISTA DE LEAD
-		*/
+
 		public function get_boletim($busca,$aluno_id, $turma_id)
 		{
 			if($busca == POR_ALUNO)
@@ -35,14 +31,14 @@
 					INNER JOIN aluno a ON ta.aluno_id = a.id
 					INNER JOIN curso cs ON a.curso_id = cs.id
 					LEFT JOIN boletim b ON a.id = b.aluno_id  AND d.id = b.disciplina_id
-				WHERE true ".$sql_parcial." AND YEAR(ta.data_registro) = YEAR(NOW()) 
+				WHERE true ".$sql_parcial." AND YEAR(ta.data_registro) = YEAR(t.data_registro) 
 				ORDER BY d.categoria_id DESC");
 
 			return $query->result_array();
 		}
 		
 		public function set_boletim($aluno_id,$disciplina_id,$bimestre,$valor,$boletim_id,$campo){
-			if(empty($this->busca_registro($alunoId,$disciplinaId)))
+			if(empty($this->busca_registro($aluno_id,$disciplina_id)))
 				$this->db->query("
 					INSERT INTO boletim(ativo, aluno_id, disciplina_id, bimestre, $campo)
 					VALUES(1,".$this->db->escape($aluno_id).",".$this->db->escape($disciplina_id).","
@@ -59,7 +55,11 @@
 				SELECT id FROM boletim 
 				WHERE aluno_id = ".$this->db->escape($aluno_id)." 
 				AND disciplina_id = ".$this->db->escape($disciplina_id)." 
-				AND YEAR(DataRegistro) = YEAR(NOW())");
+				AND YEAR(data_registro) = (SELECT YEAR(data_registro) 
+						FROM turma WHERE 
+						id = (SELECT turma_id 
+								FROM aluno 
+								WHERE id = ".$this->db->escape($aluno_id)."))");
 			return $query->row_array();
 		}
 	}
