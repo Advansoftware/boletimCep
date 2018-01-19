@@ -1,5 +1,6 @@
 <?php
-	class Aluno_model extends CI_Model {
+	class Aluno_model extends CI_Model 
+	{
 		
 		/*
 			CONECTA AO BANCO DE DADOS DEIXANDO A CONEXÃO ACESSÍVEL PARA OS METODOS
@@ -22,7 +23,7 @@
 				if($page === false)
 					$pagination = "";
 
-				$query =  $this->db->query("
+				$query = $this->db->query("
 					SELECT (SELECT count(*) FROM aluno WHERE ativo = 1) AS size,
 					a.id, DATE_FORMAT(a.data_registro, '%d/%m/%Y') as data_registro, a.matricula, 
 					a.nome as nome_aluno, a.sexo, 
@@ -51,13 +52,14 @@
 			return $query->result_array();
 		}
 		
-		public function get_aluno_por_curso($id,$turma_id)//por curso e lista somente os alunos que nao possuem relacionamento com turma (nao estao em uma turma)
+		public function get_aluno_por_curso($id,$turma_id)//por curso e lista somente os alunos que nao possuem relacionamento com turma no ano corrente
 		{
 			$query = $this->db->query("
 				SELECT a.id, a.nome, ta.turma_id FROM aluno a 
 				LEFT JOIN turma_aluno ta ON a.id = ta.aluno_id 
 				WHERE a.curso_id = ".$this->db->escape($id)." AND 
-				(ta.turma_id is null OR ta.turma_id = ".$this->db->escape($turma_id).")");
+				(ta.turma_id is null OR ta.turma_id = ".$this->db->escape($turma_id)." OR
+				YEAR(ta.data_registro) != YEAR(NOW()))");
 
 			return $query->result_array();
 		}
@@ -73,7 +75,8 @@
 			}
 		}
 		
-		public function delete_aluno($id){
+		public function delete_aluno($id)
+		{
 			// $this->db->where('id',$id); 
 			// return $this->db->delete("leads");
 			return $this->db->query("UPDATE aluno SET ativo = 0 WHERE id = ".$this->db->escape($id)."");
