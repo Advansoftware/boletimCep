@@ -37,7 +37,8 @@
 			return $query->result_array();
 		}
 		
-		public function set_boletim($aluno_id,$disciplina_id,$bimestre,$valor,$boletim_id,$campo){
+		public function set_boletim($aluno_id,$disciplina_id,$bimestre,$valor,$boletim_id,$campo)
+		{
 			if(empty($this->busca_registro($aluno_id,$disciplina_id)))
 				$this->db->query("
 					INSERT INTO boletim(ativo, aluno_id, disciplina_id, bimestre, $campo)
