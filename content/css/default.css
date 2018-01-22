@@ -2356,8 +2356,8 @@ a.text-primary:focus, a.text-primary:hover {
 
 .page-item.active .page-link {
   color: #fff;
-  background-color: #dc3545;
-  border-color: #dc3545;
+  background-color: #007bff;
+  border-color: #007bff;
 }
 
 .page-item.disabled .page-link {
@@ -2369,10 +2369,11 @@ a.text-primary:focus, a.text-primary:hover {
 .page-link {
   padding: 0.5rem 0.75rem;
   line-height: 1.25;
-  color: #dc3545;
+  color: #007bff;
   background-color: #fff;
   border: 1px solid #ddd;
 }
+
 
 .page-link:focus, .page-link:hover {
   color: #22773c;
