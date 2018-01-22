@@ -57,7 +57,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		padding: 0 10px 0 10px;
 		margin: 20px 0 0 0;
 	}
-
+ 
 	#container {
 		margin: 10px;
 		border: 1px solid #D0D0D0;

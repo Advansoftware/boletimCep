@@ -200,7 +200,7 @@ input.input-material ~ label.error {
 input.input-material ~ label.active {
   font-size: 0.85rem;
   top: -10px;
-  color: #dbcc65;
+  color: #007bff;
 }
 
 .form-group-material {
@@ -1498,7 +1498,8 @@ background: url('../imagens/fundo.jpg');
 }
 
 .login-page .form-holder .form {
-  background: #2d3035;
+  /*background: #2d3035;*/
+  background-image: url("../imagens/luz.png");
 }
 
 .login-page .form-holder .form .form-group {

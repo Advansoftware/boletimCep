@@ -31,7 +31,7 @@
 	<div class="container d-flex align-items-center">
 	<div class="form-holder has-shadow">
 		<div class="row">
-			<div class="col-lg-6 bg-white shadow-basic">
+			<div class="col-lg-5 bg-white shadow-basic">
 				<div class="form d-flex align-items-center">
 					<div class="content text-center">
 					  <?php
@@ -49,7 +49,7 @@
 								<label for="senha-login" class="label-material">Senha</label>
 								<div class='input-group mb-2 mb-sm-0 text-danger' id='error-senha-login'></div>
 							</div>
-							<button type="submit" class="btn btn-success">Login</button>
+							<button type="submit" class="btn btn-success col-lg-5">Login</button>
 						</form>
 					</div>
 				</div>
