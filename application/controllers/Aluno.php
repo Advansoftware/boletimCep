@@ -10,8 +10,8 @@
 		{
 			parent::__construct();
 			
-			if(empty($this->login_model->session_is_valid($this->session->id)['id']))
-				redirect('login/login');
+			if(empty($this->account_model->session_is_valid($this->session->id)['id']))
+				redirect('Account/login');
 			$this->load->model('Disciplina_model');
 			$this->load->model('Categoria_model');
 			$this->load->model('Curso_model');

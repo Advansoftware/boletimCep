@@ -15,7 +15,7 @@ define("ITENS_POR_PAGINA",5);
 		{
 			parent::__construct();
 			$this->load->library('pdfgenerator');
-			$this->load->model('login_model');
+			$this->load->model('account_model');
 			$this->load->model('Menu_model');
 			$this->load->model('Modulo_model');
 			$this->load->model('Geral_model');
@@ -24,6 +24,7 @@ define("ITENS_POR_PAGINA",5);
 			$this->load->helper('html');
 			$this->load->helper('form');
 			$this->load->library('session');
+			$this->load->helper('cookie');
 			$this->data['url'] = base_url();
 			$this->data['paginacao']['url'] = base_url();
 			$this->data['paginacao']['itens_por_pagina'] = ITENS_POR_PAGINA;

@@ -93,6 +93,11 @@ $(document).ready(
 			event.preventDefault();
 			Main.usuario_validar();
 		});
+
+		$( "#form_cadastro_Account").submit(function( event ) {
+			event.preventDefault();
+			Main.registro_validar();
+		});
 		
 		$( "#form_cadastro_Menu").submit(function( event ) {
 			event.preventDefault();

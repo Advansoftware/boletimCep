@@ -16,7 +16,7 @@ var Main = {
 				backdrop : 'static'
 			});
 			$.ajax({
-				url: Main.base_url+'login/validar',
+				url: Main.base_url+'Account/validar',
 				data: $("#form_login").serialize(),
 				dataType:'json',
 				cache: false,
@@ -48,8 +48,7 @@ var Main = {
 		$.ajax({
 			type: "POST",
 			dataType: "json",
-			url: Main.base_url+"login/logout",
-			//data: "action=loadall&id=" + 2,
+			url: Main.base_url+"Account/logout",
 			complete: function(data) {
 				 location.reload();
 			}
@@ -170,6 +169,22 @@ var Main = {
 					Main.create_edit();
 			}
 		}
+	},
+	registro_validar : function(){
+		if($("#nome").val() == "")
+			Main.show_error("nome", 'Informe o nome de usuário', 'is-invalid');
+		else if($("#email").val() == "")
+			Main.show_error("email", 'Informe o e-mail de usuário', 'is-invalid');
+		else if(Main.valida_email($("#email").val()) == false)
+			Main.show_error("email", 'Formato de e-mail inválido', 'is-invalid');
+		else if($("#senha").val() == "")
+			Main.show_error("senha", 'Informe a senha de usuário', 'is-invalid');
+		else if($("#confirmar_senha").val() == "")
+			Main.show_error("confirmar_senha", 'Repita a senha de usuário', 'is-invalid');
+		else if($("#senha").val() != $("#confirmar_senha").val())
+			Main.show_error("confirmar_senha", 'Senha especificada é diferente da anterior', 'is-invalid');
+		else
+			Main.create_edit();
 	},
 	menu_validar : function()
 	{

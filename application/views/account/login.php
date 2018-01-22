@@ -33,10 +33,10 @@
 		<div class="row">
 			<div class="col-lg-5 bg-white shadow-basic">
 				<div class="form d-flex align-items-center">
-					<div class="content text-center">
+					<div class="content">
 					  <?php
 							$atr = array('id' => 'form_login','name' => 'form_login');
-							echo form_open('login/validar',$atr);
+							echo form_open('Account/validar',$atr);
 						?> 
 							<img class="mx-auto d-block img-login" src="<?php echo $url;?>/content/imagens/logo.png">	
 							<div class="form-group">
@@ -49,7 +49,14 @@
 								<label for="senha-login" class="label-material">Senha</label>
 								<div class='input-group mb-2 mb-sm-0 text-danger' id='error-senha-login'></div>
 							</div>
-							<button type="submit" class="btn btn-success col-lg-5">Login</button>
+							<div class='checkbox checbox-switch switch-success custom-controls-stacked'>
+								<label for='conectado'>
+									<input type='checkbox' id='conectado' name='conectado' value='1'><span></span>Manter conectado
+								</label>
+							</div><br />
+							<div class="text-center">
+								<button type="submit" class="btn btn-success col-lg-5">Login</button>
+							</div>
 						</form>
 					</div>
 				</div>

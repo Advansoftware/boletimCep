@@ -8,12 +8,15 @@
 		
 		public function get_modulo()//usado apenas para montar o menu
 		{
-			$query = $this->db->query("
-				SELECT mo.nome as nome_modulo, mo.id as id_modulo,
+			$CI = get_instance();
+			$CI->load->model("Account_model");
+
+			$query = $this->db->query("SELECT mo.nome as nome_modulo, mo.id as id_modulo,
 				mo.menu_id, mo.url as url_modulo, mo.icone 
 					FROM modulo mo 
-				INNER JOIN acesso a ON mo.id = a.modulo_id
-				WHERE mo.ativo = 1 AND  grupo_id = ".$this->session->grupo_id."  AND a.visualizar = 1
+				INNER JOIN acesso a ON mo.id = a.modulo_id 
+				WHERE mo.ativo = 1 AND grupo_id = ".$CI->account_model->session_is_valid()['id']." 
+				AND a.visualizar = 1 
 				ORDER BY mo.ordem");
 			
 			return $query->result_array();

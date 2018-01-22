@@ -6,8 +6,8 @@
 		{
 			parent::__construct();
 			
-			if(empty($this->login_model->session_is_valid($this->session->id)['id']))
-				redirect('login/login');
+			if(empty($this->account_model->session_is_valid($this->session->id)['id']))
+				redirect('Account/login');
 			
 			$this->load->model('Usuario_model');
 			$this->load->model('Grupo_model');
