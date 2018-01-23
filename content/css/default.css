@@ -2826,9 +2826,9 @@ a.text-dark:focus, a.text-dark:hover {
 /* Switch Success */
 .checkbox.checbox-switch.switch-success label > input:checked + span,
 .checkbox-inline.checbox-switch.switch-success > input:checked + span {
-    background-color: rgb(40, 167, 69);
-    border-color: rgb(40, 167, 69);
-    box-shadow: rgb(40, 167, 69) 0px 0px 0px 8px inset;
+    background-color: #007bff;
+    border-color:#007bff;
+    box-shadow: #007bff 0px 0px 0px 8px inset;
     transition: border 0.4s ease 0s, box-shadow 0.4s ease 0s, background-color 1.2s ease 0s;
 }
 .checkbox.checbox-switch.switch-success label > input:checked:disabled + span,

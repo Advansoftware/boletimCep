@@ -26,10 +26,10 @@
 						echo"<thead>";
 							echo "<tr>";
 								echo "<td>Módulo</td>";
-								echo "<td class='text-center'>Criar</td>";
-								echo "<td class='text-center'>Visualizar</td>";
-								echo "<td class='text-center'>Atualizar</td>";
-								echo "<td class='text-center'>Apagar</td>";
+								echo "<td>Criar</td>";
+								echo "<td>Visualizar</td>";
+								echo "<td>Atualizar</td>";
+								echo "<td>Apagar</td>";
 							echo "</tr>";
 						echo"</thead>";
 						echo"<tbody>";
@@ -39,7 +39,7 @@
 									echo"<td>";
 										echo $lista_grupos_acesso[$i]['nome_modulo'];
 									echo"</td>";
-									echo"<td class='text-center'>";
+									echo"<td>";
 										echo "<input type='hidden' name='modulo_id".$i."' value='".$lista_grupos_acesso[$i]['modulo_id']."' />";
 										echo "<input type='hidden' name='acesso_id".$i."' value='".$lista_grupos_acesso[$i]['acesso_id']."' />";
 										echo"<div class='checkbox checbox-switch switch-success custom-controls-stacked'>";
@@ -51,7 +51,7 @@
 											echo"</label>";
 										echo"</div>";
 									echo"</td>";
-									echo"<td class='text-center'>";
+									echo"<td>";
 										echo"<div class='checkbox checbox-switch switch-success custom-controls-stacked'>";
 											echo"<label for='visualizar$i'>";
 												if($lista_grupos_acesso[$i]['visualizar'] == 1)
@@ -61,7 +61,7 @@
 											echo"</label>";
 										echo"</div>";
 									echo"</td>";
-									echo"<td class='text-center'>";
+									echo"<td>";
 										echo"<div class='checkbox checbox-switch switch-success custom-controls-stacked'>";
 											echo"<label for='atualizar$i'>";
 												if($lista_grupos_acesso[$i]['atualizar'] == 1)
@@ -71,7 +71,7 @@
 											echo"</label>";
 										echo"</div>";
 									echo"</td>";
-									echo"<td class='text-center'>";
+									echo"<td>";
 										echo"<div class='checkbox checbox-switch switch-success custom-controls-stacked'>";
 											echo"<label for='apagar$i'>";
 												if($lista_grupos_acesso[$i]['apagar'] == 1)
