@@ -22,6 +22,13 @@
 				border-bottom: 1px solid #dc3545;
 			}
 		</style>
+		<script type="text/javascript">
+			window.onload = function()
+			{
+		       	if($("#id").val() != 0 && $("#id").val() != '')
+		    		$(".input-material").siblings('.label-material').addClass('active');
+			}
+		</script>
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	</head >
 	<body id='c'>

@@ -40,3 +40,10 @@ nav::-webkit-scrollbar-thumb {
 #boletim .table th,#boletim .table td{
 	border-top: none;
 }
+.text-white{
+	color: white;
+}
+
+.relative{
+	position: relative;
+}
