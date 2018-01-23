@@ -94,7 +94,7 @@
 				}
 				else
 					$count++;
-			}		
+			}
 			array_push($array_disciplina_categoria,$count);
 			$count = 0;
 			$categoria_temp = "";

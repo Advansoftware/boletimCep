@@ -82,7 +82,7 @@
 					$flag = 0;
 					for($j = 0; $j < count($data['disciplinas_id']); $j++)
 					{
-						if($query[$i]['disciplina_d'] == $data['disciplinas_id'][$j])
+						if($query[$i]['disciplina_id'] == $data['disciplinas_id'][$j])
 							$flag = 1;
 					}
 					if($flag == 0)
@@ -96,7 +96,7 @@
 										VALUES(".$this->db->escape($data['disciplinas_id'][$i]).",".$this->db->escape($data['id']).")");
 				$dataToSave = array(
 					'id' => $data['id'],
-					'nome' => $data['nome_curso']
+					'nome' => $data['nome']
 				);
 				$this->db->where('id', $data['id']);
 				$this->db->update('curso', $dataToSave);
