@@ -121,7 +121,7 @@
 					$this->Usuario_model->set_usuario($dataToSave);
 			}
 			else
-				redirect('account/login');
+				redirect('Account/login');
 
 			$arr = array('response' => $resultado);
 			header('Content-Type: application/json');
