@@ -15,7 +15,14 @@ strong{
 	font-size: 15px;
 	margin-top: -20px;
 }
-
+.parent {
+  position: relative;
+}
+.child {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
 </style>
 <div class='table-responsive' id=boletim>
 <input type='hidden' id='controller' value='<?php echo $controller; ?>'/>
@@ -29,17 +36,37 @@ strong{
 		echo"<div class='col-lg-12'>";
 			echo"<table class='table'>";
 				echo"<tr>";
-					echo"<td colspan='2'>";
-						echo"Turma: ".$boletim[0]['nome_turma'];
+					echo"<td class='text-right'>";
+						echo"Turma:";
+					echo "</td>";
+					echo "<td class='alert alert-dark text-center'>";
+						echo $boletim[0]['nome_turma'];
 					echo"</td>";
+					echo "<td></td>";
+					echo "<td></td>";
+					echo "<td></td>";
+					echo "<td></td>";
+					echo "<td></td>";
+					echo "<td></td>";
+					echo "<td></td>";
+					echo "<td></td>";
+					echo "<td></td>";
+					echo "<td></td>";
+					echo "<td></td>";
 				echo"</tr>";
 				echo"<tr>";
-					echo"<td>";
-						echo"Nº: ".$boletim[0]['numero_chamada'];
+					echo"<td  class='text-right'>";
+						echo"Nº:";
 					echo"</td>";
+					echo "<td  class='alert alert-dark'>";
+						echo $boletim[0]['numero_chamada'];
+					echo "</td>";
 					echo"<td>";
-						echo"Nome: ".$boletim[0]['nome_aluno'];
+						echo"Nome:";
 					echo"</td>";
+					echo "<td class='alert alert-dark' colspan='14'>";
+						echo $boletim[0]['nome_aluno'];
+					echo "</td>";
 				echo"</tr>";
 			echo"</table>";
 		echo"</div>";
@@ -128,6 +155,7 @@ strong{
 						echo"</td>";
 					echo"</tr>";
 					$count++;
+
 				}
 				echo"<tr>";
 					echo"<td colspan='2'>";
