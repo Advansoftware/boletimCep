@@ -33,7 +33,7 @@
 				
 				$query = $this->db->query("SELECT (SELECT count(*) FROM  grupo) AS size, id, 
 											nome AS nome_grupo, ativo  
-											FROM grupo ".$pagination."");
+											FROM grupo ORDER BY data_registro DESC ".$pagination."");
 				return $query->result_array();
 			}
 

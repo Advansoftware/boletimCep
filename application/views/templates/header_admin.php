@@ -13,10 +13,10 @@
 			.form-control, .form-control:focus, .form-control:hover {
 				border: none;
 				border-radius: 0px;
-				border-bottom: 1px solid white;
+				border-bottom: 1px solid #444951;
 				background-color: rgba(255,255,255,0);
 				outline: 0;
-				color: white;
+				color: #8a8d93;
 			}
 			.form-control:focus{
 				border-bottom: 1px solid #dc3545;

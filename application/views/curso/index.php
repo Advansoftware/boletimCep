@@ -19,7 +19,6 @@
 						echo"</td></tr>";
 						echo "<tr>";
 							echo "<td>Nome</td>";
-							echo "<td>Data de registro</td>";
 							echo "<td>Quantidade de disciplina</td>";
 							echo "<td>Ações </td>";
 						echo "<tr>";
@@ -29,7 +28,6 @@
 						{
 							echo "<tr>";
 								echo "<td>".$Cursos[$i]['nome']."</td>";
-								echo "<td>".$Cursos[$i]['data_registro']."</td>";
 								echo "<td>".$Cursos[$i]['qtd_disciplina']."</td>";
 								echo "<td>";
 								if(permissao::get_permissao(UPDATE,$controller))

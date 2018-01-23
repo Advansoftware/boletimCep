@@ -4,7 +4,7 @@
 		echo "<div class='col-lg-10 offset-lg-1' style='background: #393836;'>";
 			
 			echo"<a href='javascript:window.history.go(-1)' class='padding' title='Voltar'>";
-				echo"<span class='glyphicon glyphicon-arrow-left' style='font-size: 35px; color: white;'></span>";
+				echo"<span class='glyphicon glyphicon-arrow-left' style='font-size: 25px; color: white;'></span>";
 			echo"</a>";
 			
 			echo "<div class='table-responsive'>";

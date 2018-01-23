@@ -57,7 +57,6 @@
 						echo"</tr>";
 						echo "<tr>";
 							echo "<td>Nome</td>";
-							echo "<td>Data de registro</td>";
 							echo "<td>Curso</td>";
 							echo "<td>Quantidade de alunos</td>";
 							echo "<td>Ações</td>";
@@ -68,7 +67,6 @@
 						{
 							echo "<tr>";
 								echo "<td>".$Turmas[$i]['nome_turma']."</td>";
-								echo "<td>".$Turmas[$i]['data_registro']."</td>";
 								echo "<td>".$Turmas[$i]['nome_curso']."</td>";
 								echo "<td>".$Turmas[$i]['qtd_aluno']."</td>";
 								echo "<td>";

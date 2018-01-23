@@ -44,8 +44,8 @@
 			?>
 			<?php if(isset($this->load->session->id)): ?>
 				<div class='form-group'>
-						<div class='input-group-addon'>Tipo de usuário</span></div>
-						<select name='grupo_id' id='grupo_id' class='form-control text-white'>
+						<div class='input-group-addon' style="color: #8a8d93;">Tipo de usuário</span></div>
+						<select name='grupo_id' id='grupo_id' class='form-control'>
 							<option value='0' style='background-color: #393836;'>Selecione</option>
 							<?php
 								for($i = 0; $i < count($grupos_usuario); $i++)
@@ -84,16 +84,16 @@
 			<?php if(isset($this->load->session->id)): ?>
 			<div class='form-group'>
 				<div class='checkbox checbox-switch switch-success custom-controls-stacked'>
-					<?php
-						$checked = "";
-						if($obj['ativo'] == 1)
-							$checked = "checked";
-						
-						echo"<label for='conta'class='text-white'>";
-							echo "<input type='checkbox' $checked id='conta' name='conta_ativa' value='1' /><span></span> Conta ativa";
-						echo"</label>";
-					?>
-				</div>
+						<?php
+							$checked = "";
+							if($obj['ativo'] == 1)
+								$checked = "checked";
+							
+							echo"<label for='conta_ativa' class='text-white'>";
+								echo "<input type='checkbox' $checked id='conta_ativa' name='conta_ativa' value='1' /><span></span> Conta ativa";
+							echo"</label>";
+						?>
+					</div>
 			</div>
 			<?php endif; ?>
 			<?php
