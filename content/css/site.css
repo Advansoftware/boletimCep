@@ -10,9 +10,14 @@ nav::-webkit-scrollbar-thumb {
   background-color: darkgrey;
   outline: 1px solid slategrey;
 }
+
 .padding{
 	padding-top: 10px;
 	padding-bottom: 10px; 
+}
+
+.padding30{
+  padding: 30px;
 }
 
 .border-default{

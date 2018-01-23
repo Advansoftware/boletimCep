@@ -391,7 +391,8 @@ var Main = {
 	lista_alunos : function(turma){
 		window.location.assign(Main.base_url+"boletim/alunos/"+turma);
 	},
-	atualiza_boletim : function(aluno,disciplina,bimestre,valor,boletim_id,campo){
+	atualiza_boletim : function(aluno,disciplina,bimestre,valor,boletim_id,campo)
+	{
 		if(valor != "" && valor != " ")
 		{
 			$("#mensagem").html("Aguarde... processando dados");
@@ -413,5 +414,8 @@ var Main = {
 				}
 			});
 		}
+	},
+	settings : function(){
+		$("#settings").modal('show');
 	}
 };

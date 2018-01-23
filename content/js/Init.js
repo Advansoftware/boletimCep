@@ -1,7 +1,6 @@
 $(document).ready(
 	//inicializa o html adicionando os envetos js especificados abaixo
 	function () {
-
 		Main.load_mask();
 		//event for form login
 	   $( "#form_login").submit(function( event ) {

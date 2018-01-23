@@ -73,6 +73,9 @@
 		
 		public function edit($id = false)
 		{
+			if($id === false)
+				$id = $this->Account_model->session_is_valid()['id'];
+
 			if($this->Geral_model->get_permissao(UPDATE,get_class($this)) == true)
 			{
 				$this->data['title'] = 'Usuario - Cadastro';

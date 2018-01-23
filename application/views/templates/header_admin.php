@@ -21,7 +21,6 @@
 			.form-control:focus{
 				border-bottom: 1px solid #dc3545;
 			}
-
 		</style>
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	</head >
@@ -30,11 +29,11 @@
 			<nav class="side-navbar">
 				<div class="sidenav-header d-flex align-items-center justify-content-center">
 					<div class="sidenav-header-inner  text-center">
-						<img class="img-fluid rounded-circle" src="<?php echo $url;?>/content/imagens/logo.png">
+						<img class="img-fluid rounded-circle" src="<?php echo $url;?>/content/imagens/logo.png" title='CEP - Centro de Educação Profissional "Tancredo Neves"'>
 						<h2>CEP - Admin</h2> <br />
 					</div>
 					<div style="margin-top: 15px;" class="sidenav-header-logo"><a href="#" class="brand-small text-center">
-						<strong>CEP</strong></a>
+						<strong title='CEP - Centro de Educação Profissional "Tancredo Neves"'>CEP</strong></a>
 					</div>
 				</div>
 				<div class="main-menu">
@@ -70,6 +69,7 @@
 					</ul>
 				</div>
 			</nav>
+
 			<div class="modal fade" id="admin_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			  <div class="modal-dialog" role="document">
 				<div class="modal-content">
@@ -85,6 +85,7 @@
 				</div>
 			  </div>
 			</div>
+
 			<div id="admin_confirm_modal" class="modal" tabindex="-1" role="dialog">
 			  <div class="modal-dialog" role="document">
 				<div class="modal-content">
@@ -104,6 +105,7 @@
 				</div>
 			  </div>
 			</div>
+
 			<div id="admin_warning_modal" class="modal" tabindex="-1" role="dialog">
 			  <div class="modal-dialog" role="document">
 				<div class="modal-content">
@@ -122,6 +124,29 @@
 				</div>
 			  </div>
 			</div>
+
+			<div id="settings" class="modal" tabindex="-1" role="dialog">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+				  		<div class="modal-header text-center">
+							<h5 class="modal-title">
+								<span class="glyphicon glyphicon-cog"></span> Configurações
+							</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					  			<span aria-hidden="true">&times;</span>
+							</button>
+				  		</div>
+					  	<div id="corpo_settings" class="modal-body">
+							<div class="row padding30" style="padding-top: 10px;">
+								<a href="<?php echo $url."Usuario/edit" ?>" id='conta' class='btn btn-success'>Configurações da conta</a>
+							</div>
+				  		</div>
+					  	<!--<div class="modal-footer">
+					  	</div>-->
+					</div>
+			  	</div>
+			</div>
+
 			<div class='page home-page'>
 				<header class="header">
 					<nav class="navbar">
@@ -135,7 +160,7 @@
 										<?php
 										echo "<div data-toggle='popover' data-html='true' data-placement='left' title='<div class=\"text-center\">Opções da conta</div>' 
 												data-content='
-													<button class=\"btn btn-outline-info btn-block glyphicon glyphicon-cog\" onclick=\"Main.logout()\">&nbsp;Configurações</button><button class=\"btn btn-outline-danger btn-block glyphicon glyphicon-log-out\" onclick=\"Main.logout()\">&nbsp;Sair</button>
+													<button onclick=\"Main.settings();\" class=\"btn btn-outline-info btn-block glyphicon glyphicon-cog\">&nbsp;Configurações</button><button class=\"btn btn-outline-danger btn-block glyphicon glyphicon-log-out\" onclick=\"Main.logout()\">&nbsp;Sair</button>
 												
 												'  style='font-size: 40px; color: #f5f5f5; cursor: pointer; padding: 10px; border: 1px solid #e9ecef; border-radius: 35px;'>
 													 <span class='glyphicon glyphicon-user'></span>

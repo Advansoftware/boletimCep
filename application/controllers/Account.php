@@ -16,7 +16,7 @@
 			metodo responsavel carregar o formulario de login
 		*/
 		public function login()
-		{	
+		{
 			$this->data['title'] = 'Login';
 			$this->load->view('templates/header',$this->data);
 			$this->load->view('account/login',$this->data);
