@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 18-Jan-2018 às 20:17
+-- Generation Time: 23-Jan-2018 às 03:23
 -- Versão do servidor: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -64,7 +64,8 @@ INSERT INTO `acesso` (`id`, `data_registro`, `modulo_id`, `criar`, `visualizar`,
 (18, '2018-01-18 19:04:32', 5, 0, 0, 0, 0, 3),
 (19, '2018-01-18 19:04:32', 6, 0, 0, 0, 0, 3),
 (20, '2018-01-18 19:04:32', 7, 0, 0, 0, 0, 3),
-(21, '2018-01-18 19:04:32', 8, 0, 0, 0, 0, 3);
+(21, '2018-01-18 19:04:32', 8, 0, 0, 0, 0, 3),
+(22, '2018-01-18 19:29:06', 9, 1, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -129,7 +130,7 @@ INSERT INTO `boletim` (`id`, `ativo`, `data_registro`, `nota1`, `falta1`, `nota2
 (4, 1, '2017-12-20 06:01:03', 8, 0, 0, 0, 0, 0, 0, 0, 1, 7, 9),
 (5, 1, '2017-12-20 06:07:51', 23, 0, 0, 0, 0, 0, 0, 0, 1, 6, 9),
 (6, 1, '2017-12-20 06:19:38', 12, 0, 46, 0, 0, 0, 0, 0, 2, 8, 7),
-(8, 1, '2017-12-20 06:43:19', 5, 0, 0, 0, 0, 0, 0, 0, 1, 9, 9);
+(8, 1, '2017-12-20 06:43:19', 98, 2, 0, 0, 0, 0, 0, 0, 1, 9, 9);
 
 -- --------------------------------------------------------
 
@@ -282,7 +283,8 @@ CREATE TABLE `menu` (
 --
 
 INSERT INTO `menu` (`id`, `data_registro`, `ativo`, `nome`, `ordem`) VALUES
-(1, '2017-12-28 22:40:47', 1, 'Administrativo', 1);
+(1, '2017-12-28 22:40:47', 1, 'Gestão', 1),
+(2, '2018-01-18 21:22:24', 1, 'Acadêmico', 2);
 
 -- --------------------------------------------------------
 
@@ -311,10 +313,11 @@ INSERT INTO `modulo` (`id`, `data_registro`, `ativo`, `nome`, `descricao`, `url`
 (2, '2017-12-28 22:40:47', 1, 'Menus', 'Lista de menus', 'Menu', 1, 'fa fa-navicon', 1),
 (3, '2017-12-28 22:40:47', 1, 'Grupos', 'Lista de grupos', 'Grupo', 1, 'fa fa-th-large', 1),
 (4, '2017-12-28 22:40:48', 1, 'Usuários', 'Lista de usuários', 'Usuario', 1, 'glyphicon glyphicon-user', 1),
-(5, '2017-12-29 05:55:14', 1, 'Disciplina', 'Disciplinas', 'Disciplina', 1, ' glyphicon glyphicon-paperclip', NULL),
-(6, '2017-12-29 20:09:51', 1, 'Curso', 'Curso', 'Curso', 2, 'glyphicon glyphicon-folder-open', NULL),
-(7, '2017-12-29 21:25:48', 1, 'Aluno', 'Alunos', 'Aluno', 3, 'glyphicon glyphicon-user', NULL),
-(8, '2017-12-30 01:15:48', 1, 'Turma', 'Turma', 'Turma', 4, 'glyphicon glyphicon-book', NULL);
+(5, '2017-12-29 05:55:14', 1, 'Disciplina', 'Disciplinas', 'Disciplina', 1, ' glyphicon glyphicon-paperclip', 2),
+(6, '2017-12-29 20:09:51', 1, 'Curso', 'Curso', 'Curso', 2, 'glyphicon glyphicon-folder-open', 2),
+(7, '2017-12-29 21:25:48', 1, 'Aluno', 'Alunos', 'Aluno', 3, 'glyphicon glyphicon-user', 2),
+(8, '2017-12-30 01:15:48', 1, 'Turma', 'Turma', 'Turma', 4, 'glyphicon glyphicon-book', 2),
+(9, '2018-01-18 19:28:13', 1, 'Boletim', 'Boletim', 'Boletim', 5, 'glyphicon glyphicon-file', 2);
 
 -- --------------------------------------------------------
 
@@ -343,7 +346,8 @@ INSERT INTO `turma` (`id`, `ativo`, `data_registro`, `nome`, `curso_id`) VALUES
 (22, 1, '2017-12-20 06:42:17', 'OOO2', 21),
 (23, 1, '2017-12-28 01:02:36', 'ateste', 1),
 (24, 1, '2017-12-31 06:52:08', 'Administrador', 34),
-(25, 1, '2017-12-31 06:52:24', 'hhhhh', 33);
+(25, 1, '2017-12-31 06:52:24', 'hhhhh', 33),
+(26, 1, '2018-01-18 22:27:39', 'NOVO ANO', 21);
 
 -- --------------------------------------------------------
 
@@ -390,7 +394,12 @@ INSERT INTO `turma_disciplina` (`turma_id`, `disciplina_id`) VALUES
 (19, 7),
 (19, 8),
 (21, 8),
-(22, 9);
+(22, 9),
+(23, 7),
+(23, 8),
+(23, 9),
+(26, 8),
+(26, 9);
 
 -- --------------------------------------------------------
 
@@ -414,7 +423,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id`, `data_registro`, `ultimo_acesso`, `grupo_id`, `ativo`, `nome`, `email`, `senha`) VALUES
-(1, '2017-12-28 22:40:46', '2018-01-18 19:16:13', 1, 1, 'Admin', 'admin@dominio.com.br', 'admin123'),
+(1, '2017-12-28 22:40:46', '2018-01-23 02:16:01', 1, 1, 'Admin', 'admin@dominio.com.br', 'admin123'),
 (2, '2018-01-18 19:02:38', '0000-00-00 00:00:00', 2, 1, 'nomed2', 'example@example.com', 'password');
 
 --
@@ -526,7 +535,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT for table `acesso`
 --
 ALTER TABLE `acesso`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `aluno`
@@ -538,7 +547,7 @@ ALTER TABLE `aluno`
 -- AUTO_INCREMENT for table `boletim`
 --
 ALTER TABLE `boletim`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `categoria`
@@ -568,19 +577,19 @@ ALTER TABLE `grupo`
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `modulo`
 --
 ALTER TABLE `modulo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `turma`
 --
 ALTER TABLE `turma`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `usuario`
