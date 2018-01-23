@@ -1,11 +1,30 @@
+<head>
+<?= link_tag('content/css/bootstrap.min.css') ?>
+<style>
+#boletim .table th,#boletim .table td{
+	border-top: none;
+}
+.table{
+	font-size: 13px;
+}
+.img-fluid{
+	width:90%;
+	margin-bottom: 30px; 
+}
+strong{
+	font-size: 15px;
+	margin-top: -20px;
+}
+
+</style>
 <div class='table-responsive' id=boletim>
 <input type='hidden' id='controller' value='<?php echo $controller; ?>'/>
+	<header class="text-center">
+		<img  class="img-fluid border border-dark" src="<?php echo $url?>content/imagens/topo.png">
+		<?php echo"<strong>ENSINO MÉDIO INTEGRADO AO CURSO TÉCNICO EM ".$boletim[0]['nome_curso']."<strong>";?>
+	</header>
 <?php
-	echo"<div class='row' style='padding: 30px;'>";
-		echo "<div class='col-lg-12 text-center'>";
-			echo"ENSINO MÉDIO INTEGRADO AO CURSO <b>TÉCNICO EM ".$boletim[0]['nome_curso']."</b>";
-		echo "</div>";
-	echo"</div>";
+	echo "<div class='col-lg-12'>";
 	echo"<div class'row' style='padding: 30px;'>";
 		echo"<div class='col-lg-12'>";
 			echo"<table class='table'>";
@@ -115,40 +134,38 @@
 						echo $boletim[$i]['nome_disciplina'];
 					echo"</td>";
 					echo"<td>";
-						echo"<input onblur='Main.atualiza_boletim(".$boletim[$i]['aluno_id'].",".$boletim[$i]['disciplina_id'].",1,this.value,".(!empty($boletim[$i]['boletim_id']) ? $boletim[$i]['boletim_id'] : '0'). ",\"nota1\");' class='form-control text-center text-dark border border-secondary' type='text' value='".$boletim[$i]['nota1']."' />";
+						echo $boletim[$i]['nota1'];
 					echo"</td>";
 					echo"<td>";
-						echo"<input onblur='Main.atualiza_boletim(".$boletim[$i]['aluno_id'].",".$boletim[$i]['disciplina_id'].",1,this.value,".(!empty($boletim[$i]['boletim_id']) ? $boletim[$i]['boletim_id'] : '0'). ",\"falta1\");' class='form-control text-center text-dark border border-secondary' type='text' value='".$boletim[$i]['falta1']."' />";
+						echo $boletim[$i]['falta1'];
 					echo"</td>";
 					echo"<td>";
-						echo"<input onblur='Main.atualiza_boletim(".$boletim[$i]['aluno_id'].",".$boletim[$i]['disciplina_id'].",2,this.value,".(!empty($boletim[$i]['boletim_id']) ? $boletim[$i]['boletim_id'] : '0'). ",\"nota2\");' class='form-control text-center text-dark border border-secondary' type='text' value='".$boletim[$i]['nota2']."' />";
+						echo $boletim[$i]['nota2'];
 					echo"</td>";
 					echo"<td>";
-						echo"<input onblur='Main.atualiza_boletim(".$boletim[$i]['aluno_id'].",".$boletim[$i]['disciplina_id'].",2,this.value,".(!empty($boletim[$i]['boletim_id']) ? $boletim[$i]['boletim_id'] : '0'). ",\"falta2\");' class='form-control text-center text-dark border border-secondary' type='text' value='".$boletim[$i]['falta2']."' />";
+						echo $boletim[$i]['falta2'];
 					echo"</td>";
 					echo"<td>";
-						echo"<input onblur='Main.atualiza_boletim(".$boletim[$i]['aluno_id'].",".$boletim[$i]['disciplina_id'].",3,this.value,".(!empty($boletim[$i]['boletim_id']) ? $boletim[$i]['boletim_id'] : '0'). ",\"nota3\");' class='form-control text-center text-dark border border-secondary' type='text' value='".$boletim[$i]['nota3']."' />";
+						echo $boletim[$i]['nota3'];
 					echo"</td>";
 					echo"<td>";
-						echo"<input onblur='Main.atualiza_boletim(".$boletim[$i]['aluno_id'].",".$boletim[$i]['disciplina_id'].",3,this.value,".(!empty($boletim[$i]['boletim_id']) ? $boletim[$i]['boletim_id'] : '0'). ",\"falta3\");' class='form-control text-center text-dark border border-secondary' type='text' value='".$boletim[$i]['falta3']."' />";
+						echo $boletim[$i]['falta3'];
 					echo"</td>";
 					echo"<td>";
-						echo"<input onblur='Main.atualiza_boletim(".$boletim[$i]['aluno_id'].",".$boletim[$i]['disciplina_id'].",4,this.value,".(!empty($boletim[$i]['boletim_id']) ? $boletim[$i]['boletim_id'] : '0'). ",\"nota4\");' class='form-control text-center text-dark border border-secondary' type='text' value='".$boletim[$i]['nota4']."' />";
+						echo $boletim[$i]['nota4'];
 					echo"</td>";
 					echo"<td>";
-						echo"<input onblur='Main.atualiza_boletim(".$boletim[$i]['aluno_id'].",".$boletim[$i]['disciplina_id'].",4,this.value,".(!empty($boletim[$i]['boletim_id']) ? $boletim[$i]['boletim_id'] : '0'). ",\"falta4\");' class='form-control text-center text-dark border border-secondary' type='text' value='".$boletim[$i]['falta4']."' />";
+						echo $boletim[$i]['falta4'];
 					echo"</td>";
 					echo"<td>";
 						if(!empty($boletim[$i]['nota4']))
-							echo"<input readonly='readonly' class='form-control text-center text-dark' type='text' value='".(($boletim[$i]['nota1'] + $boletim[$i]['nota2'] + $boletim[$i]['nota3'] + $boletim[$i]['nota4']) / 4)."' />";
+							echo (($boletim[$i]['nota1'] + $boletim[$i]['nota2'] + $boletim[$i]['nota3'] + $boletim[$i]['nota4']) / 4);
 						else
-							echo"<input type='text' class='form-control text-center text-dark border border-secondary' readonly='readonly'>";
+							
 					echo"</td>";
 					echo"<td>";
 						if(!empty($boletim[$i]['falta1']))
-							echo"<input readonly='readonly' class='form-control text-center text-dark border border-secondary' type='text' value='".($boletim[$i]['falta1'] + $boletim[$i]['falta2'] + $boletim[$i]['falta3'] + $boletim[$i]['falta4'])."' />";
-						else
-							echo"<input type='text' class='form-control text-center text-dark border border-secondary' readonly='readonly'>";
+							echo  ($boletim[$i]['falta1'] + $boletim[$i]['falta2'] + $boletim[$i]['falta3'] + $boletim[$i]['falta4']);
 					echo"</td>";
 				echo"</tr>";
 			}
