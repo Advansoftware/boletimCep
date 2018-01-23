@@ -122,7 +122,7 @@
 		public function alunoPdf(){
 			$this->data['Alunos'] = $this->Aluno_model->get_aluno();
 			$html = $this->load->view('aluno/aluno_pdf', $this->data, true);
-			$filename = 'boletim_'.time();
+			$filename = 'lista_alunos_'.time();
 			$this->pdfgenerator->generate($html, $filename, true, 'A4', 'portrait');
 		}
 	}

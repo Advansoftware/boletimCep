@@ -28,7 +28,7 @@
 								echo "<td>".$Turmas[$i]['nome_curso']."</td>";
 								echo "<td>".$Turmas[$i]['qtd_aluno']."</td>";
 								echo "<td>";
-									echo"<button class='btn btn-danger'>Gerar PDF</button>";
+									//echo"<a class='btn btn-danger' href='".$url."boletim/boletim_da_TurmaPdf('22,9') target='_blank'>Gerar PDF</a>";
 								echo "</td>";
 							echo "</tr>";
 						}

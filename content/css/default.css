@@ -200,7 +200,6 @@ input.input-material ~ label.error {
 input.input-material ~ label.active {
   font-size: 0.85rem;
   top: -10px;
-  color: #007bff;
 }
 
 .form-group-material {

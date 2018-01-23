@@ -106,28 +106,11 @@
 			header('Content-Type: application/json');
 			echo json_encode($arr);
 		}
-
-		public function turmaPdf()
-		{
-			$data['url'] = base_url();
-			$data['controller'] = 'boletim';
-			$data['NomeTurma'] = $this->Turma_model->get_turma($turma_id)[0]['NomeTurma'];
-			$data['Alunos'] = $this->Turma_model->get_aluno_por_turma($turma_id);
-			$data['title'] = 'Administração';
-			$data['message'] = 'Administração';
-			$html = $this->load->view('boletim/boletim_pdf', $data, true);
- 
-	        //this the the PDF filename that user will get to download
-	        $pdfFilePath = "output_pdf_name.pdf";
-	 		//$this->load->view('aluno/aluno_pdf',$data);
-	        //load mPDF library
-	      	$this->load->library('m_pdf');
-	 		
-	       //generate the PDF from the given html
-	        $this->m_pdf->pdf->WriteHTML($html);
-	 
-	        //download it.
-	        $this->m_pdf->pdf->Output($pdfFilePath, "D");
+		public function boletimAlunoPdf($aluno_id,$turma_id){
+			$this->data['boletim'] = $this->Boletim_model->get_boletim(POR_ALUNO,$aluno_id,$turma_id);
+			$html = $this->load->view('boletim/boletim_pdf', $this->data, true);
+			$filename = 'boletim_'.time();
+			$this->pdfgenerator->generate($html, $filename, true, 'A4', 'portrait');
 		}
 	}
 ?>

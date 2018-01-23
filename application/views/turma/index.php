@@ -3,9 +3,7 @@
 <br /><br />
 <div class='row' id='container' name='container' style='padding: 20px;'>
 	<input type='hidden' id='controller' value='<?php echo $controller; ?>'/>
-</div>
-<div class='row' id='container' name='container' style='border: 1px solid rgba(0,0,0,.1);'>
-	<div id="admin_trocar_aluno" class="modal" tabindex="-1" role="dialog">
+	<div id="admin_trocar_aluno" class="modal" tabindex="-1" role="dialog" >
 	  <div class="modal-dialog" role="document">
 		<div class="modal-content">
 		  <div class="modal-header text-center">
@@ -17,9 +15,9 @@
 		  <div  class="modal-body text-center">
 			<div class='form-group'>
 				<div class='input-group mb-2 mb-sm-0'>
-					<div class='input-group-addon'>Turmas</div>
-					<select name='turma_id' id='turma_id' class='form-control'>
-						<option value='0'>Selecione uma turm de origem</option>
+					<div class='input-group-addon  text-dark'>Turmas&nbsp;</div>
+					<select name='turma_id' id='turma_id' class='form-control  text-dark border border-dark'>
+						<option value='0'>Selecione uma turma de origem</option>
 						<?php
 							for($i = 0; $i < count($Turmas); $i++)
 							{
@@ -51,10 +49,8 @@
 							echo"</td>";
 						echo"</tr>";
 						echo"<tr>";
-						echo"<td colspan='4' class='text-right'>";
-							echo"<button class='btn btn-outline-danger' id='bt_trocar_aluno'>Trocar aluno de turma</button>";
-						echo"</td>";
-						echo"<td class='text-right'>";
+						echo"<td colspan='5' class='text-right'>";
+							echo"<button class='btn btn-danger' id='bt_trocar_aluno'>Trocar aluno de turma</button>";
 						if(permissao::get_permissao(CREATE,$controller))
 							echo"<a class='btn btn-success' href='".$url."$controller/create_edit/0/'>Nova turma</a>";
 						echo"</td>";

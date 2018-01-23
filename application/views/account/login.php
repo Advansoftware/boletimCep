@@ -33,7 +33,7 @@
 		<div class="row">
 			<div class="col-lg-5 bg-white shadow-basic">
 				<div class="form d-flex align-items-center">
-					<div class="content">
+					<div class="content" id="login">
 					  <?php
 							$atr = array('id' => 'form_login','name' => 'form_login');
 							echo form_open('Account/validar',$atr);
@@ -50,8 +50,8 @@
 								<div class='input-group mb-2 mb-sm-0 text-danger' id='error-senha-login'></div>
 							</div>
 							<div class='checkbox checbox-switch switch-success custom-controls-stacked'>
-								<label for='conectado'>
-									<input type='checkbox' id='conectado' name='conectado' value='1'><span></span>Manter conectado
+								<label for='conectado' class="text-dark">
+									<input type='checkbox' id='conectado' name='conectado' value='1'><span ></span>Manter conectado
 								</label>
 							</div><br />
 							<div class="text-center">

@@ -47,3 +47,10 @@ nav::-webkit-scrollbar-thumb {
 .relative{
 	position: relative;
 }
+input.input-material ~ label.active {
+  color: #dae0e5;
+}
+
+#login input.input-material ~ label.active {
+  color: #007bff;
+}
