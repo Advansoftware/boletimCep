@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 23-Jan-2018 às 03:23
+-- Generation Time: 23-Jan-2018 às 19:40
 -- Versão do servidor: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -150,6 +150,25 @@ CREATE TABLE `categoria` (
 INSERT INTO `categoria` (`id`, `nome`) VALUES
 (1, 'Matérias Técnicas'),
 (2, 'Matérias do ensino médio');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `configuracoes_geral`
+--
+
+CREATE TABLE `configuracoes_geral` (
+  `id` int(11) NOT NULL,
+  `media` double NOT NULL,
+  `itens_por_pagina` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `configuracoes_geral`
+--
+
+INSERT INTO `configuracoes_geral` (`id`, `media`, `itens_por_pagina`) VALUES
+(1, 60, 2);
 
 -- --------------------------------------------------------
 
@@ -423,7 +442,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id`, `data_registro`, `ultimo_acesso`, `grupo_id`, `ativo`, `nome`, `email`, `senha`) VALUES
-(1, '2017-12-28 22:40:46', '2018-01-23 02:16:01', 1, 1, 'Admin', 'admin@dominio.com.br', 'admin123'),
+(1, '2017-12-28 22:40:46', '2018-01-23 17:49:11', 1, 1, 'Admin3', 'admin@dominio.com.br', 'admin123'),
 (2, '2018-01-18 19:02:38', '0000-00-00 00:00:00', 2, 1, 'nomed2', 'example@example.com', 'password');
 
 --
@@ -458,6 +477,12 @@ ALTER TABLE `boletim`
 -- Indexes for table `categoria`
 --
 ALTER TABLE `categoria`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `configuracoes_geral`
+--
+ALTER TABLE `configuracoes_geral`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -554,6 +579,12 @@ ALTER TABLE `boletim`
 --
 ALTER TABLE `categoria`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `configuracoes_geral`
+--
+ALTER TABLE `configuracoes_geral`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `curso`

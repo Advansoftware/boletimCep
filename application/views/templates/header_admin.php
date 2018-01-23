@@ -145,7 +145,12 @@
 				  		</div>
 					  	<div id="corpo_settings" class="modal-body">
 							<div class="row padding30" style="padding-top: 10px;">
-								<a href="<?php echo $url."Usuario/edit" ?>" id='conta' class='btn btn-success'>Configurações da conta</a>
+								<div class="col-lg-6">
+									<a href="<?php echo $url."Usuario/edit" ?>" id='conta' class='btn btn-success'>Configurações da conta</a>
+								</div>
+								<div class="col-lg-6">
+									<a href="<?php echo $url."Settings/geral" ?>" id='conta' class='btn btn-success'>Configurações gerais</a>
+								</div>
 							</div>
 				  		</div>
 					  	<!--<div class="modal-footer">

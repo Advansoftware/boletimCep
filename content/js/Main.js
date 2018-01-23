@@ -86,7 +86,7 @@ var Main = {
 	show_error : function(form, error, class_error)
 	{
 		if(class_error != "")
-			document.getElementById(form).className = "form-control "+class_error;
+			document.getElementById(form).className = "input-material "+class_error;
 		document.getElementById("error-"+form).innerHTML = error;
 	},
 	limpa_login : function ()
@@ -126,6 +126,9 @@ var Main = {
 				}
 			}
 		});
+	},
+	settings_geral_validar : function(){
+		Main.create_edit();
 	},
 	usuario_validar : function(){
 		if($("#nome").val() == "")

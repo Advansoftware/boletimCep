@@ -5,8 +5,6 @@ define("READ",'visualizar');
 define("UPDATE",'atualizar');
 define("DELETE",'apagar');
 
-define("ITENS_POR_PAGINA",5);
-
 	class Geral extends CI_Controller 
 	{
 		protected $data;
@@ -14,6 +12,9 @@ define("ITENS_POR_PAGINA",5);
 		public function __construct()
 		{
 			parent::__construct();
+			$this->load->model('Settings_model');
+			define("ITENS_POR_PAGINA",$this->Settings_model->get_geral()['itens_por_pagina']);
+
 			$this->load->library('pdfgenerator');
 			$this->load->model('account_model');
 			$this->load->model('Menu_model');

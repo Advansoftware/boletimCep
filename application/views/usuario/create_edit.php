@@ -66,7 +66,7 @@
 					echo"<fieldset>";
 						echo"<legend class='text-white'>Alterar senha</legend>";
 						
-						echo"<div class='form-group' style='position: relative;''>";
+						echo"<div class='form-group relative'>";
 							echo"<input id='nova_senha' name='nova_senha' value='' type='password' class='input-material'>";
 							echo"<label for='nova_senha' class='label-material'>Nova senha</label>";
 							echo"<div class='input-group mb-2 mb-sm-0 text-danger' id='error-nova_senha'></div>";

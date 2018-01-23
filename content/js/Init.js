@@ -88,6 +88,12 @@ $(document).ready(
 		});		
 		
 		//BTN CADASTROS
+
+		$( "#form_cadastro_geral_Settings").submit(function( event ) {
+			event.preventDefault();
+			Main.settings_geral_validar();
+		});
+		
 		$( "#form_cadastro_Usuario").submit(function( event ) {
 			event.preventDefault();
 			Main.usuario_validar();
