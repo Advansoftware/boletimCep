@@ -1,16 +1,18 @@
 <?php $this->load->helper("permissao");?>
 <?php $this->load->helper("paginacao");?>
-
-<div class='row' style='padding: 30px;'>
-	<p>Todas as Disciplinas </p><br />
+<br /><br />
+<div class='row' id='container' name='container' style='padding: 20px;'>
 	<input type='hidden' id='controller' value='<?php echo $controller; ?>'/>
-</div>
-<div class='row' id='container' name='container' style='border: 1px solid rgba(0,0,0,.1);'>
 	<?php
-		echo "<div class='col-lg-10 offset-lg-1'>";
+		echo "<div class='col-lg-10 offset-lg-1 padding' style='background: #393836;'>";
 			echo "<div class='table-responsive'>";
-				echo "<table class='table table-striped table-hover'>";
+				echo "<table class='table table-striped table-hover' style='color: white;'>";
 					echo "<thead>";
+						echo"<tr>";
+							echo"<td class='text-center' colspan='5'>";
+								echo"<p style='color: white; margin-top: 10px;'>Todas as Disciplinas</p>";
+							echo"</td>";
+						echo"</tr>";
 						echo"<tr><td colspan='3' class='text-right'>";
 						if(permissao::get_permissao(CREATE,$controller))
 								echo"<a class='btn btn-success' href='".$url."disciplina/create/0/'>Nova disciplina</a>";
