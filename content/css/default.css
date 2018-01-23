@@ -456,7 +456,7 @@ nav.side-navbar {
   -webkit-transition: all 0.3s linear;
   transition: all 0.3s linear;
   z-index: 999;
-  overflow-y: auto;
+  overflow-y: scroll; 
   /* arrow rotation -------------- */
   /*  Side navbar small ------------------------ */
 }
