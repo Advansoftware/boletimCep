@@ -17,9 +17,12 @@
 		
 		public function get_permissao($type, $modulo)
 		{
+			$CI = get_instance();
+			$CI->load->model("Account_model");
+			
 			$query = $this->db->query("SELECT a.$type FROM acesso a 
 										INNER JOIN modulo m ON a.modulo_id = m.id 
-										WHERE grupo_id = ".$this->session->grupo_id."  
+										WHERE grupo_id = ".$CI->account_model->session_is_valid()['id']."  
 										AND m.url = ".$this->db->escape($modulo)."");
 			$result = $query->row_array();
 			

@@ -37,7 +37,7 @@
 		
 		public function index()
 		{
-			redirect("account/login");
+			redirect("Account/login");
 		}
 
 		/*
