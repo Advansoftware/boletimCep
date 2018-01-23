@@ -32,3 +32,6 @@ nav::-webkit-scrollbar-thumb {
 	margin-bottom: 15px;
 	text-align: center;
 }
+#boletim .table th,#boletim .table td{
+	border-top: none;
+}

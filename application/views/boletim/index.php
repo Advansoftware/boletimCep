@@ -1,18 +1,20 @@
 <?php $this->load->helper("permissao");?>
 <?php $this->load->helper("paginacao");?>
-
-<div class='row' style='padding: 30px;'>
-	<p>Todos os cursos</p><br />
-</div>
-<div class='row' id='container' name='container' style='border: 1px solid rgba(0,0,0,.1);'>
+<br/><br/>
+<div class='row' id='container' name='container' style='padding: 20px;'>
 	<?php
-		echo "<div class='col-lg-10 offset-lg-1'>";
+		echo "<div class='col-lg-10 offset-lg-1 padding' style='background: #393836;'>";
 			echo "<div class='table-responsive'>";
-				echo "<table class='table table-striped table-hover'>";
+				echo "<table class='table table-striped table-hover' style='color: white;'>";
 					echo "<thead>";
+						echo"<tr>";
+							echo"<td class='text-center' colspan='5'>";
+								echo"<p style='color: white; margin-top: 10px;'>Todos os Cursos</p>";
+							echo"</td>";
+						echo"</tr>";
 						echo "<tr>";
 							echo "<td>Nome</td>";
-						echo "<tr>";
+						echo "</tr>";
 					echo "</thead>";
 					echo "<tbody>";
 						for($i = 0; $i < count($Cursos); $i++)

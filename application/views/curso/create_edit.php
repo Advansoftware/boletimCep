@@ -16,7 +16,7 @@
 				<div class='input-group mb-2 mb-sm-0 text-danger' id='error-nome'></div>
 			</div>
 			<div class='form-group'>
-				<div class="card">
+				<div class="card">  
 				  <h3 class="card-header">Disciplinas técnicas</h3>
 					<div class="card-body">
 						<ul class="list-group">
