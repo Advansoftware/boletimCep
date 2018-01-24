@@ -14,7 +14,8 @@
 }
 .img-fluid{
 	width:90%;
-	margin-bottom: 30px; 
+	padding: 10px !important;
+	margin-bottom: 35px !important; 
 }
 strong{
 	font-size: 15px;
