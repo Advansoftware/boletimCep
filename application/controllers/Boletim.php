@@ -58,6 +58,7 @@
 				$this->data['paginacao']['size'] = ((isset($this->data['Turmas'][0]['size'])) ? $this->data['Turmas'][0]['size'] : 0 );
 				$this->data['paginacao']['pg_atual'] = $page;
 				$this->data['paginacao']['method'] = "turmas";
+				$this->data['paginacao']['parameter'] = $curso_id;
 
 				$this->view("boletim/turmas",$this->data);
 			}
@@ -78,6 +79,7 @@
 				$this->data['paginacao']['size'] = ((isset($this->data['Alunos'][0]['size'])) ? $this->data['Alunos'][0]['size'] : 0 );
 				$this->data['paginacao']['pg_atual'] = $page;
 				$this->data['paginacao']['method'] = "alunos";
+				$this->data['paginacao']['parameter'] = $turma_id;
 
 				$this->view("boletim/alunos",$this->data);
 			}
@@ -91,8 +93,6 @@
 			if($this->Geral_model->get_permissao(READ,get_class($this)) == true)
 			{
 				$this->data['boletim'] = $this->Boletim_model->get_boletim(POR_ALUNO,$aluno_id,$turma_id);
-				
-
 				$this->view("boletim/boletim",$this->data);
 			}
 			else

@@ -145,10 +145,7 @@
 							echo"<input type='text' class='form-control text-center text-dark border border-secondary' readonly='readonly'>";
 					echo"</td>";
 					echo"<td>";
-						if(!empty($boletim[$i]['falta1']))
 							echo"<input readonly='readonly' class='form-control text-center text-dark border border-secondary' type='text' value='".($boletim[$i]['falta1'] + $boletim[$i]['falta2'] + $boletim[$i]['falta3'] + $boletim[$i]['falta4'])."' />";
-						else
-							echo"<input type='text' class='form-control text-center text-dark border border-secondary' readonly='readonly'>";
 					echo"</td>";
 				echo"</tr>";
 			}

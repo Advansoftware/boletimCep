@@ -40,6 +40,19 @@
 			else
 				$this->view("templates/permissao",$this->data);
 		}
+
+		public function detalhes($id = false)
+		{
+			if($this->Geral_model->get_permissao(READ,get_class($this)) == true)
+			{
+				$this->data['title'] = 'Turma - Detalhes';
+				$this->data['obj'] = $this->Turma_model->get_turma($id);
+				$this->data['alunos'] = $this->Turma_model->get_aluno_por_turma($id);
+				$this->view("turma/detalhes",$this->data);
+			}
+			else
+				$this->view("templates/permissao",$this->data);
+		}
 		
 		/*
 			APAGAR UMA DISCIPLINA DESDE QUE EXISTA A SESSAO DE USUARIO E A MESMA
@@ -80,7 +93,7 @@
 		{
 			//ate aqui ja se tem a turma carregada
 			//agora carregar todas as disciplinas pra ela de acordo com o curso
-			$this->data['disciplinas'] = $this->Disciplina_model->get_disciplina_por_curso($this->data['Turma'][0]['curso_id']);
+			$this->data['disciplinas'] = $this->Disciplina_model->get_disciplina_por_curso($this->data['Turma']['curso_id']);
 			$this->view("turma/create_edit_disciplina",$this->data);
 		}
 		
@@ -88,7 +101,7 @@
 		{
 			//ate aqui ja se tem a turma carregada
 			//agora carregar todos os alunos acordo com o curso
-			$this->data['alunos'] = $this->Aluno_model->get_aluno_por_curso($this->data['Turma'][0]['curso_id'],$this->data['Turma'][0]['id']);
+			$this->data['alunos'] = $this->Aluno_model->get_aluno_por_curso($this->data['Turma']['curso_id'],$this->data['Turma']['id']);
 			$this->view("turma/create_edit_aluno",$this->data);
 		}
 		

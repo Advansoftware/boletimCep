@@ -59,7 +59,7 @@
 							echo "<td>Nome</td>";
 							echo "<td>Curso</td>";
 							echo "<td>Quantidade de alunos</td>";
-							echo "<td>Ações</td>";
+							echo "<td class='text-right'>Ações</td>";
 						echo "<tr>";
 					echo "</thead>";
 					echo "<tbody>";
@@ -69,11 +69,12 @@
 								echo "<td>".$Turmas[$i]['nome_turma']."</td>";
 								echo "<td>".$Turmas[$i]['nome_curso']."</td>";
 								echo "<td>".$Turmas[$i]['qtd_aluno']."</td>";
-								echo "<td>";
+								echo "<td class='text-right'>";
 								if(permissao::get_permissao(UPDATE,$controller))
 									echo "<a href='".$url."$controller/create_edit/".$Turmas[$i]['id']."' title='Editar' style='color: #dc3545; cursor: pointer;' class='glyphicon glyphicon-edit'></a>  |  ";
+								echo "<a href='".$url."$controller/detalhes/".$Turmas[$i]['id']."' title='Detalhes' style='color: #dc3545; cursor: pointer;' class='glyphicon glyphicon-th'></a>";
 								if(permissao::get_permissao(DELETE,$controller))
-									echo "<span onclick='Main.confirm_delete(". $Turmas[$i]['id'] .");' id='sp_lead_trash' name='sp_lead_trash' title='Apagar' style='color: #dc3545; cursor: pointer;' class='glyphicon glyphicon-trash'></span>";
+									echo " | <span onclick='Main.confirm_delete(". $Turmas[$i]['id'] .");' id='sp_lead_trash' name='sp_lead_trash' title='Apagar' style='color: #dc3545; cursor: pointer;' class='glyphicon glyphicon-trash'></span>";
 								echo "</td>";
 							echo "</tr>";
 						}

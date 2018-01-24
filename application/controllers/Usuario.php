@@ -48,7 +48,7 @@
 		
 		public function detalhes($id = false)
 		{
-			if($this->Geral_model->get_permissao(UPDATE,get_class($this)) == true)
+			if($this->Geral_model->get_permissao(READ,get_class($this)) == true)
 			{
 				$this->data['title'] = 'Usuario - Detalhes';
 				$this->data['obj'] = $this->Usuario_model->get_usuario($id);

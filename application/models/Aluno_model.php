@@ -59,8 +59,8 @@
 				LEFT JOIN turma_aluno ta ON a.id = ta.aluno_id 
 				WHERE a.curso_id = ".$this->db->escape($id)." AND 
 				(ta.turma_id is null OR ta.turma_id = ".$this->db->escape($turma_id)." OR
-				YEAR(ta.data_registro) != YEAR(NOW()))");
-
+				YEAR(ta.data_registro) != YEAR(NOW())) GROUP BY a.nome");
+print_r($query);
 			return $query->result_array();
 		}
 		

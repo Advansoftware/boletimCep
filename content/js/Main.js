@@ -413,6 +413,8 @@ var Main = {
 					$("#mensagem").html("Dados salvos com sucesso");
 					setTimeout(function(){
 						$("#admin_modal").modal('hide');
+						if(campo == "nota4" && valor > 0)
+							location.reload();
 					},500);
 				}
 			});

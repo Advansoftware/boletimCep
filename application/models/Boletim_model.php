@@ -31,14 +31,16 @@
 					INNER JOIN aluno a ON ta.aluno_id = a.id
 					INNER JOIN curso cs ON a.curso_id = cs.id
 					LEFT JOIN boletim b ON a.id = b.aluno_id  AND d.id = b.disciplina_id
-				WHERE true ".$sql_parcial." AND YEAR(ta.data_registro) = YEAR(t.data_registro) 
+				WHERE true ".$sql_parcial."  
 				ORDER BY d.categoria_id DESC");
-
 			return $query->result_array();
 		}
 		
 		public function set_boletim($aluno_id,$disciplina_id,$bimestre,$valor,$boletim_id,$campo)
 		{
+			
+			$this->db->query("INSERT INTO teste (campo) value(".$this->db->escape($boletim_id).")");
+
 			if(empty($this->busca_registro($aluno_id,$disciplina_id)))
 				$this->db->query("
 					INSERT INTO boletim(ativo, aluno_id, disciplina_id, bimestre, $campo)
@@ -53,14 +55,10 @@
 		public function busca_registro($aluno_id,$disciplina_id)
 		{
 			$query = $this->db->query("
-				SELECT id FROM boletim 
-				WHERE aluno_id = ".$this->db->escape($aluno_id)." 
-				AND disciplina_id = ".$this->db->escape($disciplina_id)." 
-				AND YEAR(data_registro) = (SELECT YEAR(data_registro) 
-						FROM turma WHERE 
-						id = (SELECT turma_id 
-								FROM aluno 
-								WHERE id = ".$this->db->escape($aluno_id)."))");
+				SELECT id FROM boletim b
+				WHERE b.aluno_id = ".$this->db->escape($aluno_id)." 
+				AND b.disciplina_id = ".$this->db->escape($disciplina_id)."
+				AND YEAR(b.data_registro) = YEAR((select data_registro FROM turma where id = (select turma_id from aluno WHERE id = ".$this->db->escape($aluno_id)."))) ");
 			return $query->row_array();
 		}
 	}

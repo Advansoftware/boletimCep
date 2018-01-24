@@ -9,11 +9,7 @@
 		{
 			$this->load->database();
 		}
-		
-		/*
-			RETORNA UM LEAD DE ACORDO COM O ID, 
-			CASO O PARAMETRO ID NAO SEJA PASSADO RETORNA UMA LISTA DE LEAD
-		*/
+
 		public function get_turma($id = FALSE, $page = FALSE)
 		{
 			if ($id === FALSE)//retorna todos se nao passar o parametro
@@ -39,12 +35,16 @@
 				return $query->result_array();
 			}
 
-			$query =  $this->db->query(" 
-				SELECT t.id, t.nome as nome_turma, t.curso_id 
+			$query =  $this->db->query(
+				"SELECT t.id, t.ativo, DATE_FORMAT(t.data_registro, '%d/%m/%Y') as data_registro, 
+				t.nome as nome_turma, t.curso_id, c.nome as nome_curso, 
+				(SELECT count(*) FROM turma_aluno ta WHERE ta.turma_id = t.id) as qtd_aluno
 					FROM turma t 
-					WHERE t.id = ".$this->db->escape($id)."");
+				INNER JOIN curso c ON t.curso_id = c.id 
+				WHERE t.ativo = 1 
+				AND t.id = ".$id."");
 
-			return $query->result_array();
+				return $query->row_array();
 		}
 		
 		public function get_disciplina_por_turma($turma_id)

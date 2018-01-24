@@ -11,7 +11,7 @@
 				<div class='form-group'>
 					<div class='input-group mb-2 mb-sm-0'>
 						<div class='input-group-addon'>Nome</div>
-						<input name='nome' id='nome' value='<?php if(!empty($Turma[0]['nome_turma'])) echo $Turma[0]['nome_turma']; ?>' type='text' class='form-control' placeholder='Nome' autofocus />
+						<input name='nome' id='nome' value='<?php if(!empty($Turma['nome_turma'])) echo $Turma['nome_turma']; ?>' type='text' class='form-control' placeholder='Nome' autofocus />
 					</div>
 					<div class='input-group mb-2 mb-sm-0 text-danger' id='error-nome'></div>
 				</div>
@@ -24,7 +24,7 @@
 								for($i = 0; $i < count($Cursos); $i++)
 								{
 									$selected = "";
-									if(isset($Turma[0]['curso_id']) && $Cursos[$i]['id'] == $Turma[0]['curso_id'])
+									if(isset($Turma['curso_id']) && $Cursos[$i]['id'] == $Turma['curso_id'])
 										$selected = "selected";
 									echo"<option $selected value='". $Cursos[$i]['id'] ."'>".$Cursos[$i]['nome']."</option>";
 								}
