@@ -1,11 +1,16 @@
 <head>
 <?= link_tag('content/css/bootstrap.min.css') ?>
 <style>
-#boletim .table th,#boletim .table td{
+#table-infos th, #table-infos td{
+	border-top: none;
+	padding: none;
+}
+#tabela-dados th, #tabela-dados td{
 	border-top: none;
 }
 .table{
 	font-size: 13px;
+	margin: -10px;
 }
 .img-fluid{
 	width:90%;
@@ -13,18 +18,35 @@
 }
 strong{
 	font-size: 15px;
-	margin-top: -20px;
 }
-.parent {
-  position: relative;
+.table-blue{
+	background-color: #002060;
+	color: white;
+	width: 15%;
+	border: 1px solid black;
+	padding: 5px 0px 5px 0px !important;
 }
-.child {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+.table-nota{
+	background-color: #0070c0;
+	font-size: 13px;
+	color: white;
+	font-weight: bold;
+	text-align: center;
+	vertical-align: middle !important;
+	border: 1px solid black;
+	border-top-color: black; 
+
+}
+.table-corpo{
+	border: 1px solid black;
+	text-align: center;
+	border-top: 1px solid black; 
+}
+.table-disciplinas{
+	background-color: #daeef3;
 }
 </style>
-<div class='table-responsive' id=boletim>
+<div class='table-responsive'>
 <input type='hidden' id='controller' value='<?php echo $controller; ?>'/>
 	<header class="text-center">
 		<img  class="img-fluid border border-dark" src="<?php echo $url?>content/imagens/topo.png">
@@ -34,7 +56,7 @@ strong{
 	echo "<div class='col-lg-12'>";
 	echo"<div class'row' style='padding: 30px;'>";
 		echo"<div class='col-lg-12'>";
-			echo"<table class='table'>";
+			echo"<table class='table' id='tabela-dados'>";
 				echo"<tr>";
 					echo"<td class='text-right'>";
 						echo"Turma:";
@@ -58,13 +80,13 @@ strong{
 					echo"<td  class='text-right'>";
 						echo"Nº:";
 					echo"</td>";
-					echo "<td  class='alert alert-dark'>";
+					echo "<td  class='alert alert-dark text-center'>";
 						echo $boletim[0]['numero_chamada'];
 					echo "</td>";
-					echo"<td>";
+					echo"<td class='text-right'>";
 						echo"Nome:";
 					echo"</td>";
-					echo "<td class='alert alert-dark' colspan='14'>";
+					echo "<td class='alert alert-dark text-center' colspan='14'>";
 						echo $boletim[0]['nome_aluno'];
 					echo "</td>";
 				echo"</tr>";
@@ -72,55 +94,56 @@ strong{
 		echo"</div>";
 	echo"</div>";
 	echo"<div class='row' style='padding: 30px; padding-top: 0px;'>";
-		echo"<table class='table' border='1px' >";
-			echo "<tbody class='border border-secondary'>";
+		echo"<table class='table' id='table-infos'> ";
+			echo "<tbody>";
 			echo"<tr>";
+				
 				echo"<td rowspan='2' colspan='2' style='width: 25%;'>";
 				echo"</td>";
-				echo"<td style='width: 15%;' class='text-center' colspan='2'>";
-					echo"1º Bimestre <br />20 pontos";
+				echo"<td class='text-center table-blue' colspan='2'>";
+					echo"<strong>1º Bimestre <br />- 20 pontos -</strong>";
 				echo"</td>";
-				echo"<td style='width: 15%;' class='text-center' colspan='2'>";
-					echo"2º Bimestre <br />25 pontos";
+				echo"<td class='text-center table-blue' colspan='2'>";
+					echo"<strong>2º Bimestre <br />- 25 pontos -</strong>";
 				echo"</td>";
-				echo"<td style='width: 15%;' class='text-center' colspan='2'>";
-					echo"3º Bimestre <br />25 pontos";
+				echo"<td class='text-center table-blue' colspan='2'>";
+					echo"<strong>3º Bimestre <br />- 25 pontos -</strong>";
 				echo"</td>";
-				echo"<td style='width: 15%;' class='text-center' colspan='2'>";
-					echo"4º Bimestre <br />30 pontos";
+				echo"<td class='text-center table-blue' colspan='2'>";
+					echo"<strong>4º Bimestre <br />- 30 pontos -</strong>";
 				echo"</td>";
-				echo"<td style='width: 15%;' class='text-center' colspan='2'>";
+				echo"<td colspan='2'>";
 				echo"</td>";
 			echo"</tr>";
 			echo"<tr>";
-				echo"<td class='text-center'>";
+				echo"<td class='table-nota'>";
 					echo"Nota";
 				echo"</td>";
-				echo"<td class='text-center'>";
+ 				echo"<td class='table-nota'>";
 					echo"Faltas";
 				echo"</td>";
-				echo"<td class='text-center'>";
+				echo"<td class='table-nota'>";
 					echo"Nota";
 				echo"</td>";
-				echo"<td class='text-center'>";
+				echo"<td class='table-nota'>";
 					echo"Faltas";
 				echo"</td>";
-				echo"<td class='text-center'>";
+				echo"<td class='table-nota'>";
 					echo"Nota";
 				echo"</td>";
-				echo"<td class='text-center'>";
+				echo"<td class='table-nota'>";
 					echo"Faltas";
 				echo"</td>";
-				echo"<td class='text-center'>";
+				echo"<td class='table-nota'>";
 					echo"Nota";
 				echo"</td>";
-				echo"<td class='text-center'>";
+				echo"<td class='table-nota'>";
 					echo"Faltas";
 				echo"</td>";
-					echo"<td class='text-center'>";
+					echo"<td class='table-nota'>";
 					echo"Média Final";
 				echo"</td>";
-				echo"<td class='text-center'>";
+				echo"<td class='table-nota'>";
 					echo"Total Faltas";
 				echo"</td>";
 			echo"</tr>";
@@ -150,48 +173,48 @@ strong{
 				{
 					echo"<tr>";
 						$categoria_temp = $boletim[$i]['nome_categoria'];
-						echo"<td style='vertical-align: middle;' colspan='12' style='width: 8%;'>";
+						echo"<td  style='position: relative;padding: 5px;background-color: #002060;color: white;' class='table-corpo border border-dark' colspan=12>";
 							echo "<b>".$boletim[$i]['nome_categoria']."</b>";
 						echo"</td>";
 					echo"</tr>";
 					$count++;
 
 				}
-				echo"<tr>";
-					echo"<td colspan='2'>";
+				echo "<tr>";
+					echo"<td colspan='2'  class='table-corpo table-disciplinas'>";
 						echo $boletim[$i]['nome_disciplina'];
 					echo"</td>";
-					echo"<td>";
+					echo"<td class='table-corpo'>";
 						echo $boletim[$i]['nota1'];
 					echo"</td>";
-					echo"<td>";
+					echo"<td class='table-corpo'>";
 						echo $boletim[$i]['falta1'];
 					echo"</td>";
-					echo"<td>";
+					echo"<td class='table-corpo'>";
 						echo $boletim[$i]['nota2'];
 					echo"</td>";
-					echo"<td>";
+					echo"<td  class='table-corpo'>";
 						echo $boletim[$i]['falta2'];
 					echo"</td>";
-					echo"<td>";
+					echo"<td  class='table-corpo'>";
 						echo $boletim[$i]['nota3'];
 					echo"</td>";
-					echo"<td>";
+					echo"<td  class='table-corpo'>";
 						echo $boletim[$i]['falta3'];
 					echo"</td>";
-					echo"<td>";
+					echo"<td  class='table-corpo'>";
 						echo $boletim[$i]['nota4'];
 					echo"</td>";
-					echo"<td>";
+					echo"<td  class='table-corpo'>";
 						echo $boletim[$i]['falta4'];
 					echo"</td>";
-					echo"<td>";
+					echo"<td  class='table-corpo'>";
 						if(!empty($boletim[$i]['nota4']))
 							echo (($boletim[$i]['nota1'] + $boletim[$i]['nota2'] + $boletim[$i]['nota3'] + $boletim[$i]['nota4']) / 4);
 						else
 							
 					echo"</td>";
-					echo"<td>";
+					echo"<td class='table-corpo'>";
 						if(!empty($boletim[$i]['falta1']))
 							echo  ($boletim[$i]['falta1'] + $boletim[$i]['falta2'] + $boletim[$i]['falta3'] + $boletim[$i]['falta4']);
 					echo"</td>";
