@@ -5,7 +5,7 @@
 
 	require_once("Geral.php");
 
-	class Boletim extends Geral {
+	class Nota extends Geral {
 		/*
 			no construtor carregamos as bibliotecas necessarias e tambem nossa model
 		*/
@@ -40,7 +40,7 @@
 				$this->data['Cursos'] = $this->Curso_model->get_curso(false, $page);
 				$this->data['paginacao']['size'] = $this->data['Cursos'][0]['size'];
 				$this->data['paginacao']['pg_atual'] = $page;
-				$this->view("boletim/index",$this->data);
+				$this->view("nota/index",$this->data);
 			}
 			else
 				$this->view("templates/permissao",$this->data);
@@ -61,31 +61,7 @@
 				$this->data['paginacao']['method'] = "turmas";
 				$this->data['paginacao']['parameter'] = $curso_id;
 
-				$this->view("boletim/turmas",$this->data);
-			}
-			else
-				$this->view("templates/permissao",$this->data);
-		}
-		/*
-			ESTE MÉTODO LISTA OS ALUNOS DE UMA TURMA PARA QUE O USUARIO ACESSE O BOLETIM DE CADA
-			ALUNO
-		*/
-		public function alunos($turma_id, $page = false)
-		{
-			if($page === false)
-				$page = 1;
-
-			$this->data['title'] = 'Administração';
-			if($this->Geral_model->get_permissao(READ,get_class($this)) == true)
-			{
-				$this->data['nome_turma'] = $this->Turma_model->get_turma($turma_id)[0]['nome_turma'];
-				$this->data['Alunos'] = $this->Turma_model->get_aluno_por_turma($turma_id, $page);
-				$this->data['paginacao']['size'] = ((isset($this->data['Alunos'][0]['size'])) ? $this->data['Alunos'][0]['size'] : 0 );
-				$this->data['paginacao']['pg_atual'] = $page;
-				$this->data['paginacao']['method'] = "alunos";
-				$this->data['paginacao']['parameter'] = $turma_id;
-
-				$this->view("boletim/alunos",$this->data);
+				$this->view("nota/turmas",$this->data);
 			}
 			else
 				$this->view("templates/permissao",$this->data);
@@ -107,7 +83,7 @@
 				$this->data['paginacao']['method'] = "alunos";
 				$this->data['paginacao']['parameter'] = $turma_id;
 
-				$this->view("boletim/alunos",$this->data);
+				$this->view("nota/alunos",$this->data);
 			}
 			else
 				$this->view("templates/permissao",$this->data);

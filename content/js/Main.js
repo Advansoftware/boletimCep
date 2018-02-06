@@ -388,31 +388,34 @@ var Main = {
 			}
 		});
 	},
-	lista_turma : function(curso){
-		window.location.assign(Main.base_url+"boletim/turmas/"+curso);
+	lista_turma : function(curso,controller){
+		window.location.assign(Main.base_url+controller+"/turmas/"+curso);
+	},
+	lista_disciplinas : function(turma){
+		window.location.assign(Main.base_url+"boletim/disciplinas/"+turma);
 	},
 	lista_alunos : function(turma){
 		window.location.assign(Main.base_url+"boletim/alunos/"+turma);
 	},
-	atualiza_boletim : function(aluno,disciplina,bimestre,valor,boletim_id,campo)
+	atualiza_boletim_por_disciplina : function(aluno,disciplina,bimestre,valor,turma_id,campo)
 	{
 		if(valor != "" && valor != " ")
 		{
-			$("#mensagem").html("Aguarde... processando dados");
+			/*$("#mensagem").html("Aguarde... processando dados");
 			$('#admin_modal').modal({
 				keyboard: false,
 				backdrop : 'static'
-			})
+			})*/
 			$.ajax({
-				url: Main.base_url+$("#controller").val()+'/atualiza_boletim/'+aluno+"/"+disciplina+"/"+bimestre+"/"+valor+"/"+boletim_id+"/"+campo,
+				url: Main.base_url+$("#controller").val()+'/atualiza_boletim_por_disciplina/'+aluno+"/"+disciplina+"/"+bimestre+"/"+valor+"/"+turma_id+"/"+campo,
 				dataType:'json',
 				cache: false,
 				type: 'POST',
 				success: function (msg) {
 					
-					$("#mensagem").html("Dados salvos com sucesso");
+					//$("#mensagem").html("Dados salvos com sucesso");
 					setTimeout(function(){
-						$("#admin_modal").modal('hide');
+						//$("#admin_modal").modal('hide');
 						if(campo == "nota4" && valor > 0)
 							location.reload();
 					},500);

@@ -10,17 +10,19 @@
 			$this->load->database();
 		}
 
-		public function get_boletim($busca,$aluno_id, $turma_id)
+		public function get_boletim($busca,$aluno_id, $turma_id, $disciplina_id)
 		{
 			if($busca == POR_ALUNO)
 				$sql_parcial = " AND t.id = ".$this->db->escape($turma_id)." AND a.id = ".$this->db->escape($aluno_id);
 			else if($busca == POR_TURMA)
 				$sql_parcial = " AND t.id = ".$this->db->escape($turma_id);
+			else if($busca = POR_TURMA_E_DISCIPLINA)
+				$sql_parcial = " AND t.id = ".$this->db->escape($turma_id)." AND d.id = ".$this->db->escape($disciplina_id);
 
 			$query = $this->db->query("
 				SELECT t.nome as nome_turma, d.nome as nome_disciplina, c.nome as nome_categoria,
 				a.nome as nome_aluno, a.numero_chamada, UPPER(cs.nome) as nome_curso,
-				b.nota1, b.falta1, b.nota2, b.falta2, b.nota3, b.falta3, b.nota4, b.falta4,b.bimestre,
+				b.nota1, b.falta1, b.nota2, b.falta2, b.nota3, b.falta3, b.nota4, b.falta4, b.bimestre,
 				c.id as categoria_id, t.id as turma_id, d.id as disciplina_id, a.id as aluno_id, 
 				b.id as boletim_id 
 				FROM turma t 
@@ -33,32 +35,32 @@
 					LEFT JOIN boletim b ON a.id = b.aluno_id  AND d.id = b.disciplina_id
 				WHERE true ".$sql_parcial."  
 				ORDER BY d.categoria_id DESC");
+
 			return $query->result_array();
 		}
 		
-		public function set_boletim($aluno_id,$disciplina_id,$bimestre,$valor,$boletim_id,$campo)
+		public function set_boletim($aluno_id,$disciplina_id,$bimestre,$valor,$turma_id = false,$campo)
 		{
-			
-			$this->db->query("INSERT INTO teste (campo) value(".$this->db->escape($boletim_id).")");
-
-			if(empty($this->busca_registro($aluno_id,$disciplina_id)))
+			if(empty($this->busca_registro($aluno_id, $disciplina_id, $turma_id)))
 				$this->db->query("
-					INSERT INTO boletim(ativo, aluno_id, disciplina_id, bimestre, $campo)
+					INSERT INTO boletim(ativo, aluno_id, disciplina_id,turma_id, bimestre, $campo)
 					VALUES(1,".$this->db->escape($aluno_id).",".$this->db->escape($disciplina_id).","
+					.$this->db->escape($turma_id).","
 					.$this->db->escape($bimestre).",".$this->db->escape($valor).");");
 			else
 				$this->db->query("
 					UPDATE boletim SET $campo = ".$this->db->escape($valor)." 
-					WHERE id = ".$this->busca_registro($aluno_id,$disciplina_id)['id']."");
+					WHERE id = ".$this->busca_registro($aluno_id,$disciplina_id, $turma_id)['id']."");
 		}
 		
-		public function busca_registro($aluno_id,$disciplina_id)
+		public function busca_registro($aluno_id, $disciplina_id, $turma_id)
 		{
 			$query = $this->db->query("
 				SELECT id FROM boletim b
 				WHERE b.aluno_id = ".$this->db->escape($aluno_id)." 
 				AND b.disciplina_id = ".$this->db->escape($disciplina_id)."
-				AND YEAR(b.data_registro) = YEAR((select data_registro FROM turma where id = (select turma_id from aluno WHERE id = ".$this->db->escape($aluno_id)."))) ");
+				AND b.turma_id = ".$this->db->escape($turma_id)."");
+
 			return $query->row_array();
 		}
 	}

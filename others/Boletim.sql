@@ -107,10 +107,13 @@ CREATE TABLE boletim (
 	bimestre INT,
 	aluno_id INT NOT NULL,
 	disciplina_id INT NOT NULL,
+	turma_id INT NOT NULL,
 	CONSTRAINT fk_aluno_boletim
 		FOREIGN KEY (aluno_id) REFERENCES aluno(id),
 	CONSTRAINT fk_disciplina_boletim
-		FOREIGN KEY (disciplina_id) REFERENCES disciplina(id)
+		FOREIGN KEY (disciplina_id) REFERENCES disciplina(id),
+	CONSTRAINT fk_turma_boletim
+		FOREIGN KEY (turma_id) REFERENCES turma(id)
 );
 
 CREATE TABLE usuario(

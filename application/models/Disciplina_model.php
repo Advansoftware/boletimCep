@@ -31,7 +31,7 @@
 					d.id, d.nome as nome_disciplina, d.ativo, 
 					d.data_registro, c.nome as nome_categoria, d.categoria_id 
 						FROM disciplina d
-					INNER JOIN categoria c ON d.categoria_id = c.Id 
+					INNER JOIN categoria c ON d.categoria_id = c.id 
 					WHERE d.ativo = 1 
 					ORDER BY d.data_registro DESC ". $pagination ."");
 

@@ -21,7 +21,7 @@
 				</div>
 				
 				<div class='form-group'>
-						<div class='input-group-addon'>ítens por página</div>
+						<div class='input-group-addon'>Ítens por página</div>
 						<input name='itens_por_pagina' min="1" id='itens_por_pagina' value='<?php echo (!empty($obj['itens_por_pagina']) ? $obj['itens_por_pagina']:''); ?>' type='number' class='form-control' />
 					<div class='input-group mb-2 mb-sm-0 text-danger' id='error-itens_por_pagina'></div>
 				</div>

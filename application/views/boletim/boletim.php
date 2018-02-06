@@ -1,12 +1,12 @@
 <div class='table-responsive' id=boletim>
 <input type='hidden' id='controller' value='<?php echo $controller; ?>'/>
 <?php
-	echo"<div class='row' style='padding: 30px;'>";
+	echo"<div class='row padding30'>";
 		echo "<div class='col-lg-12 text-center'>";
 			echo"ENSINO MÉDIO INTEGRADO AO CURSO <b>TÉCNICO EM ".$boletim[0]['nome_curso']."</b>";
 		echo "</div>";
 	echo"</div>";
-	echo"<div class'row' style='padding: 30px;'>";
+	echo"<div class'row padding30>";
 		echo"<div class='col-lg-12'>";
 			echo"<table class='table'>";
 				echo"<tr>";

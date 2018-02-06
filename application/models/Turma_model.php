@@ -47,13 +47,26 @@
 				return $query->row_array();
 		}
 		
-		public function get_disciplina_por_turma($turma_id)
+		public function get_disciplina_por_turma($turma_id, $page = false)
 		{
+			$limit = $page * ITENS_POR_PAGINA;
+			$inicio = $limit - ITENS_POR_PAGINA;
+			$step = ITENS_POR_PAGINA;
+			
+			$pagination = " LIMIT ".$inicio.",".$step;
+			if($page === false)
+				$pagination = "";
+
 			$query = $this->db->query("
-				SELECT td.disciplina_id, d.nome 
+				SELECT (
+					SELECT count(*) FROM turma_aluno 
+					WHERE turma_id = ".$this->db->escape($turma_id).") 
+					AS size,
+				td.disciplina_id, d.nome, c.nome as nome_categoria  
 					FROM  turma_disciplina td 
 				INNER JOIN disciplina d ON td.disciplina_id = d.id 
-				WHERE td.turma_id = ".$this->db->escape($turma_id)."");
+				INNER JOIN categoria c ON d.categoria_id = c.id 
+				WHERE td.turma_id = ".$this->db->escape($turma_id)."".$pagination."");
 
 			return $query->result_array();
 		}
@@ -73,8 +86,8 @@
 					SELECT count(*) FROM turma_aluno 
 					WHERE turma_id = ".$this->db->escape($turma_id).") 
 					AS size,
-				ta.aluno_id, a.nome, a.numero_chamada, c.nome as nome_curso, ta.turma_id 
-				FROM turma_aluno ta 
+				ta.aluno_id, a.nome, a.numero_chamada, UPPER(c.nome) as nome_curso, ta.turma_id 
+					FROM turma_aluno ta 
 				INNER JOIN aluno a ON ta.aluno_id = a.id 
 				INNER JOIN curso c ON a.curso_id = c.id 
 				WHERE ta.turma_id = ".$this->db->escape($turma_id)."".$pagination."");
@@ -117,11 +130,6 @@
 				turma_id = ".$this->db->escape($data['id_atual'])."");
 		}
 		
-		
-		
-		/*
-			INSERE OU ATUALIZA UM LEAD 
-		*/
 		public function set_turma($data)
 		{
 			if(empty($data['id']))
@@ -200,9 +208,6 @@
 					".$this->db->escape($data['turma_id']).")");
 		}
 		
-		/*
-			FAZ UM UPDATE DESATIVANDO O LEAD, CASO NECESSITAR REATIVA-LO ALGUM DIA
-		*/
 		public function delete_turma($id){
 			// $this->db->where('id',$id); 
 			// return $this->db->delete("leads");
