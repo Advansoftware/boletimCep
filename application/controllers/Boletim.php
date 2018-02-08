@@ -78,7 +78,7 @@
 			$this->data['title'] = 'Administração';
 			if($this->Geral_model->get_permissao(READ,get_class($this)) == true)
 			{
-				$this->data['nome_turma'] = $this->Turma_model->get_turma($turma_id)[0]['nome_turma'];
+				$this->data['nome_turma'] = $this->Turma_model->get_turma($turma_id)['nome_turma'];
 				$this->data['Alunos'] = $this->Turma_model->get_aluno_por_turma($turma_id, $page);
 				$this->data['paginacao']['size'] = ((isset($this->data['Alunos'][0]['size'])) ? $this->data['Alunos'][0]['size'] : 0 );
 				$this->data['paginacao']['pg_atual'] = $page;
@@ -86,44 +86,6 @@
 				$this->data['paginacao']['parameter'] = $turma_id;
 
 				$this->view("boletim/alunos",$this->data);
-			}
-			else
-				$this->view("templates/permissao",$this->data);
-		}
-		
-		public function disciplinas($turma_id, $page = false)
-		{
-			if($page === false)
-				$page = 1;
-
-			$this->data['title'] = 'Administração';
-			if($this->Geral_model->get_permissao(READ,get_class($this)) == true)
-			{
-				$this->data['turma_id'] = $turma_id;
-				$this->data['nome_turma'] = $this->Turma_model->get_turma($turma_id)['nome_turma'];
-				$this->data['disciplinas'] = $this->Turma_model->get_disciplina_por_turma($turma_id, $page);
-				$this->data['paginacao']['size'] = ((isset($this->data['disciplinas'][0]['size'])) ? $this->data['disciplinas'][0]['size'] : 0 );
-				$this->data['paginacao']['pg_atual'] = $page;
-				$this->data['paginacao']['method'] = "alunos";
-				$this->data['paginacao']['parameter'] = $turma_id;
-
-				$this->view("boletim/alunos",$this->data);
-			}
-			else
-				$this->view("templates/permissao",$this->data);
-		}
-
-		/*
-			ESTE MÉTODO LISTA TODOS OS ALUNOS DE UMA TURMA COM RELAÇÃO A UMA DISCIPLINA
-			PARA QUE O USUÁRIO POSSA INSERIR AS NOTAS DE TODOS OS ALUNOS POR DISCIPLINA
-		*/
-		public function nota_disciplina($turma_id, $disciplina_id)
-		{
-			$this->data['title'] = 'Administração';
-			if($this->Geral_model->get_permissao(READ,get_class($this)) == true)
-			{
-				$this->data['boletim'] = $this->Boletim_model->get_boletim(POR_TURMA_E_DISCIPLINA,0,$turma_id, $disciplina_id);
-				$this->view("boletim/nota_disciplina",$this->data);
 			}
 			else
 				$this->view("templates/permissao",$this->data);
@@ -141,13 +103,6 @@
 				$this->view("templates/permissao",$this->data);
 		}
 		
-		public function atualiza_boletim_por_disciplina($aluno_id,$disciplina_id,$bimestre,$valor,$turma_id,$campo)
-		{
-			$this->Boletim_model->set_boletim($aluno_id,$disciplina_id,$bimestre,$valor,$turma_id,$campo);
-			$arr = array('response' => '9');
-			header('Content-Type: application/json');
-			echo json_encode($arr);
-		}
 		public function boletimAlunoPdf($aluno_id,$turma_id){
 			$this->data['boletim'] = $this->Boletim_model->get_boletim(POR_ALUNO,$aluno_id,$turma_id);
 			$html = $this->load->view('boletim/boletim_pdf', $this->data, true);

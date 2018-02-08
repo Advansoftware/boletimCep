@@ -10,7 +10,7 @@
 			$this->load->database();
 		}
 
-		public function get_boletim($busca,$aluno_id, $turma_id, $disciplina_id)
+		public function get_boletim($busca,$aluno_id, $turma_id, $disciplina_id = false)
 		{
 			if($busca == POR_ALUNO)
 				$sql_parcial = " AND t.id = ".$this->db->escape($turma_id)." AND a.id = ".$this->db->escape($aluno_id);
@@ -20,11 +20,13 @@
 				$sql_parcial = " AND t.id = ".$this->db->escape($turma_id)." AND d.id = ".$this->db->escape($disciplina_id);
 
 			$query = $this->db->query("
-				SELECT t.nome as nome_turma, d.nome as nome_disciplina, c.nome as nome_categoria,
-				a.nome as nome_aluno, a.numero_chamada, UPPER(cs.nome) as nome_curso,
-				b.nota1, b.falta1, b.nota2, b.falta2, b.nota3, b.falta3, b.nota4, b.falta4, b.bimestre,
-				c.id as categoria_id, t.id as turma_id, d.id as disciplina_id, a.id as aluno_id, 
-				b.id as boletim_id 
+				SELECT t.nome AS nome_turma, d.nome AS nome_disciplina, c.nome AS nome_categoria, 
+				(SELECT media FROM configuracoes_geral) AS media, 
+				(SELECT total_faltas FROM configuracoes_geral) AS faltas_permitada, 
+				a.nome AS nome_aluno, a.numero_chamada, UPPER(cs.nome) AS nome_curso, 
+				b.nota1, b.falta1, b.nota2, b.falta2, b.nota3, b.falta3, b.nota4, b.falta4, b.bimestre, 
+				c.id AS categoria_id, t.id AS turma_id, d.id AS disciplina_id, a.id AS aluno_id, 
+				b.id AS boletim_id, nota_final, status, exame 
 				FROM turma t 
 					INNER JOIN turma_disciplina td ON t.id = td.turma_id 
 					INNER JOIN disciplina d ON td.disciplina_id = d.id
@@ -51,8 +53,93 @@
 				$this->db->query("
 					UPDATE boletim SET $campo = ".$this->db->escape($valor)." 
 					WHERE id = ".$this->busca_registro($aluno_id,$disciplina_id, $turma_id)['id']."");
+			
+			if($campo == "nota4" || $campo == "falta4")
+				$this->calculo_final($aluno_id,$disciplina_id,$turma_id);
+			else if($campo == "exame")
+				$this->exame_final($aluno_id,$disciplina_id,$turma_id,$valor);
 		}
-		
+
+		/*
+			atualiza o status do aluno de acordo com a nota de exame final
+		*/
+		public function exame_final($aluno_id,$disciplina_id,$turma_id,$valor)
+		{
+			$status = "Reprovado";
+			if($valor >= 60)
+				$status = "Aprovado";
+			$query = $this->db->query("
+					UPDATE boletim SET status = '$status'
+					WHERE turma_id = ".$this->db->escape($turma_id)." AND
+					aluno_id = ".$this->db->escape($aluno_id)." AND
+					disciplina_id = ".$this->db->escape($disciplina_id)."");
+		}
+
+		/*
+			calcula a nota final do aluno e determina seu status
+		*/
+		public function calculo_final($aluno_id,$disciplina_id,$turma_id)
+		{
+			$query = $this->db->query("
+				UPDATE boletim SET nota_final = (nota1 + nota2 + nota3 + nota4) 
+				WHERE turma_id = ".$this->db->escape($turma_id)." AND 
+				aluno_id = ".$this->db->escape($aluno_id)." AND 
+				disciplina_id = ".$this->db->escape($disciplina_id)."");
+			
+			$CI = get_instance();
+			$CI->load->model("Settings_model");
+
+			//se estourar em faltas, automaticamente ja coloca o aluno em recuperacao em todas as materias
+			if($this->total_faltas($aluno_id, $turma_id) > $CI->Settings_model->get_faltas())
+			{
+				$query = $this->db->query("
+					UPDATE boletim SET status = 'Recuperação' 
+					WHERE turma_id = ".$this->db->escape($turma_id)." AND
+					aluno_id = ".$this->db->escape($aluno_id)."");
+			}
+			else if($this->get_nota_final_disciplina($aluno_id, $turma_id, $disciplina_id) < $CI->Settings_model->get_media())
+			{
+				$query = $this->db->query("
+					UPDATE boletim SET status = 'Recuperação' 
+					WHERE turma_id = ".$this->db->escape($turma_id)." AND
+					aluno_id = ".$this->db->escape($aluno_id)." AND
+					disciplina_id = ".$this->db->escape($disciplina_id)."");
+			}
+			else
+			{
+				$query = $this->db->query("
+					UPDATE boletim SET status = 'Aprovado' 
+					WHERE turma_id = ".$this->db->escape($turma_id)." AND
+					aluno_id = ".$this->db->escape($aluno_id)." AND
+					disciplina_id = ".$this->db->escape($disciplina_id)."");
+			}
+		}
+		/*
+			retorna todas as faltas de todas as disciplinas do aluno
+		*/
+		public function total_faltas($aluno_id, $turma_id)
+		{
+			$query = $this->db->query("
+				SELECT SUM(COALESCE(falta1, 0) + COALESCE(falta2, 0) + COALESCE(falta3, 0) + COALESCE(falta4, 0)) as faltas FROM boletim
+			 		WHERE aluno_id = ".$this->db->escape($aluno_id)." AND 
+			 		turma_id = ".$this->db->escape($turma_id)."");
+
+			return $query->row_array()['faltas'];
+		}
+		/*
+			retorna a nota final obtida de acordo os parametros passados
+		*/
+		public function get_nota_final_disciplina($aluno_id, $turma_id,$disciplina_id)
+		{
+			$query = $this->db->query("
+				SELECT nota_final FROM boletim 
+				WHERE aluno_id = ".$this->db->escape($aluno_id)." AND 
+			 	turma_id = ".$this->db->escape($turma_id)." AND
+			 	disciplina_id = ".$this->db->escape($disciplina_id)."");
+			
+			return $query->row_array()['nota_final'];
+		}
+
 		public function busca_registro($aluno_id, $disciplina_id, $turma_id)
 		{
 			$query = $this->db->query("

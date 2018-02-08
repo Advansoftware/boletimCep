@@ -28,5 +28,17 @@
 				return $this->db->update('configuracoes_geral', $data);
 			}
 		}
+
+		public function get_faltas()
+		{
+			$query = $this->db->query("SELECT total_faltas FROM  configuracoes_geral");
+			return $query->row_array()['total_faltas'];
+		}
+
+		public function get_media()
+		{
+			$query = $this->db->query("SELECT media FROM  configuracoes_geral");
+			return $query->row_array()['media'];
+		}
 	}
 ?>

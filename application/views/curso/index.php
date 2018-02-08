@@ -20,7 +20,7 @@
 						echo "<tr>";
 							echo "<td>Nome</td>";
 							echo "<td>Quantidade de disciplina</td>";
-							echo "<td>Ações </td>";
+							echo "<td style='text-align: right;'>Ações</td>";
 						echo "<tr>";
 					echo "</thead>";
 					echo "<tbody>";
@@ -29,7 +29,7 @@
 							echo "<tr>";
 								echo "<td>".$Cursos[$i]['nome']."</td>";
 								echo "<td>".$Cursos[$i]['qtd_disciplina']."</td>";
-								echo "<td>";
+								echo "<td style='text-align: right;'>";
 								if(permissao::get_permissao(UPDATE,$controller))
 									echo "<a href='".$url."curso/edit/".$Cursos[$i]['id']."' title='Editar' style='color: #dc3545; cursor: pointer;' class='glyphicon glyphicon-edit'></a>  |  ";
 								if(permissao::get_permissao(DELETE,$controller))

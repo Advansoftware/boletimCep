@@ -19,7 +19,7 @@
 					echo "<tbody>";
 						for($i = 0; $i < count($Cursos); $i++)
 						{
-							echo "<tr style='cursor: pointer;' onclick='Main.lista_turma(".$Cursos[$i]['id'].");'>";
+							echo "<tr style='cursor: pointer;' onclick='Main.lista_turma(".$Cursos[$i]['id'].",\"boletim\");'>";
 								echo "<td>".$Cursos[$i]['nome']."</td>";
 							echo "</tr>";
 						}

@@ -392,12 +392,12 @@ var Main = {
 		window.location.assign(Main.base_url+controller+"/turmas/"+curso);
 	},
 	lista_disciplinas : function(turma){
-		window.location.assign(Main.base_url+"boletim/disciplinas/"+turma);
+		window.location.assign(Main.base_url+"nota/disciplinas/"+turma);
 	},
 	lista_alunos : function(turma){
 		window.location.assign(Main.base_url+"boletim/alunos/"+turma);
 	},
-	atualiza_boletim_por_disciplina : function(aluno,disciplina,bimestre,valor,turma_id,campo)
+	atualiza_nota_disciplina : function(aluno,disciplina,bimestre,valor,turma_id,campo)
 	{
 		if(valor != "" && valor != " ")
 		{
@@ -407,7 +407,7 @@ var Main = {
 				backdrop : 'static'
 			})*/
 			$.ajax({
-				url: Main.base_url+$("#controller").val()+'/atualiza_boletim_por_disciplina/'+aluno+"/"+disciplina+"/"+bimestre+"/"+valor+"/"+turma_id+"/"+campo,
+				url: Main.base_url+$("#controller").val()+'/atualiza_nota_disciplina/'+aluno+"/"+disciplina+"/"+bimestre+"/"+valor+"/"+turma_id+"/"+campo,
 				dataType:'json',
 				cache: false,
 				type: 'POST',
@@ -416,7 +416,7 @@ var Main = {
 					//$("#mensagem").html("Dados salvos com sucesso");
 					setTimeout(function(){
 						//$("#admin_modal").modal('hide');
-						if(campo == "nota4" && valor > 0)
+						if((campo == "nota4" && valor > 0) || campo == "falta4" || campo == "exame")
 							location.reload();
 					},500);
 				}

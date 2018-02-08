@@ -1,3 +1,5 @@
+<?php $this->load->helper("aluno");?>
+
 <div class='table-responsive' id=boletim>
 <input type='hidden' id='controller' value='<?php echo $controller; ?>'/>
 <?php
@@ -15,11 +17,11 @@
 					echo"</td>";
 				echo"</tr>";
 				echo"<tr>";
-					echo"<td>";
-						echo"Nº: ".$boletim[0]['numero_chamada'];
+					echo"<td style='width: 40%;'>";
+						echo"Nº chamada: ".$boletim[0]['numero_chamada'];
 					echo"</td>";
 					echo"<td>";
-						echo"Nome: ".$boletim[0]['nome_aluno'];
+						echo"Aluno: ".$boletim[0]['nome_aluno'];
 					echo"</td>";
 				echo"</tr>";
 			echo"</table>";
@@ -139,13 +141,10 @@
 						echo"<input onblur='Main.atualiza_boletim(".$boletim[$i]['aluno_id'].",".$boletim[$i]['disciplina_id'].",4,this.value,".(!empty($boletim[$i]['boletim_id']) ? $boletim[$i]['boletim_id'] : '0'). ",\"falta4\");' class='form-control text-center text-dark border border-secondary' type='text' value='".$boletim[$i]['falta4']."' />";
 					echo"</td>";
 					echo"<td>";
-						if(!empty($boletim[$i]['nota4']))
-							echo"<input readonly='readonly' class='form-control text-center text-dark' type='text' value='".(($boletim[$i]['nota1'] + $boletim[$i]['nota2'] + $boletim[$i]['nota3'] + $boletim[$i]['nota4']) / 4)."' />";
-						else
-							echo"<input type='text' class='form-control text-center text-dark border border-secondary' readonly='readonly'>";
+						echo"<input type='text' value='".$boletim[$i]['nota_final']."' class='form-control text-center text-dark border border-secondary' readonly='readonly'>";
 					echo"</td>";
 					echo"<td>";
-							echo"<input readonly='readonly' class='form-control text-center text-dark border border-secondary' type='text' value='".($boletim[$i]['falta1'] + $boletim[$i]['falta2'] + $boletim[$i]['falta3'] + $boletim[$i]['falta4'])."' />";
+						echo"<input readonly='readonly' class='form-control text-center text-dark border border-secondary' type='text' value='".aluno::get_faltas($boletim[$i]['aluno_id'],$boletim[$i]['turma_id'])."' />";
 					echo"</td>";
 				echo"</tr>";
 			}

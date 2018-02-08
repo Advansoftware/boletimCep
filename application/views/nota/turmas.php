@@ -23,7 +23,7 @@
 					echo "<tbody>";
 						for($i = 0; $i < count($Turmas); $i++)
 						{
-							echo "<tr style='cursor: pointer;' onclick='Main.lista_alunos(".$Turmas[$i]['id'].");'>";
+							echo "<tr style='cursor: pointer;' onclick='Main.lista_disciplinas(".$Turmas[$i]['id'].");'>";
 								echo "<td>".$Turmas[$i]['nome_turma']."</td>";
 								echo "<td>".$Turmas[$i]['nome_curso']."</td>";
 								echo "<td>".$Turmas[$i]['qtd_aluno']."</td>";
