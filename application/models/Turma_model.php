@@ -128,6 +128,10 @@
 				UPDATE turma_aluno SET turma_id = ".$this->db->escape($data['turma_id'])."
 				WHERE aluno_id = ".$this->db->escape($data['aluno_id'])." AND 
 				turma_id = ".$this->db->escape($data['id_atual'])."");
+
+			$query = $this->db->query("
+				UPDATE boletim SET turma_id = ".$this->db->escape($data['turma_id'])."
+				WHERE turma_id =".$this->db->escape($data['id_atual'])."");
 		}
 		
 		public function set_turma($data)
@@ -169,7 +173,7 @@
 						WHERE disciplina_id = ".$this->db->escape($query[$i]['disciplina_id'])." AND 
 						turma_id =  ".$this->db->escape($data['turma_id'])."");
 			}
-			//FAZ INSERT DE TODOS, POREM OS INSERE DE SUCESSO SÃO AQUELES QUE NÃO VIOLAM A CHAVE PRIMARI
+			//FAZ INSERT DE TODOS, POREM OS INSERT DE SUCESSO SÃO AQUELES QUE NÃO VIOLAM A CHAVE PRIMARIA
 			for($i = 0; $i < count($data['disciplinas_id']); $i++)
 				$this->db->query("
 					INSERT IGNORE INTO turma_disciplina(disciplina_id, turma_id)
@@ -208,9 +212,8 @@
 					".$this->db->escape($data['turma_id']).")");
 		}
 		
-		public function delete_turma($id){
-			// $this->db->where('id',$id); 
-			// return $this->db->delete("leads");
+		public function delete_turma($id)
+		{
 			return $this->db->query("UPDATE turma SET ativo = 0 WHERE id = ".$this->db->escape($id)."");
 		}
 	}

@@ -9,7 +9,9 @@
 		{
 			$this->load->database();
 		}
-
+		/*
+			retorna o boletim, seja de todos da turma ou de um aluno especicifo ou de uma disciplina
+		*/
 		public function get_boletim($busca,$aluno_id, $turma_id, $disciplina_id = false)
 		{
 			if($busca == POR_ALUNO)
@@ -40,9 +42,34 @@
 
 			return $query->result_array();
 		}
-		
+		/*
+			cadastra as notas ou as atualiza
+		*/
 		public function set_boletim($aluno_id,$disciplina_id,$bimestre,$valor,$turma_id = false,$campo)
 		{
+			$CI = get_instance();
+			$CI->load->model("Settings_model");
+
+			if($bimestre == 1 && $campo == 'nota1' && 
+				$valor > $CI->Settings_model->get_bimestres()['primeiro_bimestre'])
+					return "O valor informado para o primeiro bimestre não pode ser  
+					superior a ".$CI->Settings_model->get_bimestres()['primeiro_bimestre']." pontos";
+
+			if($bimestre == 2 && $campo == 'nota2' && 
+				$valor > $CI->Settings_model->get_bimestres()['segundo_bimestre'])
+					return "O valor informado para o segundo bimestre não pode ser 
+					superior a ".$CI->Settings_model->get_bimestres()['segundo_bimestre']." pontos";
+
+			if($bimestre == 3 && $campo == 'nota3' && 
+				$valor > $CI->Settings_model->get_bimestres()['terceiro_bimestre'])
+					return "O valor informado para o terceiro bimestre não pode ser  
+					superior a ".$CI->Settings_model->get_bimestres()['terceiro_bimestre']." pontos";
+
+			if($bimestre == 4 && $campo == 'nota4' && 
+				$valor > $CI->Settings_model->get_bimestres()['quarto_bimestre'])
+					return "O valor informado para o quarto bimestre não pode ser   
+					superior a ".$CI->Settings_model->get_bimestres()['quarto_bimestre']." pontos";
+
 			if(empty($this->busca_registro($aluno_id, $disciplina_id, $turma_id)))
 				$this->db->query("
 					INSERT INTO boletim(ativo, aluno_id, disciplina_id,turma_id, bimestre, $campo)
@@ -58,6 +85,8 @@
 				$this->calculo_final($aluno_id,$disciplina_id,$turma_id);
 			else if($campo == "exame")
 				$this->exame_final($aluno_id,$disciplina_id,$turma_id,$valor);
+
+			return "ok";
 		}
 
 		/*

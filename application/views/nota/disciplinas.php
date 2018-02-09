@@ -4,7 +4,7 @@
 <div class='row padding20' id='container' name='container'>
 	<input type='hidden' id='controller' value='<?php echo $controller; ?>'/>
 	<?php
-		echo "<div class='col-lg-10 offset-lg-1 padding' style='background: #393836;'>";
+		echo "<div class='col-lg-10 offset-lg-1 padding background_dark'>";
 			echo "<div class='table-responsive'>";
 				echo "<table class='table table-striped table-hover text-white'>";
 					echo "<thead>";

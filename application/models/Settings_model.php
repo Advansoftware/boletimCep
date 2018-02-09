@@ -12,7 +12,9 @@
 
 		public function get_geral($id = FALSE)
 		{
-			$query = $this->db->query("SELECT id, media, itens_por_pagina FROM 
+			$query = $this->db->query("
+				SELECT id, media, itens_por_pagina, total_faltas, 
+				primeiro_bimestre, segundo_bimestre, terceiro_bimestre, quarto_bimestre FROM 
 				configuracoes_geral");
 
 			return $query->row_array();
@@ -39,6 +41,15 @@
 		{
 			$query = $this->db->query("SELECT media FROM  configuracoes_geral");
 			return $query->row_array()['media'];
+		}
+
+		public function get_bimestres()
+		{
+			$query = $this->db->query("
+				SELECT primeiro_bimestre, segundo_bimestre, terceiro_bimestre, quarto_bimestre 
+				FROM configuracoes_geral");
+
+			return $query->row_array();
 		}
 	}
 ?>

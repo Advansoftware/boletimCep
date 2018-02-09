@@ -62,7 +62,7 @@
 				<div class='form-group'>
 					<div class='input-group mb-2 mb-sm-0'>
 						<div class='input-group-addon' style="width: 180px;">Data de nascimento</div>
-						<input name='data_nascimento' id='data_nascimento' value='<?php if(!empty($Aluno[0]['data_nascimento'])) echo $Aluno[0]['data_nascimento']; ?>' type='date' class='form-control' />
+						<input name='data_nascimento' id='data_nascimento' value='<?php if(!empty($Aluno[0]['data_nascimento_f1'])) echo $Aluno[0]['data_nascimento_f1']; ?>' type='date' class='form-control' />
 					</div>
 					<div class='input-group mb-2 mb-sm-0 text-danger' id='error-data_nascimento'></div>
 				</div>

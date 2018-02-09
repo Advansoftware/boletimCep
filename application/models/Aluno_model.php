@@ -40,7 +40,8 @@
 
 			$query = $this->db->query("
 					SELECT a.id, a.matricula, a.nome as nome_aluno, a.sexo, 
-					DATE_FORMAT(a.data_nascimento, '%d/%m/%Y') as data_nascimento,
+					DATE_FORMAT(a.data_nascimento, '%Y-%m-%d') as data_nascimento_f1,
+					DATE_FORMAT(a.data_nascimento, '%d/%m/%Y') as data_nascimento_f2,
 					DATE_FORMAT(a.data_registro, '%d/%m/%Y') as data_registro, 
 					a.numero_chamada, a.curso_id, t.nome as nome_turma, c.nome as nome_curso, a.ativo  
 						FROM aluno a 
@@ -57,10 +58,18 @@
 			$query = $this->db->query("
 				SELECT a.id, a.nome, ta.turma_id FROM aluno a 
 				LEFT JOIN turma_aluno ta ON a.id = ta.aluno_id 
+				WHERE a.curso_id = ".$this->db->escape($id)."");
+
+			/*
+			REGRA ANTERIOR
+
+$query = $this->db->query("
+				SELECT a.id, a.nome, ta.turma_id FROM aluno a 
+				LEFT JOIN turma_aluno ta ON a.id = ta.aluno_id 
 				WHERE a.curso_id = ".$this->db->escape($id)." AND 
 				(ta.turma_id is null OR ta.turma_id = ".$this->db->escape($turma_id)." OR
 				YEAR(ta.data_registro) != YEAR(NOW())) GROUP BY a.nome");
-print_r($query);
+			*/
 			return $query->result_array();
 		}
 		

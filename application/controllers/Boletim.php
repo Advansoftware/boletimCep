@@ -21,6 +21,7 @@
 			$this->load->model('Aluno_model');
 			$this->load->model('Turma_model');
 			$this->load->model('Boletim_model');
+			$this->load->model('Settings_model');
 			$this->set_menu();
 			$this->data['controller'] = get_class($this);
 			$this->data['menu_selectd'] = $this->Geral_model->get_identificador_menu(strtolower(get_class($this)));
@@ -96,6 +97,9 @@
 			$this->data['title'] = 'Administração';
 			if($this->Geral_model->get_permissao(READ,get_class($this)) == true)
 			{
+				$this->data['bimestres'] = $this->Settings_model->get_bimestres();
+
+				$this->data['turma_id'] = $turma_id;
 				$this->data['boletim'] = $this->Boletim_model->get_boletim(POR_ALUNO,$aluno_id,$turma_id);
 				$this->view("boletim/boletim",$this->data);
 			}
@@ -103,6 +107,20 @@
 				$this->view("templates/permissao",$this->data);
 		}
 		
+		public function atualiza_boletim($aluno_id,$disciplina_id,$bimestre,$valor,$turma_id,$campo)
+		{
+			$resultado = $this->Boletim_model->set_boletim($aluno_id,$disciplina_id,$bimestre,$valor,$turma_id,$campo);
+			$arr = array('response' => $resultado);
+			header('Content-Type: application/json');
+			echo json_encode($arr);
+		}
+
+		public function conselho($turma_id)
+		{
+			$this->data['title'] = 'Administração';
+			$this->view("boletim/conselho",$this->data);
+		}
+
 		public function boletimAlunoPdf($aluno_id,$turma_id){
 			$this->data['boletim'] = $this->Boletim_model->get_boletim(POR_ALUNO,$aluno_id,$turma_id);
 			$html = $this->load->view('boletim/boletim_pdf', $this->data, true);

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 06-Fev-2018 às 18:19
+-- Generation Time: 08-Fev-2018 às 18:15
 -- Versão do servidor: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -75,7 +75,8 @@ INSERT INTO `acesso` (`id`, `data_registro`, `modulo_id`, `criar`, `visualizar`,
 (29, '2018-01-23 21:21:23', 7, 0, 0, 0, 0, 4),
 (30, '2018-01-23 21:21:23', 8, 0, 0, 0, 0, 4),
 (31, '2018-01-23 21:21:23', 9, 0, 0, 0, 0, 4),
-(32, '2018-02-06 16:09:29', 10, 1, 1, 1, 1, 1);
+(32, '2018-02-06 16:09:29', 10, 1, 1, 1, 1, 1),
+(33, '2018-02-08 15:55:36', 11, 1, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -119,27 +120,30 @@ CREATE TABLE `boletim` (
   `id` int(11) NOT NULL,
   `ativo` tinyint(1) NOT NULL,
   `data_registro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `nota1` double NOT NULL,
-  `falta1` int(11) NOT NULL,
-  `nota2` double NOT NULL,
-  `falta2` int(11) NOT NULL,
-  `nota3` double NOT NULL,
-  `falta3` int(11) NOT NULL,
-  `nota4` double NOT NULL,
-  `falta4` int(11) NOT NULL,
+  `nota1` double DEFAULT NULL,
+  `falta1` int(11) DEFAULT NULL,
+  `nota2` double DEFAULT NULL,
+  `falta2` int(11) DEFAULT NULL,
+  `nota3` double DEFAULT NULL,
+  `falta3` int(11) DEFAULT NULL,
+  `nota4` double DEFAULT NULL,
+  `falta4` int(11) DEFAULT NULL,
   `bimestre` int(11) DEFAULT NULL,
   `aluno_id` int(11) NOT NULL,
   `disciplina_id` int(11) NOT NULL,
-  `turma_id` int(11) NOT NULL
+  `turma_id` int(11) NOT NULL,
+  `nota_final` double DEFAULT NULL,
+  `status` varchar(11) NOT NULL,
+  `exame` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `boletim`
 --
 
-INSERT INTO `boletim` (`id`, `ativo`, `data_registro`, `nota1`, `falta1`, `nota2`, `falta2`, `nota3`, `falta3`, `nota4`, `falta4`, `bimestre`, `aluno_id`, `disciplina_id`, `turma_id`) VALUES
-(31, 1, '2018-02-06 05:00:25', 10, 10, 0, 0, 0, 0, 0, 0, 1, 9, 9, 22),
-(33, 1, '2018-02-06 05:05:27', 0, 2, 5, 8, 6, 3, 0, 0, 1, 12, 9, 22);
+INSERT INTO `boletim` (`id`, `ativo`, `data_registro`, `nota1`, `falta1`, `nota2`, `falta2`, `nota3`, `falta3`, `nota4`, `falta4`, `bimestre`, `aluno_id`, `disciplina_id`, `turma_id`, `nota_final`, `status`, `exame`) VALUES
+(39, 1, '2018-02-07 21:07:24', 20, 2, 20, 5, 10, 2, 12, 10, 1, 9, 9, 22, 50, 'Aprovado', 60),
+(40, 1, '2018-02-07 21:07:46', 20, 51, 25, 50, 25, 50, 1, 50, 1, 12, 9, 22, 71, 'Reprovado', 55);
 
 -- --------------------------------------------------------
 
@@ -169,6 +173,11 @@ INSERT INTO `categoria` (`id`, `nome`) VALUES
 CREATE TABLE `configuracoes_geral` (
   `id` int(11) NOT NULL,
   `media` double NOT NULL,
+  `total_faltas` int(11) NOT NULL,
+  `primeiro_bimestre` int(11) NOT NULL,
+  `segundo_bimestre` int(11) NOT NULL,
+  `terceiro_bimestre` int(11) NOT NULL,
+  `quarto_bimestre` int(11) NOT NULL,
   `itens_por_pagina` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -176,8 +185,8 @@ CREATE TABLE `configuracoes_geral` (
 -- Extraindo dados da tabela `configuracoes_geral`
 --
 
-INSERT INTO `configuracoes_geral` (`id`, `media`, `itens_por_pagina`) VALUES
-(1, 60, 3);
+INSERT INTO `configuracoes_geral` (`id`, `media`, `total_faltas`, `primeiro_bimestre`, `segundo_bimestre`, `terceiro_bimestre`, `quarto_bimestre`, `itens_por_pagina`) VALUES
+(1, 60, 200, 20, 25, 25, 30, 5);
 
 -- --------------------------------------------------------
 
@@ -209,7 +218,23 @@ INSERT INTO `curso` (`id`, `ativo`, `data_registro`, `nome`) VALUES
 (32, 1, '2017-12-29 20:32:37', 'vvv'),
 (33, 1, '2017-12-29 21:00:16', 'ooooodoggg'),
 (34, 1, '2017-12-29 21:05:57', 'ddd'),
-(35, 1, '2018-01-23 20:55:01', 'gggggggg');
+(35, 1, '2018-01-23 20:55:01', 'gggggggg'),
+(36, 1, '2018-02-08 14:44:32', 'xcvcxxcvxcvxc'),
+(37, 1, '2018-02-08 14:45:39', 'dfgdgdfgdfgd'),
+(38, 1, '2018-02-08 14:47:30', 'dfgdgdfgdfgdf'),
+(39, 1, '2018-02-08 14:49:45', 'dfgdgdfgdfgd'),
+(40, 1, '2018-02-08 14:50:05', 'dfgdgdfgdfgd'),
+(41, 1, '2018-02-08 14:50:39', 'dfgdgdfgdfgd'),
+(42, 1, '2018-02-08 14:50:59', 'dfgdgdfgdfgd'),
+(43, 1, '2018-02-08 14:51:01', 'dfgdgdfgdfgd'),
+(44, 1, '2018-02-08 14:52:28', 'dfgdgdfgdfgd'),
+(45, 1, '2018-02-08 14:52:49', 'dfgdgdfgdfgd'),
+(46, 1, '2018-02-08 14:53:19', 'sdfssfsdfsf'),
+(47, 1, '2018-02-08 14:53:26', 'sdfssfsdfsf'),
+(48, 1, '2018-02-08 15:00:14', 'sdfssfsdfsf'),
+(49, 1, '2018-02-08 15:13:16', 'sdfssfsdfsf'),
+(50, 1, '2018-02-08 15:15:13', 'sdfssfsdfsf'),
+(51, 1, '2018-02-08 15:15:39', 'sdfssfsdfsf');
 
 -- --------------------------------------------------------
 
@@ -242,7 +267,17 @@ INSERT INTO `disciplina` (`id`, `nome`, `ativo`, `data_registro`, `categoria_id`
 (13, 'bbb', 1, '2017-12-29 19:41:32', 1),
 (16, 'bbb', 1, '2017-12-29 19:43:57', 2),
 (17, 'bbb', 1, '2017-12-29 19:44:22', 1),
-(18, 'dfgdfgdfgdfg', 1, '2017-12-29 19:44:41', 2);
+(18, 'dfgdfgdfgdfg', 1, '2017-12-29 19:44:41', 2),
+(19, 'sdf', 1, '2018-02-08 14:21:14', 1),
+(21, 'dfg', 1, '2018-02-08 14:24:36', 1),
+(22, 'sdfs', 1, '2018-02-08 14:25:29', 1),
+(23, 'dfgfd', 1, '2018-02-08 14:25:58', 1),
+(24, 'xcvx', 1, '2018-02-08 14:27:10', 1),
+(25, 'sfsd', 1, '2018-02-08 14:33:39', 2),
+(26, 'dgddfggd', 1, '2018-02-08 14:34:47', 1),
+(27, 'sdfsd', 1, '2018-02-08 14:38:06', 1),
+(28, 'ffffff', 1, '2018-02-08 14:40:33', 1),
+(29, 'gghfhghfghh', 1, '2018-02-08 14:40:52', 2);
 
 -- --------------------------------------------------------
 
@@ -261,18 +296,34 @@ CREATE TABLE `disciplina_curso` (
 
 INSERT INTO `disciplina_curso` (`disciplina_id`, `curso_id`) VALUES
 (2, 31),
+(2, 41),
+(2, 42),
+(2, 43),
+(2, 44),
+(2, 45),
 (7, 1),
 (7, 31),
+(7, 36),
+(7, 38),
 (8, 1),
 (8, 21),
 (9, 1),
 (9, 21),
+(9, 46),
 (11, 31),
+(11, 47),
 (16, 34),
 (16, 35),
 (17, 32),
 (17, 33),
-(17, 34);
+(17, 34),
+(21, 48),
+(25, 37),
+(27, 49),
+(28, 36),
+(28, 37),
+(28, 50),
+(28, 51);
 
 -- --------------------------------------------------------
 
@@ -351,7 +402,8 @@ INSERT INTO `modulo` (`id`, `data_registro`, `ativo`, `nome`, `descricao`, `url`
 (7, '2017-12-29 21:25:48', 1, 'Aluno', 'Alunos', 'Aluno', 3, 'glyphicon glyphicon-user', 2),
 (8, '2017-12-30 01:15:48', 1, 'Turma', 'Turma', 'Turma', 4, 'glyphicon glyphicon-book', 2),
 (9, '2018-01-18 19:28:13', 1, 'Notas', 'Notas', 'Nota', 5, 'glyphicon glyphicon-file', 2),
-(10, '2018-02-06 16:08:54', 1, 'Boletim', 'Boletim', 'boletim', 6, '', 2);
+(10, '2018-02-06 16:08:54', 1, 'Boletim', 'Boletim', 'boletim', 6, 'glyphicon glyphicon-list-alt', 2),
+(11, '2018-02-08 15:53:33', 0, 'Conselho  de classe', 'Conselho de classe', 'Conselho', 7, 'glyphicon glyphicon-folder-close', 2);
 
 -- --------------------------------------------------------
 
@@ -411,7 +463,11 @@ INSERT INTO `teste` (`id`, `campo`) VALUES
 (40, '25'),
 (41, '25'),
 (42, '25'),
-(43, '25');
+(43, '25'),
+(44, 'sdfssfsdfsf'),
+(45, 'sdfssfsdfsf'),
+(46, ''),
+(47, 'ff');
 
 -- --------------------------------------------------------
 
@@ -525,7 +581,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id`, `data_registro`, `ultimo_acesso`, `grupo_id`, `ativo`, `nome`, `email`, `senha`) VALUES
-(1, '2017-12-28 22:40:46', '2018-02-06 16:07:38', 1, 1, 'Admin3', 'admin@dominio.com.br', 'admin123'),
+(1, '2017-12-28 22:40:46', '2018-02-08 14:34:20', 1, 1, 'Admin3', 'admin@dominio.com.br', 'admin123'),
 (2, '2018-01-18 19:02:38', '0000-00-00 00:00:00', 2, 1, 'nomed2', 'example@example.com', 'password');
 
 --
@@ -650,7 +706,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT for table `acesso`
 --
 ALTER TABLE `acesso`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `aluno`
@@ -662,7 +718,7 @@ ALTER TABLE `aluno`
 -- AUTO_INCREMENT for table `boletim`
 --
 ALTER TABLE `boletim`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `categoria`
@@ -680,13 +736,13 @@ ALTER TABLE `configuracoes_geral`
 -- AUTO_INCREMENT for table `curso`
 --
 ALTER TABLE `curso`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `disciplina`
 --
 ALTER TABLE `disciplina`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `grupo`
@@ -704,13 +760,13 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT for table `modulo`
 --
 ALTER TABLE `modulo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `teste`
 --
 ALTER TABLE `teste`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `turma`

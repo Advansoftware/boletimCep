@@ -33,7 +33,7 @@
 			if($this->Geral_model->get_permissao(READ,get_class($this)) == true)
 			{
 				$this->data['Turmas'] = $this->Turma_model->get_turma(false, $page);
-				$this->data['paginacao']['size'] = $this->data['Turmas'][0]['size'];
+				$this->data['paginacao']['size'] = ((!empty($this->data['Turmas'][0]['size']))? $this->data['Turmas'][0]['size']: 0);
 				$this->data['paginacao']['pg_atual'] = $page;
 				$this->view("turma/index",$this->data);
 			}
@@ -192,6 +192,12 @@
 					'id_atual' => $data['id_atual']
 				);
 				$this->Turma_model->troca_aluno($dataToSave);
+
+				$dataToSave = array(
+					'id' => $data['alunos_id'][$i],
+					'turma_id' => $data['turma_id']
+				);
+				$this->Aluno_model->set_aluno($dataToSave);
 			 }
 			
 			$arr = array('response' => 'sucesso');

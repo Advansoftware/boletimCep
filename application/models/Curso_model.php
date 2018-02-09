@@ -2,7 +2,7 @@
 	class Curso_model extends CI_Model {
 		
 		/*
-			CONECTA AO BANCO DE DADOS DEIXANDO A CONEX√O ACESSÕVEL PARA OS METODOS
+			CONECTA AO BANCO DE DADOS DEIXANDO A CONEX√ÉO ACESS√çVEL PARA OS METODOS
 			QUE NECESSITAREM REALIZAR CONSULTAS.
 		*/
 		public function __construct()
@@ -46,12 +46,13 @@
 										WHERE c.ativo = 1 AND c.id = ".$this->db->escape($id)."");
 			return $query->result_array();
 		}
-		
-		/*
-			INSERE OU ATUALIZA UM LEAD 
-		*/
+
 		public function set_curso($data)
 		{
+
+			if($this->valida_curso($data) > 0)
+				return "Este curso j√° est√° cadastrado no sistema.";
+
 			if(empty($data['id']))
 			{
 				$dataToSave = array(
@@ -90,7 +91,7 @@
 										WHERE disciplina_id = ".$this->db->escape($query[$i]['disciplina_id'])." AND curso_id =  
 										".$this->db->escape($data['id'])."");
 				}
-				//FAZ INSERT DE TODOS, POREM OS INSERE DE SUCESSO S√O AQUELES QUE N√O VIOLAM A CHAVE PRIMARI
+				//FAZ INSERT DE TODOS, POREM OS INSERE DE SUCESSO S√ÉO AQUELES QUE N√ÉO VIOLAM A CHAVE PRIMARI
 				for($i = 0; $i < count($data['disciplinas_id']); $i++)
 					$this->db->query("INSERT IGNORE INTO disciplina_curso(disciplina_id, curso_id)
 										VALUES(".$this->db->escape($data['disciplinas_id'][$i]).",".$this->db->escape($data['id']).")");
@@ -101,14 +102,21 @@
 				$this->db->where('id', $data['id']);
 				$this->db->update('curso', $dataToSave);
 			}
+			return "sucesso";
 		}
 		
-		/*
-			FAZ UM UPDATE DESATIVANDO O LEAD, CASO NECESSITAR REATIVA-LO ALGUM DIA
-		*/
-		public function delete_curso($id){
-			// $this->db->where('id',$id);
-			// return $this->db->delete("leads");
+		public function valida_curso($data)
+		{
+			$query = $this->db->query("
+				SELECT nome FROM curso 
+				WHERE UPPER(nome) = UPPER(".$this->db->escape($data['nome']).") AND 
+				id != ".$this->db->escape($data['id'])."");
+
+			return $query->num_rows();
+		}
+		
+		public function delete_curso($id)
+		{
 			return $this->db->query("UPDATE curso SET ativo = 0 WHERE id = ".$this->db->escape($id)."");
 		}
 	}

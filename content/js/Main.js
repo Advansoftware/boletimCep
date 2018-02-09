@@ -218,30 +218,12 @@ var Main = {
 		else
 			Main.create_edit();
 	},
-	create_edit : function (){
-		$("#mensagem").html("Aguarde... processando dados");
-		$('#admin_modal').modal({
-			keyboard: false,
-			backdrop : 'static'
-		})
-		$.ajax({
-			url: Main.base_url+$("#controller").val()+'/store',
-			data: $("#"+$("form[name=form_cadastro]").attr("id")).serialize(),
-			dataType:'json',
-			cache: false,
-			type: 'POST',
-			success: function (msg) {
-				$("#mensagem").html("Dados salvos com sucesso");
-				window.location.assign(Main.base_url+$("#controller").val()+"/index");
-			}
-		});
-	},
 	disciplina_validar : function (){
 		
 		if($("#nome").val() == "")
 			Main.show_error("nome","Informe o nome da disciplina","is-invalid");
-		else if($("#CategoriaId").val() == "0")
-			Main.show_error("categoria_id","Selecione uma categoria","is-invalid");
+		else if($("#categoria_id").val() == "0")
+			Main.show_error("categoria_id","Selecione uma categoria","");
 		else
 			Main.create_edit();
 	},
@@ -257,7 +239,7 @@ var Main = {
 		else if($("#data_nascimento").val() == "")
 			Main.show_error("data_nascimento","Informe a data de nascimento do aluno","is-invalid");
 		else if($("#curso_id").val() == "0")
-			Main.show_error("curso_id","Selecione o curso do aluno","is-invalid");
+			Main.show_error("curso_id","Selecione o curso do aluno","");
 		else
 			Main.create_edit();
 	},
@@ -293,7 +275,7 @@ var Main = {
 		if($("#nome").val() == "")
 			Main.show_error("nome","Informe o nome da turma","is-invalid");
 		else if($("#curso_id").val() == "0")
-			Main.show_error("curso_id","Selecione o curso do aluno","is-invalid");
+			Main.show_error("curso_id","Selecione o curso do aluno","");
 		else
 			Main.create_edit_turma(type);
 	},
@@ -363,13 +345,13 @@ var Main = {
 	},
 	validar_turma_origem : function(){
 		if($("#turma_id").val() == "0")
-			Main.show_error("turma_id","Selecione a turma de origem para continuar","is-invalid");
+			Main.show_error("turma_id","Selecione a turma de origem para continuar","");
 		else
 			window.location.assign(Main.base_url+"turma/trocar_aluno/"+$("#turma_id").val());
 	},
 	troca_aluno_validar : function (){
 		if($("#turma_id").val() == "0")
-			Main.show_error("turma_id","Selecione uma turma de destino","is-invalid");
+			Main.show_error("turma_id","Selecione uma turma de destino","");
 		else if($("#form_cadastro_troca_aluno").find("input[name='alunos[]']:checked").length == 0)
 			Main.show_error("alunos_selecionados","Selecione ao menos um aluno","");
 		else
@@ -412,11 +394,52 @@ var Main = {
 				cache: false,
 				type: 'POST',
 				success: function (msg) {
+					//$("#mensagem").html("Dados salvos com sucesso");
+					setTimeout(function(){
+						//$("#admin_modal").modal('hide');
+						if(msg.response != 'ok')
+						{
+							$("#mensagem_warning").html(msg.response);
+							$('#admin_warning_modal').modal({
+								keyboard: false,
+								backdrop : 'static'
+							})
+						}	
+						else if((campo == "nota4" && valor > 0) || campo == "falta4" || campo == "exame")
+							location.reload();
+					},500);
+				}
+			});
+		}
+	},
+	atualiza_boletim : function(aluno,disciplina,bimestre,valor,turma_id,campo)
+	{
+		if(valor != "" && valor != " ")
+		{
+			/*$("#mensagem").html("Aguarde... processando dados");
+			$('#admin_modal').modal({
+				keyboard: false,
+				backdrop : 'static'
+			})*/
+			$.ajax({
+				url: Main.base_url+$("#controller").val()+'/atualiza_boletim/'+aluno+"/"+disciplina+"/"+bimestre+"/"+valor+"/"+turma_id+"/"+campo,
+				dataType:'json',
+				cache: false,
+				type: 'POST',
+				success: function (msg) {
 					
 					//$("#mensagem").html("Dados salvos com sucesso");
 					setTimeout(function(){
 						//$("#admin_modal").modal('hide');
-						if((campo == "nota4" && valor > 0) || campo == "falta4" || campo == "exame")
+						if(msg.response != 'ok')
+						{
+							$("#mensagem_warning").html(msg.response);
+							$('#admin_warning_modal').modal({
+								keyboard: false,
+								backdrop : 'static'
+							})
+						}	
+						else if((campo == "nota4" && valor > 0) || campo == "falta4" || campo == "exame")
 							location.reload();
 					},500);
 				}

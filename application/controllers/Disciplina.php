@@ -85,6 +85,7 @@
 		
 		public function store()
 		{
+			$resultado = "sucesso";
 			$dataToSave = array(
 				'id' => $this->input->post('id'),
 				'ativo' => 1,
@@ -93,11 +94,11 @@
 			);
 			//bloquear acesso direto ao metodo store
 			 if(!empty($dataToSave['nome']))
-				$this->Disciplina_model->set_disciplina($dataToSave);
+				$resultado = $this->Disciplina_model->set_disciplina($dataToSave);
 			 else
 				redirect('admin/dashboard');
 			
-			$arr = array('response' => 'sucesso');
+			$arr = array('response' => $resultado);
 			header('Content-Type: application/json');
 			echo json_encode($arr);
 		}

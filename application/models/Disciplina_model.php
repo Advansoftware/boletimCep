@@ -51,26 +51,33 @@
 			return $query->result_array();
 		}
 		
-		/*
-			INSERE OU ATUALIZA UM LEAD 
-		*/
 		public function set_disciplina($data)
 		{
+			if($this->valida_disciplina($data) > 0)
+				return "Esta disciplina já está cadastrada no sistema.";
+
 			if(empty($data['id']))
-				return $this->db->insert('disciplina',$data);	
+				$this->db->insert('disciplina',$data);	
 			else
 			{
 				$this->db->where('id', $data['id']);
-				return $this->db->update('disciplina', $data);
+				$this->db->update('disciplina', $data);
 			}
+			return "sucesso";
+		}
+
+		public function valida_disciplina($data)
+		{
+			$query = $this->db->query("
+				SELECT nome FROM disciplina 
+				WHERE UPPER(nome) = UPPER(".$this->db->escape($data['nome']).") AND 
+				id != ".$this->db->escape($data['id'])."");
+
+			return $query->num_rows();
 		}
 		
-		/*
-			FAZ UM UPDATE DESATIVANDO O LEAD, CASO NECESSITAR REATIVA-LO ALGUM DIA
-		*/
-		public function delete_disciplina($id){
-			// $this->db->where('id',$id);
-			// return $this->db->delete("leads");
+		public function delete_disciplina($id)
+		{
 			return $this->db->query("
 				UPDATE disciplina SET ativo = 0 WHERE id = ".$this->db->escape($id)."");
 		}

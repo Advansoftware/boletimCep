@@ -21,6 +21,7 @@
 			$this->load->model('Aluno_model');
 			$this->load->model('Turma_model');
 			$this->load->model('Boletim_model');
+			$this->load->model('Settings_model');
 			$this->set_menu();
 			$this->data['controller'] = get_class($this);
 			$this->data['menu_selectd'] = $this->Geral_model->get_identificador_menu(strtolower(get_class($this)));
@@ -98,6 +99,8 @@
 			$this->data['title'] = 'Administração';
 			if($this->Geral_model->get_permissao(READ,get_class($this)) == true)
 			{
+				$this->data['bimestres'] = $this->Settings_model->get_bimestres();
+
 				$this->data['boletim'] = $this->Boletim_model->get_boletim(POR_TURMA_E_DISCIPLINA,0,$turma_id, $disciplina_id);
 				$this->view("nota/nota_disciplina",$this->data);
 			}
@@ -107,8 +110,8 @@
 		
 		public function atualiza_nota_disciplina($aluno_id,$disciplina_id,$bimestre,$valor,$turma_id,$campo)
 		{
-			$this->Boletim_model->set_boletim($aluno_id,$disciplina_id,$bimestre,$valor,$turma_id,$campo);
-			$arr = array('response' => '9');
+			$resultado = $this->Boletim_model->set_boletim($aluno_id,$disciplina_id,$bimestre,$valor,$turma_id,$campo);
+			$arr = array('response' => $resultado);
 			header('Content-Type: application/json');
 			echo json_encode($arr);
 		}

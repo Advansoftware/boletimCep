@@ -1,10 +1,4 @@
-<script type='text/javascript'>
-	window.onload = function(){
-		
-		document.getElementById('menu_turma').className = "active";
-	}
-</script>
-<div class='row' style='padding: 30px;'>
+<div class="row padding30">
 		<div class='col-lg-8 offset-lg-2'>
 			<div class="card">
 				<h4 class="card-header">

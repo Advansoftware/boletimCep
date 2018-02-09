@@ -1,12 +1,12 @@
-<div class='row' style='padding: 30px;'>
+<div class='row padding30'>
 		<div class='col-lg-8 offset-lg-2'>
-		<p><?php if(isset($Turma[0]['id'])) echo"Editar turma"; else echo"Nova turma";  ?></p><br />
+		<p><?php if(isset($Turma['id'])) echo"Editar turma"; else echo"Nova turma";  ?></p><br />
 		<?php
 			$atr = array('id' => 'form_cadastro_turma','name' => 'form_cadastro');
 			echo form_open("$controller/store",$atr);
 		?>
 			<br />
-				<input type='hidden' id='id' name='id' value='<?php if(!empty($Turma[0]['id'])) echo $Turma[0]['id']; ?>'/>
+				<input type='hidden' id='id' name='id' value='<?php if(!empty($Turma['id'])) echo $Turma['id']; ?>'/>
 				<input type='hidden' id='controller' value='<?php echo $controller; ?>'/>
 				<div class='form-group'>
 					<div class='input-group mb-2 mb-sm-0'>

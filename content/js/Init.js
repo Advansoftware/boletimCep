@@ -148,7 +148,7 @@ $(document).ready(
 		//FIM BTN CADASTROS
 
 		$('#categoria_id').blur(function() { 
-			if(this.value != '') Main.show_error("categoria_id","","is-valid");
+			if(this.value != '') Main.show_error("categoria_id","","");
 		});
 		//event for form register
 		
@@ -165,7 +165,7 @@ $(document).ready(
 		});
 		
 		$('#curso_id').blur(function() { 
-			if(this.value != '0') Main.show_error("curso_id","","is-valid");
+			if(this.value != '0') Main.show_error("curso_id","","");
 		});
 
 		$('#masculino').change(function() { 
@@ -194,8 +194,8 @@ $(document).ready(
 		$('#bt_trocar_aluno_continuar').click(function() {
 			Main.validar_turma_origem();
 		});
-		$('#TurmaId').click(function() {
-			if(this.value != '0') Main.show_error("TurmaId","error-turma","","form-control is-valid");
+		$('#turma_id').click(function() {
+			if(this.value != '0') Main.show_error("turma_id","","");
 		});
 	}
  );

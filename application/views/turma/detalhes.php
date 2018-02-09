@@ -1,12 +1,12 @@
 <br /><br />
-<div class='row' id='container' name='container' style='padding: 20px;'>
+<div class='row padding20' id='container' name='container'>
 	<?php
-		echo "<div class='col-lg-10 offset-lg-1' style='background: #393836;'>";
+		echo "<div class='col-lg-10 offset-lg-1 background_dark'>";
 			echo"<a href='javascript:window.history.go(-1)' class='padding' title='Voltar'>";
 				echo"<span class='glyphicon glyphicon-arrow-left' style='font-size: 25px; color: white;'></span>";
 			echo"</a>";
 			echo "<div class='table-responsive'>";
-				echo "<table class='table table-striped table-hover' style='color: white;'>";
+				echo "<table class='table table-striped table-hover text-white'>";
 					echo"<tr>";
 						echo "<td colspan='2'>";
 							echo"<p  class='text-center' style='margin-top: 10px; color: white;'>";

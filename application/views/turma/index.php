@@ -1,7 +1,7 @@
 <?php $this->load->helper("permissao");?>
 <?php $this->load->helper("paginacao");?>
 <br /><br />
-<div class='row' id='container' name='container' style='padding: 20px;'>
+<div class='row padding20' id='container' name='container'>
 	<input type='hidden' id='controller' value='<?php echo $controller; ?>'/>
 	<div id="admin_trocar_aluno" class="modal" tabindex="-1" role="dialog" >
 	  <div class="modal-dialog" role="document">

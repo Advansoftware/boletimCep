@@ -28,6 +28,11 @@ nav::-webkit-scrollbar-thumb {
   padding: 30px;
 }
 
+.background_dark
+{
+	background-color: #393836;
+}
+
 .border-default{
 	border: 1px solid #dc3545;
 }
