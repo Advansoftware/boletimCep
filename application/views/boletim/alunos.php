@@ -24,7 +24,7 @@
 						for($i = 0; $i < count($Alunos); $i++)
 						{
 							echo "<tr>";
-								echo "<td>".$Alunos[$i]['nome']."</td>";
+								echo "<td>".$Alunos[$i]['nome_aluno']."</td>";
 								echo "<td>".$Alunos[$i]['numero_chamada']."</td>";
 								echo "<td>".$Alunos[$i]['nome_curso']."</td>";
 								echo "<td class='text-right'>";

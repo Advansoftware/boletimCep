@@ -2,6 +2,7 @@
 	define("POR_TURMA",1);
 	define("POR_ALUNO",2);
 	define("POR_TURMA_E_DISCIPLINA",3);
+	define("POR_TURMA_E_DISCIPLINA_E_ALUNO",4);
 
 	require_once("Geral.php");
 
@@ -118,6 +119,10 @@
 		public function conselho($turma_id)
 		{
 			$this->data['title'] = 'Administração';
+
+			$this->data['disciplinas'] = $this->Turma_model->get_disciplina_por_turma($turma_id);
+			$this->data['alunos'] = $this->Turma_model->get_aluno_por_turma($turma_id);
+
 			$this->view("boletim/conselho",$this->data);
 		}
 

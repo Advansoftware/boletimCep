@@ -18,8 +18,11 @@
 				$sql_parcial = " AND t.id = ".$this->db->escape($turma_id)." AND a.id = ".$this->db->escape($aluno_id);
 			else if($busca == POR_TURMA)
 				$sql_parcial = " AND t.id = ".$this->db->escape($turma_id);
-			else if($busca = POR_TURMA_E_DISCIPLINA)
+			else if($busca == POR_TURMA_E_DISCIPLINA)
 				$sql_parcial = " AND t.id = ".$this->db->escape($turma_id)." AND d.id = ".$this->db->escape($disciplina_id);
+			else if($busca == POR_TURMA_E_DISCIPLINA_E_ALUNO)
+				$sql_parcial = " AND t.id = ".$this->db->escape($turma_id)." AND 
+				d.id = ".$this->db->escape($disciplina_id)."AND a.id = ".$this->db->escape($aluno_id);
 
 			$query = $this->db->query("
 				SELECT t.nome AS nome_turma, d.nome AS nome_disciplina, c.nome AS nome_categoria, 
@@ -39,7 +42,7 @@
 					LEFT JOIN boletim b ON a.id = b.aluno_id  AND d.id = b.disciplina_id
 				WHERE true ".$sql_parcial."  
 				ORDER BY d.categoria_id DESC");
-
+				
 			return $query->result_array();
 		}
 		/*

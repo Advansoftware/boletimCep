@@ -9,6 +9,14 @@
 			$CI->load->model("Boletim_model");	
 			return $CI->Boletim_model->total_faltas($aluno_id,$turma_id);
 		}
+
+		public static function get_media_aluno($aluno_id,$turma_id,$disciplina_id)
+		{
+			//4 == POR_TURMA_E_DISCIPLINA_E_ALUNO
+			$CI = get_instance();
+			$CI->load->model("Boletim_model");	
+			return $CI->Boletim_model->get_boletim(4,$aluno_id,$turma_id,$disciplina_id);
+		}
 	}
 	
 ?>

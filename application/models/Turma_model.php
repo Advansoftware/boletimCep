@@ -85,11 +85,12 @@
 				SELECT (
 					SELECT count(*) FROM turma_aluno 
 					WHERE turma_id = ".$this->db->escape($turma_id).") 
-					AS size,
-				ta.aluno_id, a.nome, a.numero_chamada, UPPER(c.nome) as nome_curso, ta.turma_id 
+					AS size, t.nome as nome_turma, 
+				ta.aluno_id, a.nome as nome_aluno, a.numero_chamada, UPPER(c.nome) as nome_curso, ta.turma_id 
 					FROM turma_aluno ta 
-				INNER JOIN aluno a ON ta.aluno_id = a.id 
+				INNER JOIN aluno a ON ta.aluno_id = a.id  
 				INNER JOIN curso c ON a.curso_id = c.id 
+				INNER JOIN turma t ON ta.turma_id = t.id 
 				WHERE ta.turma_id = ".$this->db->escape($turma_id)."".$pagination."");
 
 			return $query->result_array();
