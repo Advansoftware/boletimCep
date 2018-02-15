@@ -31,7 +31,7 @@
 				a.nome AS nome_aluno, a.numero_chamada, UPPER(cs.nome) AS nome_curso, 
 				b.nota1, b.falta1, b.nota2, b.falta2, b.nota3, b.falta3, b.nota4, b.falta4, b.bimestre, 
 				c.id AS categoria_id, t.id AS turma_id, d.id AS disciplina_id, a.id AS aluno_id, 
-				b.id AS boletim_id, nota_final, status, exame 
+				b.id AS boletim_id, nota_final, status, exame, SUM(b.falta1 + b.falta2 + b.falta3 + b.falta4) AS faltas 
 				FROM turma t 
 					INNER JOIN turma_disciplina td ON t.id = td.turma_id 
 					INNER JOIN disciplina d ON td.disciplina_id = d.id

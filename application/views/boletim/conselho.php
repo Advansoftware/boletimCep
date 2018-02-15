@@ -8,35 +8,36 @@
 			echo"ENSINO MÉDIO INTEGRADO AO CURSO <b>TÉCNICO EM ".$alunos[0]['nome_curso']."</b>";
 		echo "</div>";
 	echo"</div>";
-	echo"<div class'row padding30>";
-		echo"<div class='col-lg-12'>";
-			echo"<table class='table'>";
-				echo"<tr>";
-					echo"<td colspan='2'>";
-						echo"Turma: ".$alunos[0]['nome_turma'];
-					echo"</td>";
-				echo"</tr>";
-			echo"</table>";
-		echo"</div>";
-	echo"</div>";
 	echo"<div class='row' style='padding: 30px; padding-top: 0px;'>";
 		echo"<table class='table' border='1px' >";
 			echo "<tbody class='border border-secondary'>";
 			echo"<tr>";
-				echo"<td style='width: 25%;'>";
+				echo"<td style='width: 25%;' class='text-center'>";
+					echo"Turma: ".$alunos[0]['nome_turma'];
 				echo"</td>";
-				echo"<td colspan='".count($disciplinas)."' class='text-center'>";
+				echo"<td colspan='".(count($disciplinas) * 2)."' class='text-center'>";
 					echo "Disciplinas";
 				echo"</td>";
 			echo"</tr>";
 			echo "<tr>";
-				echo "<td class='text-center'>";
+				echo "<td class='text-center' style='vertical-align: middle;' rowspan='2'>";
 					echo"Alunos";
 				echo "</td>";
 				for($i = 0; $i < count($disciplinas); $i++)
 				{
-					echo "<td>";
+					echo "<td colspan='2' class='text-center'>";
 						echo $disciplinas[$i]['nome'];
+					echo "</td>";
+				}
+			echo "</tr>";
+			echo "<tr>";
+				for($i = 0; $i < count($disciplinas); $i++)
+				{
+					echo "<td class='text-center'>";
+						echo "Nota";
+					echo "</td>";
+					echo "<td class='text-center'>";
+						echo "Faltas";
 					echo "</td>";
 				}
 			echo "</tr>";
@@ -48,9 +49,11 @@
 					echo"</td>";
 					for($j = 0; $j < count($disciplinas); $j++)
 					{
-						echo "<td>";
-
-							echo"<input readonly='readonly'  value='".aluno::get_media_aluno($alunos[$i]['aluno_id'],$alunos[$i]['turma_id'],$disciplinas[$j]['disciplina_id'])[0]['nota_final']."' class='form-control text-center text-dark border border-secondary' type='text' />";
+						echo "<td onclick='alert(".$j.");'>";
+							echo"<input readonly='readonly' value='".aluno::get_info_aluno($alunos[$i]['aluno_id'],$alunos[$i]['turma_id'],$disciplinas[$j]['disciplina_id'])[0]['nota_final']."' class='form-control text-center text-dark border border-secondary' type='text' />";
+						echo "</td>";
+						echo "<td onclick='alert(".$j.");'>";
+							echo"<input readonly='readonly' value='".aluno::get_info_aluno($alunos[$i]['aluno_id'],$alunos[$i]['turma_id'],$disciplinas[$j]['disciplina_id'])[0]['faltas']."' class='form-control text-center text-dark border border-secondary' type='text' />";
 						echo "</td>";
 					}
 				echo"</tr>";
