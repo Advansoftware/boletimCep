@@ -36,7 +36,7 @@
 			echo "<div class='row padding10 text-white'>Pestinhas<br /><br />";
 				for($i = 0; $i < count($alunos); $i++)
 				{
-					echo $alunos[$i]['nome']."<br />";
+					echo $alunos[$i]['nome_aluno']."<br />";
 				}
 			echo "</div>";
 		echo "</div>";
