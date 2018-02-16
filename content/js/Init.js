@@ -197,5 +197,11 @@ $(document).ready(
 		$('#turma_id').click(function() {
 			if(this.value != '0') Main.show_error("turma_id","","");
 		});
+		$('#bt_escolhe_opcao_conselho').click(function() {
+			Main.carregar_informacoes();
+		});
+		$('#opt_id').blur(function() { 
+			if(this.value != '0') Main.show_error("opt_id", '', '');
+		});
 	}
  );

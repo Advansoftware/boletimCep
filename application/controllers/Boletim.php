@@ -116,12 +116,13 @@
 			echo json_encode($arr);
 		}
 
-		public function conselho($turma_id)
+		public function conselho($turma_id,$nivel)//nivel refere-se ao primeiro ou ao segundo conselho
 		{
 			$this->data['title'] = 'Administração';
 
 			$this->data['disciplinas'] = $this->Turma_model->get_disciplina_por_turma($turma_id);
 			$this->data['alunos'] = $this->Turma_model->get_aluno_por_turma($turma_id);
+			$this->data['nivel'] = $nivel;
 
 			$this->view("boletim/conselho",$this->data);
 		}

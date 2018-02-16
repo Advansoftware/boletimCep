@@ -123,7 +123,7 @@
 					echo"</td>";
 					
 					$readonly = "";
-					if($boletim[$i]['nota_final'] >= $boletim[$i]['media'] || aluno::get_faltas($boletim[$i]['aluno_id'],$boletim[$i]['turma_id']) <= $boletim[$i]['faltas_permitada'])
+					if(($boletim[$i]['nota_final'] >= $boletim[$i]['media'] && aluno::get_faltas($boletim[$i]['aluno_id'],$boletim[$i]['turma_id']) <= $boletim[$i]['faltas_permitada']) || $boletim[$i]['nota_final'] =="")
 						$readonly = "readonly='readonly'";
 
 					echo "<td>";

@@ -413,6 +413,19 @@ var Main = {
 			});
 		}
 	},
+	turma_id : '',
+	mostra_opcoes_conselho : function (turma_id)
+	{
+		Main.turma_id = turma_id;
+		$("#admin_opcoes_conselho").modal('show');
+	},
+	carregar_informacoes : function ()//redireciona pra tela de notas dos alunos, para o conselho
+	{
+		if($("#opt_id").val() == "0")
+			Main.show_error("opt_id","Selecione uma opção","");
+		else
+			window.location.assign(Main.base_url+"Boletim/conselho/"+Main.turma_id+"/"+$("#opt_id").val());
+	},
 	atualiza_boletim : function(aluno,disciplina,bimestre,valor,turma_id,campo)
 	{
 		if(valor != "" && valor != " ")
