@@ -30,7 +30,7 @@
 								for($i = 0; $i < count($alunos); $i++)
 								{
 									echo"<label for='".$alunos[$i]['aluno_id']."'>";
-										echo"<input type='checkbox' name='alunos[]' id='".$alunos[$i]['aluno_id']."' value='".$alunos[$i]['aluno_id']."'><span></span>".$alunos[$i]['nome'];
+										echo"<input type='checkbox' name='alunos[]' id='".$alunos[$i]['aluno_id']."' value='".$alunos[$i]['aluno_id']."'><span></span>".$alunos[$i]['nome_aluno'];
 									echo"</label><br />";
 								}
 							?>
