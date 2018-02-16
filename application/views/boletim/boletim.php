@@ -142,7 +142,7 @@
 						echo"<input type='text' value='".$boletim[$i]['nota_final']."' class='form-control text-center text-dark border border-secondary' readonly='readonly'>";
 					echo"</td>";
 					echo"<td>";
-						echo"<input readonly='readonly' class='form-control text-center text-dark border border-secondary' type='text' value='".aluno::get_faltas($boletim[$i]['aluno_id'],$boletim[$i]['turma_id'])."' />";
+						echo"<input readonly='readonly' class='form-control text-center text-dark border border-secondary' type='text' value='".aluno::get_info_aluno($boletim[$i]['aluno_id'],$boletim[$i]['turma_id'],$boletim[$i]['disciplina_id'])[0]['faltas']."' />";
 					echo"</td>";
 				echo"</tr>";
 			}
