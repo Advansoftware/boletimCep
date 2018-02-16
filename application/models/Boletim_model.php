@@ -1,4 +1,19 @@
 <?php
+	
+	if (!defined('POR_TURMA')) 
+   	 	define('POR_TURMA', 1);
+
+   	if (!defined('POR_ALUNO')) 
+   	 	define('POR_ALUNO', 2);
+
+   	if (!defined('POR_TURMA_E_DISCIPLINA')) 
+   	 	define('POR_TURMA_E_DISCIPLINA', 3);
+
+   	if (!defined('POR_TURMA_E_DISCIPLINA_E_ALUNO')) 
+   	 	define('POR_TURMA_E_DISCIPLINA_E_ALUNO', 4);
+
+   	 //acima é necessario quando apenas a model nao é invocada pelo controller e sim por um helper
+
 	class Boletim_model extends CI_Model {
 		
 		/*
@@ -40,9 +55,11 @@
 					INNER JOIN aluno a ON ta.aluno_id = a.id
 					INNER JOIN curso cs ON a.curso_id = cs.id
 					LEFT JOIN boletim b ON a.id = b.aluno_id  AND d.id = b.disciplina_id
-				WHERE true ".$sql_parcial."  
+				WHERE true ".$sql_parcial."  GROUP BY a.id, d.id, t.id  
 				ORDER BY d.categoria_id DESC");
-				
+
+				//se falhar ao listar os alunos em qualquer lugar, tentar remover a clausula group by e o SUM no select
+
 			return $query->result_array();
 		}
 		/*
@@ -84,33 +101,59 @@
 					UPDATE boletim SET $campo = ".$this->db->escape($valor)." 
 					WHERE id = ".$this->busca_registro($aluno_id,$disciplina_id, $turma_id)['id']."");
 			
-			if($campo == "nota4" || $campo == "falta4")
-				$this->calculo_final($aluno_id,$disciplina_id,$turma_id);
-			else if($campo == "exame")
+			if($campo == "exame")
 				$this->exame_final($aluno_id,$disciplina_id,$turma_id,$valor);
 
+			else if($this->status_notas($aluno_id,$disciplina_id,$turma_id) == 1 || 
+					status_faltas($aluno_id, $disciplina_id, $turma_id) == 1)
+				$this->calculo_final($aluno_id,$disciplina_id,$turma_id);
+
 			return "ok";
+		}
+
+		//verificar se todas as notas foram preenchidas
+		public function status_notas($aluno_id, $disciplina_id, $turma_id)
+		{
+			$query = $this->db->query("SELECT aluno_id FROM boletim 
+				WHERE nota1 IS NOT NULL AND nota2 IS NOT NULL AND nota3 IS NOT NULL AND nota4 IS NOT NULL AND
+				aluno_id = ".$this->db->escape($aluno_id)." AND 
+				disciplina_id = ".$this->db->escape($disciplina_id)." AND
+				turma_id = ".$this->db->escape($turma_id)."");
+
+			return $query->num_rows();
+		}
+
+		//verificar se todas as faltas foram preenchidas
+		public function status_faltas($aluno_id, $disciplina_id, $turma_id)
+		{
+			$query = $this->db->query("SELECT aluno_id FROM boletim 
+				WHERE falta1 IS NOT NULL AND falta2 IS NOT NULL AND falta3 IS NOT NULL AND falta4 IS NOT NULL AND
+				aluno_id = ".$this->db->escape($aluno_id)." AND 
+				disciplina_id = ".$this->db->escape($disciplina_id)." AND
+				turma_id = ".$this->db->escape($turma_id)."");
+
+			return $query->num_rows();
 		}
 
 		/*
 			atualiza o status do aluno de acordo com a nota de exame final
 		*/
-		public function exame_final($aluno_id,$disciplina_id,$turma_id,$valor)
+		public function exame_final($aluno_id, $disciplina_id, $turma_id, $valor)
 		{
 			$status = "Reprovado";
 			if($valor >= 60)
 				$status = "Aprovado";
 			$query = $this->db->query("
-					UPDATE boletim SET status = '$status'
-					WHERE turma_id = ".$this->db->escape($turma_id)." AND
-					aluno_id = ".$this->db->escape($aluno_id)." AND
-					disciplina_id = ".$this->db->escape($disciplina_id)."");
+				UPDATE boletim SET status = '$status'
+				WHERE turma_id = ".$this->db->escape($turma_id)." AND
+				aluno_id = ".$this->db->escape($aluno_id)." AND
+				disciplina_id = ".$this->db->escape($disciplina_id)."");
 		}
 
 		/*
 			calcula a nota final do aluno e determina seu status
 		*/
-		public function calculo_final($aluno_id,$disciplina_id,$turma_id)
+		public function calculo_final($aluno_id, $disciplina_id, $turma_id)
 		{
 			$query = $this->db->query("
 				UPDATE boletim SET nota_final = (nota1 + nota2 + nota3 + nota4) 
@@ -153,8 +196,8 @@
 		{
 			$query = $this->db->query("
 				SELECT SUM(COALESCE(falta1, 0) + COALESCE(falta2, 0) + COALESCE(falta3, 0) + COALESCE(falta4, 0)) as faltas FROM boletim
-			 		WHERE aluno_id = ".$this->db->escape($aluno_id)." AND 
-			 		turma_id = ".$this->db->escape($turma_id)."");
+			 	WHERE aluno_id = ".$this->db->escape($aluno_id)." AND 
+			 	turma_id = ".$this->db->escape($turma_id)."");
 
 			return $query->row_array()['faltas'];
 		}

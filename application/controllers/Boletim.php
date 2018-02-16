@@ -126,6 +126,16 @@
 			$this->view("boletim/conselho",$this->data);
 		}
 
+		//o método abaixo carrega as notas de cada umn dos bimestres quando se clica em uma dicisplina na tela de conselho
+		public function load_dados_conselho($aluno_id, $turma_id, $disciplina_id, $exame)
+		{
+			$resultado = "";
+			$resultado = $this->Boletim_model->get_boletim(POR_TURMA_E_DISCIPLINA_E_ALUNO, $aluno_id, $turma_id, $disciplina_id);
+			$arr = array('response' => $resultado);
+			header('Content-Type: application/json');
+			echo json_encode($arr);	
+		}
+
 		public function boletimAlunoPdf($aluno_id,$turma_id){
 			$this->data['boletim'] = $this->Boletim_model->get_boletim(POR_ALUNO,$aluno_id,$turma_id);
 			$html = $this->load->view('boletim/boletim_pdf', $this->data, true);

@@ -397,6 +397,7 @@ var Main = {
 					//$("#mensagem").html("Dados salvos com sucesso");
 					setTimeout(function(){
 						//$("#admin_modal").modal('hide');
+
 						if(msg.response != 'ok')
 						{
 							$("#mensagem_warning").html(msg.response);
@@ -445,6 +446,62 @@ var Main = {
 				}
 			});
 		}
+	},
+	//se for o conselho  de exame final a variavel exame recebe o valor 1, assim determinará se carrega 
+	// as notas e faltas do ano ou apenas a nota obtida no exame
+	load_dados_conselho : function(aluno_id, turma_id, disciplina_id, exame)
+	{
+		$('#admin_conselho_modal').modal({
+			keyboard: false,
+			backdrop : 'static'
+		})
+
+		$.ajax({
+			url: Main.base_url+'Boletim/load_dados_conselho/'+aluno_id+"/"+turma_id+"/"+disciplina_id+"/"+exame,
+			dataType:'json',
+			cache: false,
+			type: 'POST',
+			success: function (msg) {
+				$("#info_geral").html("<div class='col-sm-12 text-center'>Turma: "+msg.response[0]['nome_turma']+" &nbsp;&nbsp;-&nbsp;&nbsp; Disciplina: "+msg.response[0]['nome_disciplina']+" &nbsp;&nbsp;-&nbsp;&nbsp; Aluno: "+msg.response[0]['nome_aluno']+"</div>");
+				
+				if(exame == 0)
+				{
+					var html = 
+					"<table class='table' border='1px'>"+
+						"<tr>"+
+							"<td class='text-center' colspan='2'>1º Bimestre</td>"+
+							"<td class='text-center' colspan='2'>2º Bimestre</td>"+
+							"<td class='text-center' colspan='2'>3º Bimestre</td>"+
+							"<td class='text-center' colspan='2'>4º Bimestre</td>"+
+						"</tr>"+
+						"<tr>"+
+							"<td class='text-center'>Nota</td>"+
+							"<td class='text-center'>Faltas</td>"+
+							"<td class='text-center'>Nota</td>"+
+							"<td class='text-center'>Faltas</td>"+
+							"<td class='text-center'>Nota</td>"+
+							"<td class='text-center'>Faltas</td>"+
+							"<td class='text-center'>Nota</td>"+
+							"<td class='text-center'>Faltas</td>"+
+						"</tr>"+
+						"<tr>"+
+							//"<tbody class='border border-secondary'>"+
+
+							"<td><input onblur='Main.atualiza_nota_disciplina("+msg.response[0]['aluno_id']+","+msg.response[0]['disciplina_id']+",\"1\",this.value,"+msg.response[0]['turma_id']+",\"nota1\");' value='"+msg.response[0]['nota1']+"' class='form-control text-center text-dark border border-secondary'  min='0' type='number' /></td>"+
+							"<td><input onblur='Main.atualiza_nota_disciplina("+msg.response[0]['aluno_id']+","+msg.response[0]['disciplina_id']+",\"1\",this.value,"+msg.response[0]['turma_id']+",\"falta1\");' value='"+msg.response[0]['falta1']+"' class='form-control text-center text-dark border border-secondary' min='0' type='number' /></td>"+
+							"<td><input onblur='Main.atualiza_nota_disciplina("+msg.response[0]['aluno_id']+","+msg.response[0]['disciplina_id']+",\"2\",this.value,"+msg.response[0]['turma_id']+",\"nota2\");' value='"+msg.response[0]['nota2']+"' class='form-control text-center text-dark border border-secondary' min='0' type='number' /></td>"+
+							"<td><input onblur='Main.atualiza_nota_disciplina("+msg.response[0]['aluno_id']+","+msg.response[0]['disciplina_id']+",\"2\",this.value,"+msg.response[0]['turma_id']+",\"falta2\");' value='"+msg.response[0]['falta2']+"' class='form-control text-center text-dark border border-secondary' min='0' type='number' /></td>"+
+							"<td><input onblur='Main.atualiza_nota_disciplina("+msg.response[0]['aluno_id']+","+msg.response[0]['disciplina_id']+",\"3\",this.value,"+msg.response[0]['turma_id']+",\"nota3\");' value='"+msg.response[0]['nota3']+"' class='form-control text-center text-dark border border-secondary' min='0' type='number' /></td>"+
+							"<td><input onblur='Main.atualiza_nota_disciplina("+msg.response[0]['aluno_id']+","+msg.response[0]['disciplina_id']+",\"3\",this.value,"+msg.response[0]['turma_id']+",\"falta3\");' value='"+msg.response[0]['falta3']+"' class='form-control text-center text-dark border border-secondary' min='0' type='number' /></td>"+
+							"<td><input onblur='Main.atualiza_nota_disciplina("+msg.response[0]['aluno_id']+","+msg.response[0]['disciplina_id']+",\"4\",this.value,"+msg.response[0]['turma_id']+",\"nota4\");' value='"+msg.response[0]['nota4']+"' class='form-control text-center text-dark border border-secondary' min='0' type='number' /></td>"+
+							"<td><input onblur='Main.atualiza_nota_disciplina("+msg.response[0]['aluno_id']+","+msg.response[0]['disciplina_id']+",\"4\",this.value,"+msg.response[0]['turma_id']+",\"falta4\");' value='"+msg.response[0]['falta4']+"' class='form-control text-center text-dark border border-secondary' min='0' type='number' /></td>"+
+							//"</tbody>"+
+						"</tr>"+
+					"</table>";
+				}
+				$("#mensagem_conselho").html(html);
+			}
+		});
 	},
 	settings : function(){
 		$("#settings").modal('show');

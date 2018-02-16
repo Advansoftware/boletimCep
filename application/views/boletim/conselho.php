@@ -1,7 +1,7 @@
 <?php $this->load->helper("aluno");?>
 
 <div class='table-responsive' id=boletim>
-<input type='hidden' id='controller' value='<?php echo $controller; ?>'/>
+<input type='hidden' id='controller' value='Nota'/>
 <?php
 	echo"<div class='row padding30'>";
 		echo "<div class='col-lg-12 text-center'>";
@@ -49,10 +49,10 @@
 					echo"</td>";
 					for($j = 0; $j < count($disciplinas); $j++)
 					{
-						echo "<td onclick='alert(".$j.");'>";
+						echo "<td onclick='Main.load_dados_conselho(".$alunos[$i]['aluno_id'].",".$alunos[$i]['turma_id'].",".$disciplinas[$j]['disciplina_id'].",\"0\")'>";
 							echo"<input readonly='readonly' value='".aluno::get_info_aluno($alunos[$i]['aluno_id'],$alunos[$i]['turma_id'],$disciplinas[$j]['disciplina_id'])[0]['nota_final']."' class='form-control text-center text-dark border border-secondary' type='text' />";
 						echo "</td>";
-						echo "<td onclick='alert(".$j.");'>";
+							echo "<td onclick='Main.load_dados_conselho(".$alunos[$i]['aluno_id'].",".$alunos[$i]['turma_id'].",".$disciplinas[$j]['disciplina_id'].",\"0\")'>";
 							echo"<input readonly='readonly' value='".aluno::get_info_aluno($alunos[$i]['aluno_id'],$alunos[$i]['turma_id'],$disciplinas[$j]['disciplina_id'])[0]['faltas']."' class='form-control text-center text-dark border border-secondary' type='text' />";
 						echo "</td>";
 					}

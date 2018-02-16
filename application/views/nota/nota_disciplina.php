@@ -43,7 +43,8 @@
 				echo"<td style='width: 15%;' class='text-center' colspan='2'>";
 					echo"4º Bimestre <br />".$bimestres['quarto_bimestre']." pontos";
 				echo"</td>";
-				echo"<td style='width: 15%;' class='text-center' colspan='4'>";
+				echo"<td style='width: 15%; vertical-align: middle;' class='text-center' colspan='4'>";
+					echo "Resultados";
 				echo"</td>";
 			echo"</tr>";
 			echo"<tr>";
@@ -118,11 +119,12 @@
 						echo"<input type='text' value='".$boletim[$i]['nota_final']."' class='form-control text-center text-dark border border-secondary' readonly='readonly'>";
 					echo"</td>";
 					echo"<td>";
-						echo"<input readonly='readonly' class='form-control text-center text-dark border border-secondary' type='text' value='".aluno::get_faltas($boletim[$i]['aluno_id'],$boletim[$i]['turma_id'])."' />";
+						echo"<input readonly='readonly' class='form-control text-center text-dark border border-secondary' type='text' value='".aluno::get_info_aluno($boletim[$i]['aluno_id'],$boletim[$i]['turma_id'],$boletim[$i]['disciplina_id'])[0]['faltas']."' />";
 					echo"</td>";
-					$readonly = "readonly='readonly'";
-					if($boletim[$i]['nota_final'] < $boletim[$i]['media'] || aluno::get_faltas($boletim[$i]['aluno_id'],$boletim[$i]['turma_id']) > $boletim[$i]['faltas_permitada'])
-						$readonly = "";
+					
+					$readonly = "";
+					if($boletim[$i]['nota_final'] >= $boletim[$i]['media'] || aluno::get_faltas($boletim[$i]['aluno_id'],$boletim[$i]['turma_id']) <= $boletim[$i]['faltas_permitada'])
+						$readonly = "readonly='readonly'";
 
 					echo "<td>";
 							echo"<input $readonly onblur='Main.atualiza_nota_disciplina(".$boletim[$i]['aluno_id'].",".$boletim[$i]['disciplina_id'].",0,this.value,".$boletim[$i]['turma_id']. ",\"exame\");' class='form-control text-center text-dark border border-secondary' type='text' value='".$boletim[$i]['exame']."' />";
