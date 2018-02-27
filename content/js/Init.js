@@ -159,6 +159,10 @@ $(document).ready(
 		$('#numero_chamada').blur(function() { 
 			if(this.value != '') Main.show_error("numero_chamada","","is-valid");
 		});
+
+		$('#ano_letivo').blur(function() { 
+			if(this.value != '') Main.show_error("periodo_letivo","","is-valid");
+		});
 		
 		$('#data_nascimento').blur(function() {
 			if(this.value != '') Main.show_error("data_nascimento","","is-valid");

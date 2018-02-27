@@ -132,7 +132,7 @@
 			  </div>
 			</div>
 
-			<div id="admin_warning_modal" class="modal" tabindex="-1" role="dialog">
+			<div id="admin_warning_modal" class="modal fade" tabindex="-1" role="dialog">
 			  <div class="modal-dialog" role="document">
 				<div class="modal-content">
 				  <div class="modal-header text-center" style="background: rgb(241,193,0);">

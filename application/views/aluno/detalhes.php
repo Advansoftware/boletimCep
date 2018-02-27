@@ -28,6 +28,10 @@
 						echo "<td>Número da chamada</td>";
 						echo "<td>".$obj[0]['numero_chamada']."</td>";
 					echo "</tr>";
+					echo "<tr>";
+						echo "<td>Ano Letivo</td>";
+						echo "<td>".$obj[0]['ano_letivo']."</td>";
+					echo "</tr>";
 						echo "<td>Ativo</td>";
 						echo "<td>".(($obj[0]['ativo'] == 1) ? 'Sim' : 'Não')."</td>";
 					echo "</tr>";

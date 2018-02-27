@@ -105,7 +105,7 @@
 				$this->exame_final($aluno_id,$disciplina_id,$turma_id,$valor);
 
 			else if($this->status_notas($aluno_id,$disciplina_id,$turma_id) == 1 || 
-					status_faltas($aluno_id, $disciplina_id, $turma_id) == 1)
+					$this->status_faltas($aluno_id, $disciplina_id, $turma_id) == 1)
 				$this->calculo_final($aluno_id,$disciplina_id,$turma_id);
 
 			return "ok";

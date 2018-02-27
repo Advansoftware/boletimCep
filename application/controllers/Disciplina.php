@@ -31,7 +31,7 @@
 			{
 				$this->data['Disciplinas'] = $this->Disciplina_model->get_disciplina(false,$page);
 				
-				$this->data['paginacao']['size'] = $this->data['Disciplinas'][0]['size'];
+				$this->data['paginacao']['size'] = (!empty($this->data['Disciplinas'][0]['size'])?$this->data['Disciplinas'][0]['size'] : 0 );
 				$this->data['paginacao']['pg_atual'] = $page;
 				
 				$this->view("disciplina/index",$this->data);
