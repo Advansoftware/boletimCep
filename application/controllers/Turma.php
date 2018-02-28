@@ -111,7 +111,8 @@
 				'id' => $this->input->post('id'),
 				'nome' => $this->input->post('nome'),
 				'ativo' => 1,
-				'curso_id' => $this->input->post('curso_id')
+				'curso_id' => $this->input->post('curso_id'),
+				'ano_letivo' => $this->input->post('ano_letivo')
 			);
 			$idTurma = "";
 			//bloquear acesso direto ao metodo store

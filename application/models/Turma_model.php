@@ -25,7 +25,7 @@
 				$query =  $this->db->query(
 					"SELECT (SELECT count(*) FROM turma WHERE ativo = 1) AS size, 
 					t.id, t.ativo, DATE_FORMAT(t.data_registro, '%d/%m/%Y') as data_registro, 
-					t.nome as nome_turma, t.curso_id, c.nome as nome_curso, 
+					t.nome as nome_turma, t.curso_id, c.nome as nome_curso, t.ano_letivo,
 					(SELECT count(*) FROM turma_aluno ta WHERE ta.turma_id = t.id) as qtd_aluno
 						FROM turma t 
 					INNER JOIN curso c ON t.curso_id = c.id 
@@ -37,7 +37,7 @@
 
 			$query =  $this->db->query(
 				"SELECT t.id, t.ativo, DATE_FORMAT(t.data_registro, '%d/%m/%Y') as data_registro, 
-				t.nome as nome_turma, t.curso_id, c.nome as nome_curso, 
+				t.nome as nome_turma, t.curso_id, c.nome as nome_curso, t.ano_letivo,
 				(SELECT count(*) FROM turma_aluno ta WHERE ta.turma_id = t.id) as qtd_aluno
 					FROM turma t 
 				INNER JOIN curso c ON t.curso_id = c.id 
@@ -132,7 +132,8 @@
 
 			$query = $this->db->query("
 				UPDATE boletim SET turma_id = ".$this->db->escape($data['turma_id'])."
-				WHERE turma_id =".$this->db->escape($data['id_atual'])."");
+				WHERE turma_id =".$this->db->escape($data['id_atual'])." AND 
+				aluno_id = ".$this->db->escape($data['aluno_id'])."");
 		}
 		
 		public function set_turma($data)

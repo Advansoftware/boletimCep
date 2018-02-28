@@ -32,6 +32,13 @@
 				<div class='input-group mb-2 mb-sm-0 text-danger' id='error-nome'></div>
 				</div>
 				<div class='form-group'>
+					<div class='input-group mb-2 mb-sm-0'>
+						<div class='input-group-addon' style="width: 180px;">Ano Letivo</div>
+						<input name='ano_letivo' id='ano_letivo' value='<?php if(!empty($Aluno[0]['ano_letivo'])) echo $Aluno[0]['ano_letivo']; ?>' type='text' class='form-control' placeholder='Período letivo'/>
+					</div>
+					<div class='input-group mb-2 mb-sm-0 text-danger' id='error-ano_letivo'></div>
+				</div>
+				<div class='form-group'>
 					<div class="card">
 					  <h4 class="card-header">Sexo</h4>
 					  <div class="card-body">

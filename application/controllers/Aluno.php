@@ -33,7 +33,7 @@
 			if($this->Geral_model->get_permissao(READ,get_class($this)) == true)
 			{
 				$this->data['Alunos'] = $this->Aluno_model->get_aluno(false, $page);	
-				$this->data['paginacao']['size'] = $this->data['Alunos'][0]['size'];
+				$this->data['paginacao']['size'] = (!empty($this->data['Alunos'][0]['size']) ? $this->data['Alunos'][0]['size'] : 0);
 				$this->data['paginacao']['pg_atual'] = $page;
 				$this->view("aluno/index",$this->data);
 			}
@@ -104,6 +104,7 @@
 				'nome' => $this->input->post('nome'),
 				'matricula' => $this->input->post('matricula'),
 				'numero_chamada' => $this->input->post('numero_chamada'),
+				'ano_letivo' => $this->input->post('ano_letivo'),
 				'data_nascimento' => $this->input->post('data_nascimento'),
 				'sexo' => $this->input->post('sexo'),
 				'curso_id' => $this->input->post('curso_id')

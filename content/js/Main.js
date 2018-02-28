@@ -234,6 +234,8 @@ var Main = {
 			Main.show_error("matricula","Informe a matrícula do aluno","is-invalid");
 		else if($("#numero_chamada").val() == "")
 			Main.show_error("numero_chamada","Informe o número da chamada do aluno","is-invalid");
+		else if($("#ano_letivo").val() == "")
+			Main.show_error("ano_letivo","Informe o ano letivo","is-invalid");
 		else if($("#form_cadastro_aluno").find("input[name='sexo']:checked").length == 0)
 			Main.show_error("sexo","Selecione o sexo do aluno","");
 		else if($("#data_nascimento").val() == "")
@@ -276,6 +278,8 @@ var Main = {
 			Main.show_error("nome","Informe o nome da turma","is-invalid");
 		else if($("#curso_id").val() == "0")
 			Main.show_error("curso_id","Selecione o curso do aluno","");
+		else if($("#ano_letivo").val() == "")
+			Main.show_error("ano_letivo","Informe o ano letivo da turma","is-invalid");
 		else
 			Main.create_edit_turma(type);
 	},
@@ -410,6 +414,12 @@ var Main = {
 							location.reload();
 					},500);
 				}
+			}).fail(function(msg){
+			    $("#mensagem_warning").html("Houve um erro ao processar sua requisição. Verifique sua conexão com a internet.");
+				$('#admin_warning_modal').modal({
+					keyboard: false,
+					backdrop : 'static'
+				})
 			});
 		}
 	},
@@ -457,6 +467,12 @@ var Main = {
 							location.reload();
 					},500);
 				}
+			}).fail(function(msg){
+			    $("#mensagem_warning").html("Houve um erro ao processar sua requisição. Verifique sua conexão com a internet.");
+				$('#admin_warning_modal').modal({
+					keyboard: false,
+					backdrop : 'static'
+				})
 			});
 		}
 	},

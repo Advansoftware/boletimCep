@@ -31,7 +31,14 @@
 						</select>
 					</div>
 					<div class='input-group mb-2 mb-sm-0 text-danger' id='error-curso_id'></div>
-				<eudiv>
+				</div>
+				<div class='form-group'>
+					<div class='input-group mb-2 mb-sm-0'>
+						<div class='input-group-addon'>Ano Letivo</div>
+						<input name='ano_letivo' id='ano_letivo' value='<?php if(!empty($Turma['ano_letivo'])) echo $Turma['ano_letivo']; ?>' type='text' class='form-control' placeholder='Ano letivo'/>
+					</div>
+					<div class='input-group mb-2 mb-sm-0 text-danger' id='error-ano_letivo'></div>
+				</div>
 				<div class='row'>
 					<div class='col-lg-4'>
 						<button class='btn btn-secondary btn-block' disabled="disabled"><span class='glyphicon glyphicon-menu-left'></span> Voltar</button>

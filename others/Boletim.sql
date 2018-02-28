@@ -88,6 +88,7 @@ CREATE TABLE turma (
 	ativo BOOLEAN,
 	data_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	nome VARCHAR(100),
+	ano_letivo INT,
 	curso_id INT NOT NULL,
 	CONSTRAINT fk_curso
 		FOREIGN KEY(curso_id) REFERENCES curso(id)
@@ -136,6 +137,7 @@ CREATE TABLE aluno (
 	numero_chamada INT,
 	turma_id INT,
 	curso_id INT NOT NULL,
+	ano_letivo INT,
 	CONSTRAINT fk_turma_aluno
 		FOREIGN KEY (turma_id) REFERENCES turma(id),
 	CONSTRAINT fk_curso_aluno
@@ -214,7 +216,7 @@ INSERT INTO modulo (id, data_registro, ativo, nome, descricao, url, ordem, icone
 (7, '2017-12-29 21:25:48', 1, 'Aluno', 'Alunos', 'Aluno', 3, 'glyphicon glyphicon-user', 2),
 (8, '2017-12-30 01:15:48', 1, 'Turma', 'Turma', 'Turma', 4, 'glyphicon glyphicon-book', 2),
 (9, '2018-01-18 19:28:13', 1, 'Notas', 'Notas', 'Nota', 5, 'glyphicon glyphicon-file', 2),
-(10, '2018-02-06 16:08:54', 1, 'Boletim', 'Boletim', 'boletim', 6, '', 2);
+(10, '2018-02-06 16:08:54', 1, 'Boletim', 'Boletim', 'boletim', 6, 'glyphicon glyphicon-list-alt', 2);
 
 
 

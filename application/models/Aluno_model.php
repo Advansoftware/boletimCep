@@ -28,7 +28,7 @@
 					a.id, DATE_FORMAT(a.data_registro, '%d/%m/%Y') as data_registro, a.matricula, 
 					a.nome as nome_aluno, a.sexo, 
 					DATE_FORMAT(a.data_nascimento, '%d/%m/%Y') as data_nascimento,
-					a.numero_chamada, a.curso_id, t.nome as nome_turma, c.nome as nome_curso 
+					a.numero_chamada, a.curso_id, t.nome as nome_turma, c.nome as nome_curso, a.ano_letivo 
 						FROM aluno a 
 					LEFT JOIN turma_aluno ta ON a.Id = ta.aluno_id 
 					LEFT JOIN turma t ON ta.turma_id = t.id
@@ -43,7 +43,8 @@
 					DATE_FORMAT(a.data_nascimento, '%Y-%m-%d') as data_nascimento_f1,
 					DATE_FORMAT(a.data_nascimento, '%d/%m/%Y') as data_nascimento_f2,
 					DATE_FORMAT(a.data_registro, '%d/%m/%Y') as data_registro, 
-					a.numero_chamada, a.curso_id, t.nome as nome_turma, c.nome as nome_curso, a.ativo  
+					a.numero_chamada, a.curso_id, t.nome as nome_turma, c.nome as nome_curso, a.ativo, 
+					a.ano_letivo   
 						FROM aluno a 
 					LEFT JOIN turma t ON a.turma_id = t.id 
 					INNER JOIN curso c ON a.curso_id = c.id 

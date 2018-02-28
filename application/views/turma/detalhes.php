@@ -19,6 +19,10 @@
 						echo "<td>Nome</td>";
 						echo "<td>".$obj['nome_turma']."</td>";
 					echo"</tr>";
+					echo "<tr>";
+						echo "<td>Ano letivo</td>";
+						echo "<td>".$obj['ano_letivo']."</td>";
+					echo"</tr>";
 					echo"<tr>";
 						echo "<td>Ativo</td>";
 						echo "<td>".(($obj['ativo'] == 1) ? 'Sim' : 'Não')."</td>";
