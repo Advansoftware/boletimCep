@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.7
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 27-Fev-2018 às 05:23
+-- Generation Time: 28-Fev-2018 às 12:20
 -- Versão do servidor: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -84,19 +84,20 @@ CREATE TABLE `aluno` (
   `data_nascimento` date DEFAULT NULL,
   `numero_chamada` int(11) DEFAULT NULL,
   `turma_id` int(11) DEFAULT NULL,
-  `curso_id` int(11) NOT NULL
+  `curso_id` int(11) NOT NULL,
+  `ano_letivo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `aluno`
 --
 
-INSERT INTO `aluno` (`id`, `ativo`, `data_registro`, `matricula`, `nome`, `sexo`, `data_nascimento`, `numero_chamada`, `turma_id`, `curso_id`) VALUES
-(1, 1, '2018-02-08 17:40:26', 1234, 'Tadeu', '1', '1995-05-17', 1, 5, 1),
-(2, 1, '2018-02-08 17:40:50', 12345, 'Bruno', '1', '1994-12-03', 2, 5, 1),
-(3, 1, '2018-02-08 17:41:11', 123456, 'Carlos', '1', '2010-10-10', 3, 5, 1),
-(4, 1, '2018-02-08 17:43:09', 1234567, 'Natália', '0', '1996-05-15', 4, 5, 1),
-(5, 1, '2018-02-08 17:43:49', 12345678, 'Patrícia', '0', '2009-12-10', 5, 5, 1);
+INSERT INTO `aluno` (`id`, `ativo`, `data_registro`, `matricula`, `nome`, `sexo`, `data_nascimento`, `numero_chamada`, `turma_id`, `curso_id`, `ano_letivo`) VALUES
+(1, 1, '2018-02-08 17:40:26', 1234, 'Tadeu', '1', '1995-05-17', 1, 5, 1, 0),
+(2, 1, '2018-02-08 17:40:50', 12345, 'Bruno', '1', '1994-12-03', 2, 5, 1, 0),
+(3, 1, '2018-02-08 17:41:11', 123456, 'Carlos', '1', '2010-10-10', 3, 5, 1, 0),
+(4, 1, '2018-02-08 17:43:09', 1234567, 'Natália', '0', '1996-05-15', 4, 5, 1, 0),
+(5, 1, '2018-02-08 17:43:49', 12345678, 'Patrícia', '0', '2009-12-10', 5, 5, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -130,9 +131,10 @@ CREATE TABLE `boletim` (
 --
 
 INSERT INTO `boletim` (`id`, `ativo`, `data_registro`, `nota1`, `falta1`, `nota2`, `falta2`, `nota3`, `falta3`, `nota4`, `falta4`, `bimestre`, `aluno_id`, `disciplina_id`, `turma_id`, `nota_final`, `status`, `exame`) VALUES
-(15, 1, '2018-02-16 04:27:38', 18, 10, 20, 10, 20, 20, 1, 100, 1, 1, 1, 5, 59, 'Aprovado', 60),
+(15, 1, '2018-02-16 04:27:38', 18, 10, 20, 10, 20, 20, 2, 100, 1, 1, 1, 5, 60, 'Aprovado', 60),
 (16, 1, '2018-02-16 04:28:35', 20, 10, 20, 10, 21, 10, 20, 10, 1, 1, 3, 5, 81, 'Aprovado', NULL),
-(17, 1, '2018-02-16 22:16:25', 18, 10, 20, 10, 20, 25, 20, 5, 1, 2, 1, 5, 78, 'Aprovado', NULL);
+(17, 1, '2018-02-16 22:16:25', 18, 10, 20, 10, 20, 25, 20, 5, 1, 2, 1, 5, 78, 'Aprovado', NULL),
+(18, 1, '2018-02-27 23:59:38', 20, 2, 3, NULL, NULL, NULL, NULL, NULL, 1, 3, 1, 5, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -175,7 +177,7 @@ CREATE TABLE `configuracoes_geral` (
 --
 
 INSERT INTO `configuracoes_geral` (`id`, `media`, `total_faltas`, `primeiro_bimestre`, `segundo_bimestre`, `terceiro_bimestre`, `quarto_bimestre`, `itens_por_pagina`) VALUES
-(1, 60, 200, 20, 25, 25, 30, 5);
+(1, 60, 200, 20, 25, 25, 30, 2);
 
 -- --------------------------------------------------------
 
@@ -335,16 +337,17 @@ CREATE TABLE `turma` (
   `ativo` tinyint(1) DEFAULT NULL,
   `data_registro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `nome` varchar(100) DEFAULT NULL,
-  `curso_id` int(11) NOT NULL
+  `curso_id` int(11) NOT NULL,
+  `ano_letivo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `turma`
 --
 
-INSERT INTO `turma` (`id`, `ativo`, `data_registro`, `nome`, `curso_id`) VALUES
-(5, 1, '2018-02-08 20:21:15', 'E1A', 1),
-(8, 1, '2018-02-08 21:03:06', 'E2A', 1);
+INSERT INTO `turma` (`id`, `ativo`, `data_registro`, `nome`, `curso_id`, `ano_letivo`) VALUES
+(5, 1, '2018-02-08 20:21:15', 'E1A', 1, 0),
+(8, 1, '2018-02-08 21:03:06', 'E2A', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -414,7 +417,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id`, `data_registro`, `ultimo_acesso`, `grupo_id`, `ativo`, `nome`, `email`, `senha`) VALUES
-(1, '2018-02-08 17:35:13', '2018-02-16 22:57:57', 1, 1, 'Admin', 'admin@dominio.com.br', 'admin123');
+(1, '2018-02-08 17:35:13', '2018-02-28 11:19:51', 1, 1, 'Admin', 'admin@dominio.com.br', 'admin123');
 
 --
 -- Indexes for dumped tables
@@ -538,7 +541,7 @@ ALTER TABLE `aluno`
 -- AUTO_INCREMENT for table `boletim`
 --
 ALTER TABLE `boletim`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `categoria`

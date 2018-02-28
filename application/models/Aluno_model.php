@@ -54,12 +54,12 @@
 			return $query->result_array();
 		}
 		
-		public function get_aluno_por_curso($id,$turma_id)//por curso e lista somente os alunos que nao possuem relacionamento com turma no ano corrente
+		public function get_aluno_por_curso($curso_id,$turma_id)//por curso e lista somente os alunos que nao possuem relacionamento com turma no ano corrente
 		{
 			$query = $this->db->query("
 				SELECT a.id, a.nome, ta.turma_id FROM aluno a 
 				LEFT JOIN turma_aluno ta ON a.id = ta.aluno_id 
-				WHERE a.curso_id = ".$this->db->escape($id)."");
+				WHERE a.curso_id = ".$this->db->escape($curso_id)."");
 
 			/*
 			REGRA ANTERIOR
