@@ -1,6 +1,8 @@
-<div class='row' style='padding: 30px;'>
-	<div class='col-lg-8 offset-lg-2'>
-		<p><?php if(isset($Disciplina['id'])) echo"Editar disciplina"; else echo"Nova disciplina";  ?></p><br />
+<br /><br />
+<div class='row padding20' id='container' name='container'>
+	<div class='col-lg-10 offset-lg-1 padding background_dark'>
+	<div class='table-responsive'>
+		<p class='text-center text-white'><?php if(isset($Disciplina['id'])) echo"Editar disciplina"; else echo"Nova disciplina";  ?></p><br />
 		<?php
 			$atr = array('id' => 'form_cadastro_disciplina','name' => 'form_cadastro');
 			echo form_open("$controller/store",$atr);
@@ -8,16 +10,14 @@
 		<br />
 			<input type='hidden' id='id' name='id' value='<?= set_value($Disciplina['id']) ? : (isset($Disciplina['id']) ? $Disciplina['id'] : '') ?>'/>
 			<input type='hidden' id='controller' value='<?php echo $controller; ?>'/>
-			<div class='form-group'>
-				<div class='input-group mb-2 mb-sm-0'>
-					<div class='input-group-addon'>Nome</div>
-					<input type='text' class='form-control' placeholder='Nome' autofocus name='nome' id='nome' value='<?= set_value($Disciplina['nome']) ? : (isset($Disciplina['nome']) ? $Disciplina['nome']: '') ?>'>
-				</div>
+			<div class='form-group relative'>
+					<input type='text'  class="input-material" autofocus name='nome' id='nome' value='<?= set_value($Disciplina['nome']) ? : (isset($Disciplina['nome']) ? $Disciplina['nome']: '') ?>'>
+					<label for="nome" class="label-material">Nome</label>
 				<div class='input-group mb-2 mb-sm-0 text-danger' id='error-nome'></div>
 			</div>
 			<div class='form-group'>
 				<div class='input-group mb-2 mb-sm-0'>
-					<div class='input-group-addon'>Categoria</span></div>
+					<div class='input-group-addon'>Categoria: </span></div>
 					<select name='categoria_id' id='categoria_id' class='form-control'>
 						<option value='0'>Selecione</option>
 						<?php

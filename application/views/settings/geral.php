@@ -33,7 +33,7 @@
 				</div>
 
 				<fieldset>
-					<legend class="text-white">Bimestres</legend>
+					<legend class="text-white">&nbsp;Bimestres</legend>
 					<div class='form-group'>
 						<div class='input-group-addon'>1° Bimestre</div>
 						<input name='primeiro_bimestre' min="1" id='primeiro_bimestre' value='<?php echo (!empty($obj['primeiro_bimestre']) ? $obj['primeiro_bimestre']:''); ?>' type='number' class='form-control' />

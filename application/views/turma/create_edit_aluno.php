@@ -1,7 +1,9 @@
-<div class='row padding30'>
-	<div class='col-lg-8 offset-lg-2'>
-		<div class="card">
-			<h4 class="card-header">
+<br /><br />
+<div class='row' id='container' name='container'>
+	<div class='col-lg-10 offset-lg-1 padding background_dark'>
+		<p class='text-white text-center'>
+			<div class="card text-dark bg-light mb-3">
+				<h4 class="card-header bg-warning">
 				<?php if(isset($Turma['id'])) echo"Editar turma"; else echo"Nova turma";  ?>
 			</h4>
 			<h4 class="card-title" style="margin: 10px;">

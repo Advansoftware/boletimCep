@@ -1,7 +1,9 @@
-<div class='row padding30'>
-	<div class='col-lg-8 offset-lg-2'>
-		<div class="card">
-			<h4 class="card-header">Trocar aluno de turma</h4>
+<br /><br />
+<div class='row' id='container' name='container'>
+	<div class='col-lg-10 offset-lg-1 padding background_dark'>
+		<p class='text-white text-center'>
+			<div class="card text-dark bg-light mb-3">
+				<h4 class="card-header bg-warning">Trocar aluno de turma</h4>
 			<div class="card-body">
 				<?php
 					$atr = array('id' => 'form_cadastro_troca_aluno','name' => 'form_cadastro');
@@ -11,7 +13,7 @@
 				<input type='hidden' id='controller' value='<?php echo $controller; ?>'/>
 				<div class='form-group'>
 					<div class='input-group mb-2 mb-sm-0'>
-						<div class='input-group-addon'>Turma de destino</div>
+						<div class='input-group-addon text-dark '>Turma de destino</div>
 						<select name='turma_id' id='turma_id' class='form-control'>
 							<option value='0'>Selecione</option>
 							<?php

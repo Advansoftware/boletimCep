@@ -1,6 +1,7 @@
-<div class='row padding30'>
-		<div class='col-lg-8 offset-lg-2'>
-		<p><?php if(isset($Turma['id'])) echo"Editar turma"; else echo"Nova turma";  ?></p><br />
+<br /><br />
+<div class='row' id='container' name='container'>
+	<div class='col-lg-10 offset-lg-1 padding background_dark'>
+		<p class='text-white text-center'><?php if(isset($Turma['id'])) echo"Editar turma"; else echo"Nova turma";  ?></p><br />
 		<?php
 			$atr = array('id' => 'form_cadastro_turma','name' => 'form_cadastro');
 			echo form_open("$controller/store",$atr);
@@ -8,16 +9,14 @@
 			<br />
 				<input type='hidden' id='id' name='id' value='<?php if(!empty($Turma['id'])) echo $Turma['id']; ?>'/>
 				<input type='hidden' id='controller' value='<?php echo $controller; ?>'/>
-				<div class='form-group'>
-					<div class='input-group mb-2 mb-sm-0'>
-						<div class='input-group-addon'>Nome</div>
-						<input name='nome' id='nome' value='<?php if(!empty($Turma['nome_turma'])) echo $Turma['nome_turma']; ?>' type='text' class='form-control' placeholder='Nome' autofocus />
-					</div>
-					<div class='input-group mb-2 mb-sm-0 text-danger' id='error-nome'></div>
+				<div class='form-group relative'>
+						<input name='nome' id='nome' value='<?php if(!empty($Turma['nome_turma'])) echo $Turma['nome_turma']; ?>' type='text' class="input-material" autofocus />
+						<label for="nome" class="label-material">Nome</label>
+				<div class='input-group mb-2 mb-sm-0 text-danger' id='error-nome'></div>
 				</div>
 				<div class='form-group'>
 					<div class='input-group mb-2 mb-sm-0'>
-						<div class='input-group-addon'>Curso</div>
+						<div class='input-group-addon'>Curso: </div>
 						<select name='curso_id' id='curso_id' class='form-control'>
 							<option value='0'>Selecione</option>
 							<?php

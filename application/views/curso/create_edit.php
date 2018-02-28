@@ -1,6 +1,8 @@
-<div class='row' style='padding: 30px;'>
-	<div class='col-lg-8 offset-lg-2'>
-		<p>
+<br /><br />
+<div class='row padding20' id='container' name='container'>
+	<div class='col-lg-10 offset-lg-1 padding background_dark'>
+	<div class='table-responsive'>
+		<p class='text-white text-center'>
 			<?php if(isset($Curso[0]['id'])) echo"Editar curso"; else echo"Novo curso";  ?>
 		</p>
 		<br />
@@ -8,16 +10,15 @@
 			<br />
 			<input type='hidden' id='id' name='id' value='<?php if(!empty($Curso[0]['id'])) echo $Curso[0]['id']; ?>'/>
 			<input type='hidden' id='controller' value='<?php echo $controller; ?>'/>
-			<div class='form-group'>
-				<div class='input-group mb-2 mb-sm-0'>
-					<div class='input-group-addon'>Nome</div>
-					<input type='text' class='form-control' placeholder='Nome' autofocus name='nome' id='nome' value='<?php if(!empty($Curso[0]['nome_curso'])) echo $Curso[0]['nome_curso']; ?>'>
-				</div>
+			<div class='form-group relative'>
+				<input type='text' autofocus  class="input-material"  name='nome' id='nome' value='<?php if(!empty($Curso[0]['nome_curso'])) echo $Curso[0]['nome_curso']; ?>'>
+				<label for="nome" class="label-material">Nome</label>
 				<div class='input-group mb-2 mb-sm-0 text-danger' id='error-nome'></div>
+				</div>
 			</div>
 			<div class='form-group'>
-				<div class="card">  
-				  <h3 class="card-header">Disciplinas técnicas</h3>
+				<div class="card text-dark bg-dark mb-3">  
+				  <h3 class="card-header text-white">Disciplinas técnicas</h3>
 					<div class="card-body">
 						<ul class="list-group">
 						<?php
@@ -45,8 +46,8 @@
 				</div>
 			</div>
 			<div class='form-group'>
-				<div class="card">
-				  <h3 class="card-header">Disciplinas do ensino médio</h3>
+				<div class="card text-dark bg-dark mb-3">  
+				  <h3 class="card-header text-white">Disciplinas do ensino médio</h3>
 					<div class="card-body">
 						<ul class="list-group">
 						<?php
