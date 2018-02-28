@@ -4,6 +4,7 @@
 		"selected_items":
 		[
 			[
+<<<<<<< Updated upstream
 				"padding",
 				"padding20"
 			],
@@ -18,10 +19,42 @@
 			[
 				"tex",
 				"text-center"
+=======
+				"pad",
+				"padding"
+			],
+			[
+				"border",
+				"border-top"
+			],
+			[
+				"mar",
+				"margin"
+			],
+			[
+				"abs",
+				"absolute"
+			],
+			[
+				"row",
+				"rowspan"
+			],
+			[
+				"fon",
+				"font-weight"
+			],
+			[
+				"bor",
+				"border-secondary"
+			],
+			[
+				"col",
+				"color"
+>>>>>>> Stashed changes
 			],
 			[
 				"text",
-				"text-left"
+				"text-center"
 			],
 			[
 				"b",
@@ -42,10 +75,6 @@
 			[
 				"we",
 				"Welcome"
-			],
-			[
-				"mar",
-				"margin"
 			],
 			[
 				"head",
@@ -71,6 +100,44 @@
 	},
 	"buffers":
 	[
+<<<<<<< Updated upstream
+=======
+		{
+			"file": "/C/xampp/htdocs/git/boletimCep/application/controllers/Account.php",
+			"settings":
+			{
+				"buffer_size": 3792,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/xampp/htdocs/git/boletimCep/application/config/autoload.php",
+			"settings":
+			{
+				"buffer_size": 4025,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/xampp/htdocs/git/boletimCep/application/models/Account_model.php",
+			"settings":
+			{
+				"buffer_size": 1901,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/xampp/htdocs/git/boletimCep/application/models/Aluno_model.php",
+			"settings":
+			{
+				"buffer_size": 2771,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		}
+>>>>>>> Stashed changes
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -140,17 +207,33 @@
 	[
 		"/C/xampp/htdocs/git/boletimCep",
 		"/C/xampp/htdocs/git/boletimCep/application",
+<<<<<<< Updated upstream
+=======
+		"/C/xampp/htdocs/git/boletimCep/application/config",
+		"/C/xampp/htdocs/git/boletimCep/application/controllers",
+		"/C/xampp/htdocs/git/boletimCep/application/models",
+>>>>>>> Stashed changes
 		"/C/xampp/htdocs/git/boletimCep/application/views",
+		"/C/xampp/htdocs/git/boletimCep/application/views/account",
 		"/C/xampp/htdocs/git/boletimCep/application/views/aluno",
 		"/C/xampp/htdocs/git/boletimCep/application/views/boletim",
 		"/C/xampp/htdocs/git/boletimCep/application/views/disciplina",
+<<<<<<< Updated upstream
 		"/C/xampp/htdocs/git/boletimCep/application/views/settings",
 		"/C/xampp/htdocs/git/boletimCep/application/views/templates",
+=======
+		"/C/xampp/htdocs/git/boletimCep/application/views/grupo",
+		"/C/xampp/htdocs/git/boletimCep/application/views/menu",
+		"/C/xampp/htdocs/git/boletimCep/application/views/modulo",
+		"/C/xampp/htdocs/git/boletimCep/application/views/templates",
+		"/C/xampp/htdocs/git/boletimCep/application/views/turma",
+>>>>>>> Stashed changes
 		"/C/xampp/htdocs/git/boletimCep/content",
 		"/C/xampp/htdocs/git/boletimCep/content/css"
 	],
 	"file_history":
 	[
+<<<<<<< Updated upstream
 		"/C/xampp/htdocs/git/boletimCep/application/views/curso/index.php",
 		"/C/xampp/htdocs/git/boletimCep/application/views/curso/create_edit.php",
 		"/C/xampp/htdocs/git/boletimCep/application/views/aluno/create_edit.php",
@@ -183,12 +266,36 @@
 		"/C/xampp/htdocs/git/boletimCep/application/views/boletim/boletim_pdf.php",
 		"/C/xampp/htdocs/git/boletimCep/application/controllers/Boletim.php",
 		"/C/xampp/htdocs/git/boletimCep/application/controllers/Aluno.php",
+=======
+		"/C/xampp/htdocs/git/boletimCep/content/css/site.css",
+		"/C/xampp/htdocs/CodeIgniter-3.1.7/application/config/routes.php",
+		"/C/xampp/htdocs/git/boletimCep/application/views/boletim/boletim_pdf.php",
+		"/C/xampp/htdocs/git/boletimCep/application/views/boletim/alunos.php",
+>>>>>>> Stashed changes
 		"/C/xampp/htdocs/git/boletimCep/application/views/boletim/turmas.php",
+		"/C/xampp/htdocs/git/boletimCep/content/css/default.css",
+		"/C/xampp/htdocs/git/boletimCep/application/controllers/Boletim.php",
+		"/C/xampp/htdocs/git/boletimCep/application/models/Boletim_model.php",
+		"/C/Users/bruno/AppData/Local/Temp/fz3temp-2/database.php",
+		"/C/xampp/htdocs/git/boletimCep/content/js/Main.js",
+		"/C/Users/bruno/AppData/Local/Temp/fz3temp-2/config.php",
+		"/C/xampp/htdocs/git/boletimCep/application/views/aluno/aluno_pdf.php",
+		"/C/xampp/htdocs/git/boletimCep/application/views/curso/index.php",
+		"/C/xampp/htdocs/git/boletimCep/application/views/account/login.php",
+		"/C/xampp/htdocs/git/boletimCep/application/views/aluno/index.php",
+		"/C/xampp/htdocs/git/boletimCep/application/views/disciplina/index.php",
+		"/C/xampp/htdocs/git/boletimCep/application/views/turma/index.php",
+		"/C/xampp/htdocs/git/boletimCep/application/views/curso/create_edit.php",
 		"/C/xampp/htdocs/git/boletimCep/application/views/boletim/boletim.php",
 		"/C/xampp/htdocs/git/boletimCep/application/views/menu/create_edit.php",
+<<<<<<< Updated upstream
 		"/C/xampp/htdocs/git/boletimCep/application/views/turma/index.php",
 		"/C/xampp/htdocs/git/boletimCep/application/views/aluno/index.php",
 		"/C/xampp/htdocs/git/boletimCep/application/views/boletim/alunos.php",
+=======
+		"/C/xampp/htdocs/git/boletimCep/application/helpers/permissao_helper.php",
+		"/C/xampp/htdocs/git/boletimCep/application/controllers/Aluno.php",
+>>>>>>> Stashed changes
 		"/C/xampp/htdocs/git/boletimCep/application/views/grupo/index.php",
 		"/C/xampp/htdocs/git/boletimCep/application/views/menu/index.php",
 		"/C/xampp/htdocs/git/boletimCep/application/views/boletim/index.php",
@@ -216,7 +323,10 @@
 		"/C/xampp/htdocs/boletim/Boletim Ensino Médio.xls",
 		"/C/xampp/htdocs/git/boletimCep/application/libraries/Pdfgenerator.php",
 		"/C/Users/Bruno Antunes/Desktop/Boletim Ensino Médio.csv",
+<<<<<<< Updated upstream
 		"/C/xampp/htdocs/git/boletimCep/application/views/aluno/aluno_pdf.php",
+=======
+>>>>>>> Stashed changes
 		"/C/xampp/htdocs/git/boletimCep/application/composer.json",
 		"/C/xampp/htdocs/git/boletimCep/application/libraries/M_pdfteste.php",
 		"/C/xampp/htdocs/vendor/php-console/php-console/examples/index.php",
@@ -233,7 +343,6 @@
 		"/C/downloads/dompdf-master/LICENSE.LGPL",
 		"/C/downloads/dompdf-master/CONTRIBUTING.md",
 		"/C/downloads/dompdf-master/composer.json",
-		"/C/xampp/htdocs/git/boletimCep/application/models/Boletim_model.php",
 		"/C/Program Files/IP-TV Player/IpTvPlayer.html",
 		"/C/xampp/htdocs/mvc/composer.bat"
 	],
@@ -253,8 +362,18 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+<<<<<<< Updated upstream
 			";\">",
 			"\"/>",
+=======
+			"table-infos",
+			"tabela-infos",
+			">\";",
+			">\";\n",
+			">\";",
+			" border border-secondary",
+			"border border-secondary",
+>>>>>>> Stashed changes
 			">\n",
 			"echo\"<th class='text-center' colspan='5'>\";\n\t\t\t\t\t\t\t\techo\"<p style='color: white; margin-top: 10px;'>Todos os alunos da turma \".$nome_turma.\"</p>\";\n\t\t\t\t\t\t\techo\"</th>\";",
 			"asdas"
@@ -276,8 +395,129 @@
 	"groups":
 	[
 		{
+<<<<<<< Updated upstream
 			"sheets":
 			[
+=======
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/C/xampp/htdocs/git/boletimCep/application/controllers/Account.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3792,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/C/xampp/htdocs/git/boletimCep/application/config/autoload.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4025,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2800,
+								2800
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1242.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/C/xampp/htdocs/git/boletimCep/application/models/Account_model.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1901,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 54.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/C/xampp/htdocs/git/boletimCep/application/models/Aluno_model.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2771,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 216.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				}
+>>>>>>> Stashed changes
 			]
 		}
 	],
