@@ -189,7 +189,7 @@
 								<ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
 									<li class="nav-item">
 										<?php
-										echo "<div data-toggle='popover' data-html='true' data-placement='bottom' title='<div class=\"text-center\">Opções da conta</div>' 
+										echo "<div tabindex='0' data-trigger='focus' data-toggle='popover' data-html='true' data-placement='bottom' title='<div class=\"text-center\">Opções da conta</div>' 
 												data-content='
 													<button onclick=\"Main.settings();\" class=\"btn btn-outline-info btn-block glyphicon glyphicon-cog\">&nbsp;Configurações</button><button class=\"btn btn-outline-danger btn-block glyphicon glyphicon-log-out\" onclick=\"Main.logout()\">&nbsp;Sair</button>
 												

@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"ove",
+				"overflow-x"
+			],
+			[
 				"fu",
 				"function"
 			],
@@ -75,40 +79,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "/C/xampp/htdocs/git/boletimCep/application/views/nota/index.php",
-			"settings":
-			{
-				"buffer_size": 1041,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/C/xampp/htdocs/git/boletimCep/application/views/templates/header_admin.php",
-			"settings":
-			{
-				"buffer_size": 8114,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/C/xampp/htdocs/git/boletimCep/content/css/site.css",
-			"settings":
-			{
-				"buffer_size": 898,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/C/xampp/htdocs/git/app/content/js/Main.js",
-			"settings":
-			{
-				"buffer_size": 7039,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -178,8 +148,6 @@
 	[
 		"/C/xampp/htdocs/git/boletimCep",
 		"/C/xampp/htdocs/git/boletimCep/application",
-		"/C/xampp/htdocs/git/boletimCep/application/config",
-		"/C/xampp/htdocs/git/boletimCep/application/controllers",
 		"/C/xampp/htdocs/git/boletimCep/application/views",
 		"/C/xampp/htdocs/git/boletimCep/application/views/templates",
 		"/C/xampp/htdocs/git/boletimCep/content",
@@ -187,6 +155,11 @@
 	],
 	"file_history":
 	[
+		"/C/xampp/htdocs/git/boletimCep/application/views/nota/index.php",
+		"/C/xampp/htdocs/git/boletimCep/application/views/templates/header_admin.php",
+		"/C/xampp/htdocs/git/boletimCep/content/css/default.css",
+		"/C/xampp/htdocs/git/app/content/js/Main.js",
+		"/C/xampp/htdocs/git/boletimCep/content/css/site.css",
 		"/C/xampp/htdocs/git/app/content/css/site.css",
 		"/C/xampp/htdocs/git/boletimCep/others/boletim.sublime-project",
 		"/C/xampp/htdocs/camara/application/controllers/Home.php",
@@ -238,7 +211,6 @@
 		"/C/xampp/htdocs/git/boletimCep/application/views/turma/trocar_aluno.php",
 		"/C/xampp/htdocs/git/boletimCep/application/views/disciplina/index.php",
 		"/C/xampp/htdocs/inicio/application/config/config.php",
-		"/C/xampp/htdocs/git/boletimCep/content/css/site.css",
 		"/C/xampp/htdocs/teste/application/config/constants.php",
 		"/C/xampp/htdocs/teste/application/config/database.php",
 		"/C/xampp/htdocs/teste/application/config/hooks.php",
@@ -246,7 +218,6 @@
 		"/C/xampp/htdocs/teste/application/views/header.php",
 		"/C/xampp/htdocs/teste/index.php",
 		"/C/xampp/htdocs/teste/application/config/user_agents.php",
-		"/C/xampp/htdocs/git/boletimCep/content/css/default.css",
 		"/C/xampp/htdocs/teste/application/config/config.php",
 		"/C/xampp/htdocs/teste/application/config/autoload.php",
 		"/C/xampp/htdocs/teste/application/config/migration.php",
@@ -293,7 +264,6 @@
 		"/C/xampp/htdocs/vendor/php-console/php-console/examples/index.php",
 		"/C/xampp/htdocs/vendor/autoload.php",
 		"/C/xampp/htdocs/composer.lock",
-		"/C/xampp/htdocs/git/boletimCep/application/views/templates/header_admin.php",
 		"/C/xampp/htdocs/git/boletimCep/application/welcome.php",
 		"/C/xampp/htdocs/git/boletimCep/application/libraries/M_pdf.php",
 		"/C/xampp/htdocs/git/app/system/helpers/dompdf/composer.json",
@@ -310,7 +280,7 @@
 	],
 	"find":
 	{
-		"height": 40.0
+		"height": 27.0
 	},
 	"find_in_files":
 	{
@@ -347,124 +317,8 @@
 	"groups":
 	[
 		{
-			"selected": 1,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "/C/xampp/htdocs/git/boletimCep/application/views/nota/index.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1041,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								273,
-								273
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/C/xampp/htdocs/git/boletimCep/application/views/templates/header_admin.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 8114,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								7392,
-								7392
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 3762.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "/C/xampp/htdocs/git/boletimCep/content/css/site.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 898,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								229,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "/C/xampp/htdocs/git/app/content/js/Main.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 7039,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 3477.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				}
 			]
 		}
 	],
