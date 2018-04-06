@@ -47,6 +47,7 @@
 				return $query->row_array();
 		}
 		
+		//retorna uma lista de disciplina de uma determinada turma
 		public function get_disciplina_por_turma($turma_id, $page = false)
 		{
 			$limit = $page * ITENS_POR_PAGINA;
@@ -71,6 +72,7 @@
 			return $query->result_array();
 		}
 		
+		//retorna uma lista de alunos de uma determinada turma
 		public function get_aluno_por_turma($turma_id, $page = false)
 		{
 			$limit = $page * ITENS_POR_PAGINA;
@@ -84,8 +86,8 @@
 			$query = $this->db->query("
 				SELECT (
 					SELECT count(*) FROM turma_aluno 
-					WHERE turma_id = ".$this->db->escape($turma_id).") 
-					AS size, t.nome as nome_turma, 
+					WHERE turma_id = ".$this->db->escape($turma_id)."
+				) AS size, t.nome as nome_turma, 
 				ta.aluno_id, a.nome as nome_aluno, a.numero_chamada, UPPER(c.nome) as nome_curso, ta.turma_id 
 					FROM turma_aluno ta 
 				INNER JOIN aluno a ON ta.aluno_id = a.id  
