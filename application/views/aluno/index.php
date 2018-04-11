@@ -12,7 +12,7 @@
 							echo"<td class='text-center' colspan='5'>";
 								echo"<p style='color: white; margin-top: 10px;'>Todos os alunos</p>";
 							echo"</td>";
-						echo"</tr>";
+						echo"</tr>"; 
 						echo"<tr><td colspan='9' class='text-right'>";
 							echo"<a class='btn btn-danger' href='".$url."aluno/alunoPdf' target='_blank'>PDF</a>";
 							if(permissao::get_permissao(CREATE,$controller))

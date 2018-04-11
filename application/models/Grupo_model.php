@@ -6,7 +6,7 @@
 			$this->load->database();
 		}
 		
-		public function get_grupo($id = FALSE)///usado para o cadastro de usuario
+		public function get_grupo($id = FALSE)///usado para o cadastro de usuario, por causa do atributo ativo
 		{
 			if ($id === FALSE)
 			{
